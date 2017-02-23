@@ -1,0 +1,126 @@
+<!-- Navbar login form will come here -->
+<nav>
+    <div class="nav-wrapper teal lighten-2">
+      <a href="#" class="brand-logo">CodeHub</a>
+    </div>
+  </nav>
+
+
+
+
+<!-- Registeration form will come underneath login form -->
+
+<div class="row" style="margin-top: 20px;">
+  <div class="col s7" >
+    <div class="card-panel hoverable" style="width: 500px; margin-top: 100px; margin-left: 50px;">
+    <form id="login" >
+      <div class="center-align ">
+        <h4 style="color:#4db6ac">Log In</h4>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <input id="username" type="text" />
+          <label for "username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field">
+          <input id="password" type="password">
+          <label for "password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field center-align">
+          <a href="#!user" class="btn teal lighten-2 ">Log In</a>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <div class="col s5">
+    <!-- Registeration form starts here -->
+    <div id="panel" class="card-panel hoverable" >
+      <form id="register">
+        <div style="margin-left: 25px">
+          <div class="row">
+            <div class="input-field ">
+              <input id="reg_username" type="text" class="validate">
+              <label for="reg_username">Username</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field">
+              <input id="first_name" type="text" class="validate">
+              <label for="first_name">First Name</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field">
+              <input id="last_name" type="text" class="validate">
+              <label for="last_name">Last Name</label>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="input-field">
+              <input id="reg_password" type="password" class="validate">
+              <label for="reg_password">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <input id="confirm_password" type="password" class="validate">
+              <label for="confirm_password">Re-enter Password</label>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="input-field">
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+
+          </div>
+
+          <div class="row" id="role">
+            <div class="input-field">
+              <label for="birthdate">Birthdate</label>
+              <input type="date" class="datepicker">
+            </div>
+          </div>
+
+
+          <div class="row ">
+            <div class="row">
+              <div class=" col s7" style="margin-top: 10px">
+
+                <input type="checkbox" class="radio" value="1" id="male" name="gender" />
+                <label for="male">Male</label> &nbsp; &nbsp; &nbsp;
+
+                <input type="checkbox" class="radio" value="1" id="female" name="gender" />
+                <label for="female">female</label>
+
+              </div>
+              <div class=" col s5">
+                <a class="waves-effect waves-light btn-large">Register</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <small class="center-align">By Registering you agree with our terms and conditions</small>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

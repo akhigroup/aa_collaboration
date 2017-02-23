@@ -1,0 +1,57 @@
+body {
+    font-family: 'Merriweather', serif;
+}
+#register {
+    position: right;
+}
+#panel {
+     width: 450px;
+}
+#role {
+    
+    margin-top: 10px;
+}
+#rolelabel {
+    font-size: 1.2rem;
+}
+input:not([type]), input[type=text], 
+input[type=password], input[type=email], 
+input[type=url], input[type=time], 
+input[type=date], input[type=datetime], 
+input[type=datetime-local], input[type=tel], 
+input[type=number], input[type=search], 
+textarea.materialize-textarea {
+    margin-bottom: 10px;
+}
+.row {
+    display: inline;
+}
+.brand-logo {
+    margin-left: 50px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    transition: background-color 5000s ease-in-out 0s;
+
+}
+.input-field input[type=search]:focus {
+    background-color: transparent;
+    color: #fff;
+}
+.input-field input[type=search]:focus+label i{
+    color: #fff;
+}
+.input-field input[type=search]:focus ~ .material-icons {
+    color: #fff;
+}
+::-webkit-input-placeholder {
+    color: #fff;
+}
