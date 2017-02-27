@@ -34,42 +34,43 @@ public class UserTestCase {
 	
 	@Test
 	public void addUser() {
-		user.setId(101);
+		user.setId(1);
 		user.setUsername("Avadhoot");
 		user.setFirstname("Avadhoot");
 		user.setLastname("Athalye");
 		user.setPassword("1234");
 		user.setEmailId("ava@gmail.com");
-		user.setBirthDate(LocalDate.parse("2007-02-10")); //2007-02-10
+		user.setBirthDate(LocalDate.parse("2007-02-10")); //yyyy-mm-dd
 		user.setGender('M');
 		user.setRole("Admin");
 		user.setStatus("This is a test");
 		user.setEnabled(true);
 		user.setOnline(false);
+		user.setProfile("01.png");
 		
 		Assert.assertEquals(true, userDAO.addUser(user));
 		
 	}
 	
 	
-	@Test
-	public void updateUser() {
-		user = userDAO.getUser(101);
-		user.setEmailId("athalye.49@gmail.com");
-		Assert.assertEquals(true, userDAO.updateUser(user));
-	}
+//	@Test
+//	public void updateUser() {
+//		user = userDAO.getUser(101);
+//		user.setEmailId("athalye.49@gmail.com");
+//		Assert.assertEquals(true, userDAO.updateUser(user));
+//	}
+////	
 //	
-	
-	@Test
-	public void deleteUser() {
-		user = userDAO.getUser(101);
-		Assert.assertEquals(true, userDAO.deleteUser(user));
-	}
-	
-	@Test
-	public void getAllUserTestCase() {
-		
-		int size = userDAO.list().size();
-		Assert.assertEquals(1, size);
-	}
+//	@Test
+//	public void deleteUser() {
+//		user = userDAO.getUser(101);
+//		Assert.assertEquals(true, userDAO.deleteUser(user));
+//	}
+//	
+//	@Test
+//	public void getAllUserTestCase() {
+//		
+//		int size = userDAO.list().size();
+//		Assert.assertEquals(1, size);
+//	}
 }

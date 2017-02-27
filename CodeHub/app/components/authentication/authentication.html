@@ -1,5 +1,6 @@
 <!-- Navbar login form will come here -->
-<nav>
+<div>
+  <nav>
     <div class="nav-wrapper teal lighten-2">
       <a href="#" class="brand-logo">CodeHub</a>
     </div>
@@ -8,119 +9,140 @@
 
 
 
-<!-- Registeration form will come underneath login form -->
+  <!-- Login form starts here-->
 
-<div class="row" style="margin-top: 20px;">
-  <div class="col s7" >
-    <div class="card-panel hoverable" style="width: 500px; margin-top: 100px; margin-left: 50px;">
-    <form id="login" >
-      <div class="center-align ">
-        <h4 style="color:#4db6ac">Log In</h4>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col s7">
+      <div class="card-panel hoverable" style="width: 500px; margin-top: 100px; margin-left: 50px;">
+
+        <form id="login">
+          <div class="center-align ">
+            <h4 style="color:#4db6ac">Log In</h4>
+          </div>
+
+          <!--Username will be asks to enter here-->
+          <div class="row">
+            <div class="input-field">
+              <input id="username" type="text" />
+              <label for "username">Username</label>
+            </div>
+          </div>
+
+          <!--Password will be asks to enter here-->
+          <div class="row">
+            <div class="input-field">
+              <input id="password" type="password">
+              <label for "password">Password</label>
+            </div>
+          </div>
+
+          <!--Login button is here-->
+          <div class="row">
+            <div class="input-field center-align">
+              <a href="#!user" class="btn teal lighten-2 ">Log In</a>
+            </div>
+          </div>
+
+        </form>
       </div>
-      <div class="row">
-        <div class="input-field">
-          <input id="username" type="text" />
-          <label for "username">Username</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field">
-          <input id="password" type="password">
-          <label for "password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field center-align">
-          <a href="#!user" class="btn teal lighten-2 ">Log In</a>
-        </div>
-      </div>
-    </form>
     </div>
-  </div>
 
-  <div class="col s5">
-    <!-- Registeration form starts here -->
-    <div id="panel" class="card-panel hoverable" >
-      <form id="register">
-        <div style="margin-left: 25px">
-          <div class="row">
-            <div class="input-field ">
-              <input id="reg_username" type="text" class="validate">
-              <label for="reg_username">Username</label>
-            </div>
-          </div>
+    <div class="col s5">
+      <!-- Registeration form starts here -->
+      <div id="panel" class="card-panel hoverable">
+        <form id="register" ng-submit="authCtrl.register() && register.$valid">
+          <input type="hidden" ng-model="authCtrl.client.id" />
+          <div style="margin-left: 25px">
 
-          <div class="row">
-            <div class="input-field">
-              <input id="first_name" type="text" class="validate">
-              <label for="first_name">First Name</label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="input-field">
-              <input id="last_name" type="text" class="validate">
-              <label for="last_name">Last Name</label>
-            </div>
-
-          </div>
-
-          <div class="row">
-
-            <div class="input-field">
-              <input id="reg_password" type="password" class="validate">
-              <label for="reg_password">Password</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field">
-              <input id="confirm_password" type="password" class="validate">
-              <label for="confirm_password">Re-enter Password</label>
-            </div>
-
-          </div>
-
-          <div class="row">
-
-            <div class="input-field">
-              <input id="email" type="email" class="validate">
-              <label for="email">Email</label>
-            </div>
-
-          </div>
-
-          <div class="row" id="role">
-            <div class="input-field">
-              <label for="birthdate">Birthdate</label>
-              <input type="date" class="datepicker">
-            </div>
-          </div>
-
-
-          <div class="row ">
+            <!--//username will come here-->
             <div class="row">
-              <div class=" col s7" style="margin-top: 10px">
+              <div class="input-field ">
+                <input id="reg_username" name="reg_username" type="text" class="validate" ng-model="authCtrl.client.username" data-length="10" ng-blur="authCtrl.checkUsername()">
+                <label for="reg_username">Username</label>
+                <div class="invalid-data" ng-show="register.reg_username.$dirty">
+                  <span>test</span>
+                  <span ng-show="register.reg_username.$invalid && !authCtrl.usernameExist">Please select a username</span>
+                  <span ng-show="authCtrl.checkUsername">Please select other username</span>
 
-                <input type="checkbox" class="radio" value="1" id="male" name="gender" />
-                <label for="male">Male</label> &nbsp; &nbsp; &nbsp;
-
-                <input type="checkbox" class="radio" value="1" id="female" name="gender" />
-                <label for="female">female</label>
-
+                </div>
               </div>
+            </div>
+
+            <!--//firstname will come here-->
+            <div class="row">
+              <div class="input-field">
+                <input id="first_name" type="text" class="validate" ng-model="authCtrl.client.firstname" data-length="25">
+                <label for="first_name">First Name</label>
+              </div>
+            </div>
+
+            <!--//lastname will come here-->
+            <div class="row">
+              <div class="input-field">
+                <input id="last_name" type="text" class="validate" ng-model="authCtrl.client.lastname" data-length="25">
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+
+            <!--//Password will come here-->
+            <div class="row">
+              <div class="input-field">
+                <input id="reg_password" type="password" class="validate" ng-model="authCtrl.client.password" data-length="10">
+                <label for="reg_password">Password</label>
+              </div>
+            </div>
+
+            <!--//Password will be ask to confirm here-->
+            <div class="row">
+              <div class="input-field">
+                <input id="confirm_password" type="password" class="validate" ng-model="authCtrl.client.confirmPassword" data-length="10">
+                <label for="confirm_password">Re-enter Password</label>
+              </div>
+            </div>
+
+            <!--//Email will come here-->
+            <div class="row">
+              <div class="input-field">
+                <input id="email" type="email" class="validate" ng-model="authCtrl.client.emailId" data-length="50">
+                <label for="email">Email</label>
+                <div class="invalid-data" ng-show="register.email.$dirty">
+                 <span ng-show="register.email.$invalid">Please enter valid email id!</span>
+              </div>
+            </div>
+
+            <!--//Birthdate will come here-->
+            <div class="row">
+              <div class="input-field">
+                <input id="birthDate" type="text" required class="datepicker" ng-model="authCtrl.client.birthDate" name="birthDate">
+                <label for="birthDate">Birthdate</label>
+              </div>
+            </div>
+
+             <!--Gender will come here-->
+            <div class="row">
+              <div class="input-field">
+                <select name="gender" id="gender" ng-model="authCtrl.client.gender" ng-required="true">
+                  <option value="" disabled selected>Choose a gender</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+                <label for="gender">Gender</label>
+              </div>
+            </div>
+
+            <div class="row">
               <div class=" col s5">
-                <a class="waves-effect waves-light btn-large">Register</a>
+                <input type="submit" class="waves-effect waves-light btn-large btn tooltipped" data-position="left" data-delay="50" data-tooltip="User will be able to use the site only after admin's approval!'">
+              </div>
+
+              <div class="col s7">
+                <small class="center-align">By Registering you agree with our terms and conditions</small>
               </div>
             </div>
           </div>
+        </form>
+      </div>
 
-          <div class="row">
-            <small class="center-align">By Registering you agree with our terms and conditions</small>
-          </div>
-
-        </div>
-      </form>
     </div>
-
   </div>
 </div>

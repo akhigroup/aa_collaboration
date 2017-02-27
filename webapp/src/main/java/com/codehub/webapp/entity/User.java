@@ -40,9 +40,14 @@ public class User implements Serializable{
 	private char gender;
 	private String role;
 	private String status;
+	
 	@Column(name="is_online")
 	private boolean isOnline;
+	
 	private boolean enabled;
+	
+	private String profile;
+	
 	public int getId() {
 		return id;
 	}
@@ -121,8 +126,11 @@ public class User implements Serializable{
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
-	
-	
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 
 }

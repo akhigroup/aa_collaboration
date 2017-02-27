@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO{
 	@Transactional
 	public boolean addUser(User user) {
 		try {
-			sessionFactory.getCurrentSession().persist(user);
+			sessionFactory.getCurrentSession().save(user);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,6 +66,22 @@ public class UserDAOImpl implements UserDAO{
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	@Transactional
+	public User getByUserName(String username) {
+		String hql="FROM User WHERE username = :username";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setParameter("username", username);
+		try {
+			System.out.println("Fetching user");
+			return (User) query.getSingleResult();
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return null;
 	}
 
 	
