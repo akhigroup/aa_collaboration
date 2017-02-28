@@ -11,7 +11,9 @@ window.routes = {
     "/user": {
         templateUrl : 'app/components/user/profile.html',
         controller : 'userController',
-        controllerAs : 'userCtrl'
+        controllerAs : 'userCtrl',
+        requireLogin: true,
+        roles: ['USER']
     }
 }
 

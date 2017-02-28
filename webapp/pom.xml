@@ -48,6 +48,20 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		<!-- spring web socket -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- spring messaging -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
 		<!-- Hibernate -->
 		<dependency>
@@ -76,11 +90,24 @@
 			<version>${jackson.databind}</version>
 		</dependency>
 		
+		<!-- javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		
 		<!-- jstl -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.8.4</version>
 		</dependency>
 		
 		<!-- javax.servlet-api -->
@@ -95,6 +122,20 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        
+        <!-- jackson-jaxrs-json-provider -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>2.8.4</version>
+		</dependency>
+		
+		<!-- joda-time -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.6</version>
+		</dependency>
         
 	</dependencies>
 

@@ -51,6 +51,16 @@ public class UserController {
 		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = {"/login"}, method = RequestMethod.POST)
+	public ResponseEntity<User> validateUser(@RequestBody User currentUser) {
+	
+		user.setUsername(currentUser.getUsername());
+		user.setPassword(currentUser.getPassword());
+		user = userDAO.validateUser(user);
+		user = userDAO.getByUserName(currentUser.getUsername());
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = {"/checkuser"})
 	public ResponseEntity<Void> checkUsername(@RequestBody String userName) {
 		

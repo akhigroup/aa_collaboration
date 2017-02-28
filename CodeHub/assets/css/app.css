@@ -54,3 +54,15 @@ select:-webkit-autofill:focus {
 ::-webkit-input-placeholder {
     color: #fff;
 }
+.help-block {
+    font-size: 12px;
+    display: inline;
+    color: red
+}
+#toast-container {
+    top: auto;
+    right: auto;
+    bottom: 10%;
+    left: 45%;
+    max-width: 86%;
+}

@@ -1,7 +1,15 @@
 
 
-authenticate.controller('authenticationController', ['AuthenticationFactory', '$rootScope', '$location', '$timeout', '$scope',  
-function(AuthenticationFactory, $rootScope, $location, $timeout, $scope){
+authenticate.controller('authenticationController', 
+[
+        'AuthenticationFactory', 
+        '$rootScope', 
+        '$location', 
+        '$timeout', 
+        '$scope', 
+        '$route', 
+
+function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route){
 
     var self = this;
     self.credentials = {};
@@ -42,7 +50,9 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope){
                 $rootScope.authenticated = false;
                 self.register = true;
                 $rootScope.msg = "Registration successful! You will get an email after approval.";
-                $location.path('/home');
+                $route.reload();
+                $location.path('/home')
+                Materialize.toast('Registration successful!', 2000);
             },
             function (errorResponse) {
                 console.log(errorResponse);
@@ -51,34 +61,63 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope){
                 self.error = true;
             }
             )
-    }
+    };
 
     setting();
 
     //Method to check whether username already exist
     self.checkUsername = function () {
-        debugger;
+        // debugger;
         //If username is undefined and has some characters
         if(self.client.username !== undefined && self.client.username.length > 0) {
 
         AuthenticationFactory.checkUsername(self.client.username).then (
             function (response) {
-                if(response.statusText === 'FOUND') {
+                console.log(response);
+                if(response.statusText === 'Found') {
                     self.usernameExist = true;
-                    console.log('Found!');
                     //setting the validity as false if the username already exist
-                    $scope.register.userName.$setValidity("username", false)
+                    $scope.register.reg_username.$setValidity("reg_username", false)
                 } else {
                     self.usernameExist = false;
                     //setting the validity as true if the username already exist
-                    $scope.register.userName.$setValidity("username", true)
+                    $scope.register.reg_username.$setValidity("reg_username", true)
                 }
             }, function (error) {
                 self.usernameExist = false;
-                $scope.register.userName.$setValidity("username", true)
+                $scope.register.reg_username.$setValidity("reg_username", true)
             }
         );
         }
        
+    };
+
+    //Method for user login 
+    self.login = function() {
+
+        AuthenticationFactory.login(self.credentials).then (
+
+            function (user) {
+                debugger;
+                AuthenticationFactory.setUserIsAuthenticated(true);
+                AuthenticationFactory.setRole(user.role);
+                $rootScope.authenticated = true;
+                AuthenticationFactory.saveUser(user);
+                switch(user.role) {
+                    // case 'ADMIN' :
+                    case 'User' :
+                        $location.path('/user');
+                        console.log('success');
+                        break;
+                    default :
+                        $location.path('/home');
+                }
+            }, function(error) {
+                AuthenticationFactory.setUserIsAuthenticated(false);
+                $rootScope.authenticated = false;
+                if($rootScope.message) $rootScope.message = false;
+                self.error = true;
+            }
+        )
     }
 }]);

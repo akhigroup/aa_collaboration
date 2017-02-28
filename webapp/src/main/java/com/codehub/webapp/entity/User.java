@@ -131,6 +131,6 @@ public class User implements Serializable{
 	}
 	public void setProfile(String profile) {
 		this.profile = profile;
-	}
+	}	
 
 }

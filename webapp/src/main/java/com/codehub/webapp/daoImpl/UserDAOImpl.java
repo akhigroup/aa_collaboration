@@ -84,5 +84,24 @@ public class UserDAOImpl implements UserDAO{
 		return null;
 	}
 
+	@Override
+	@Transactional
+	public User validateUser(User user) {
+		
+		String username = user.getUsername();
+		String password = user.getPassword();
+		
+		String hql = "FROM User where username = '" + username + "' and password = '" + password + "'";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		try {
+			user = (User) query.getSingleResult();
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	
 }

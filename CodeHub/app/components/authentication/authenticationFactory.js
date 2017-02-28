@@ -24,12 +24,12 @@ authenticate.factory('AuthenticationFactory', ['$http', '$q', '$rootScope', '$co
         function setUserIsAuthenticated(value) {
 
             userIsAuthenticated = value;
-        }
+        };
 
         function getUserIsAuthenticated() {
 
             return userIsAuthenticated;
-        }
+        };
 
         //Loading user inside cookies
         function loadUserFromCookie() {
@@ -52,14 +52,46 @@ authenticate.factory('AuthenticationFactory', ['$http', '$q', '$rootScope', '$co
                 role = 'GUEST';
             }
             return user;
-        }
+        };
+
+        //saving user inside cookies
+        function saveUser(user) {
+            debugger;
+            $cookies.putObject('user', user);
+            role = user.role;
+            userIsAuthenticated = true;
+
+        };
+
+        function setRole(value) {
+
+            role = value;
+        };
+
+        function getRole() {
+
+            return role;
+        };
+
+        function login(credentials) {
+            var deferred = $q.defer();
+            $http.post(url + '/login', credentials).then (
+                function(response) {
+                    console.log('success');
+                    deferred.resolve(response.data);
+                }, function (error) {
+                    deferred.reject(error);
+                }
+            );
+            return deferred.promise;
+        }   
 
         //Method for checking username
-        function checkUsername(userName) {
+        function checkUsername(username) {
 
             var deferred = $q.defer();
-            $http.post(url + '/checkuser', userName).then (
-                function(response) {
+            $http.post(url + '/checkuser', username).then (
+                function(response) {    
                     console.log('Success');
                     deferred.resolve(response);
                 }, function(error) {
@@ -68,30 +100,7 @@ authenticate.factory('AuthenticationFactory', ['$http', '$q', '$rootScope', '$co
                 }
             );
             return deferred.promise;
-        }
-
-        //saving user inside cookies
-        function saveUser(user) {
-
-            $cookies.putObject('user', user);
-            role = user.role;
-            userIsAuthenticated = true;
-
-        }
-
-        function setRole(value) {
-
-            role = value;
-        }
-
-        function getRole() {
-
-            return role;
-        }
-
-        function login(credentials) {
-
-        }
+        };
 
         function register(user) {
             console.log(user);
@@ -107,7 +116,7 @@ authenticate.factory('AuthenticationFactory', ['$http', '$q', '$rootScope', '$co
                 }
                 );
             return deferred.promise;
-        }
+        };
 
         function logout(userId) {
 
