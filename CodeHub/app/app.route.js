@@ -32,32 +32,43 @@ codehub.config(['$routeProvider', function($routeProvider){
     // $locationProvider.hashPrefix('!');
 }]);
 
-// codehub.run(function ($rootScope, $location, AuthenticationFactory) {
+//Rest server from where data is coming
+codehub.constant('url', 'http://localhost:7070/webapp');
 
-//     $rootScope.$on('$locationChangeStart', function (event, next, current) {
-//         //$scope.$emit('LOAD');
-//         // iterate through all the routes
-//         for (var i in window.routes) {
-//             // if routes is present make sure the user is authenticated 
-//             // before login using the authentication service            
-//             if (next.indexOf(i) != -1) {
-//                 // if trying to access page which requires login and is not logged in 
-//                 // $rootScope.user = AuthenticationFactory.loadUserFromCookie();
-//                 console.log($rootScope.user);
-//                 // $rootScope.authenticated = AuthenticationFactory.getUserIsAuthenticated();
-//                 console.log($rootScope.authenticated);
+codehub.run(function ($rootScope, $location, AuthenticationFactory) {
 
-//                 if (window.routes[i].requireLogin && !AuthenticationFactory.getUserIsAuthenticated()) {
-//                     $location.path('/home');
-//                 }
-//                 // else if ((AuthenticationFactory.getUserIsAuthenticated())
-//                     // &&
-//                     // (window.routes[i].roles.indexOf(AuthenticationFactory.getRole()) == -1)) {
-//                     // $location.path('/error');
-//                 }
-//             }
-//         }
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        // For interating through all the routes
+        for (var i in window.routes) {          
+            if (next.indexOf(i) != -1) {
+ 
+                $rootScope.user = AuthenticationFactory.loadUserFromCookie();
+                console.log($rootScope.user);
+                $rootScope.authenticated = AuthenticationFactory.getUserIsAuthenticated();
+                console.log($rootScope.authenticated);
+
+                //if trying to access page that requires login and user is not authenticated redirect to login page
+                if (window.routes[i].requireLogin && !AuthenticationFactory.getUserIsAuthenticated()) {
+                    $location.path('/home');
+                }
+                
+            }
+        }
         
-//     })
+    });
 
-// });
+    $rootScope.logout = function() {
+    //calling the log out function created in the AuthenticationFactory
+    AuthenticationFactory.logout($rootScope.user).then(
+        function() {
+            debugger;
+            AuthenticationFactory.setUserIsAuthenticated(false);
+            $rootScope.authenticated = false;
+            $rootScope.message = "Logout successfully!";
+            $location.path('/home');
+        }
+    );
+};
+
+});
+

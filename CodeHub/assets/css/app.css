@@ -66,3 +66,16 @@ select:-webkit-autofill:focus {
     left: 45%;
     max-width: 86%;
 }
+
+input[type=text].invalid,
+input[type=password].invalid,
+input[type=password]:focus.invalid {
+
+    border-bottom: 1px solid #F44336;
+    box-shadow: 0 1px 0 0 #F44336;
+}
+
+input .ng-dirty .ng-invalid{
+    border-bottom: 1px solid #F44336;
+    box-shadow: 0 1px 0 0 #F44336;
+}

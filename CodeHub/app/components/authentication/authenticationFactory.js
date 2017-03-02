@@ -31,22 +31,12 @@ authenticate.factory('AuthenticationFactory', ['$http', '$q', '$rootScope', '$co
             return userIsAuthenticated;
         };
 
-        //Loading user inside cookies
+        //Loading user from cookies
         function loadUserFromCookie() {
             user = $cookies.getObject('user');
-            console.log(user)
             if (user) {
                 userIsAuthenticated = true;
-                $rootScope.authenticated = true;
-                $rootScope.message = 'Welcome ' + user.username;
-                $rootScope.firstName = user.firstname;
-                $rootScope.lastName = user.lastname;
-                $rootScope.emailId = user.emailId;
-                $rootScope.gender = user.gender;
-                $rootScope.userId = user.id;
-                console.log($rootScope.idd);
                 role = user.role;
-                console.log(role);
             } else {
                 userIsAuthenticated = false;
                 role = 'GUEST';
@@ -73,6 +63,7 @@ authenticate.factory('AuthenticationFactory', ['$http', '$q', '$rootScope', '$co
             return role;
         };
 
+        //Method for user login
         function login(credentials) {
             var deferred = $q.defer();
             $http.post(url + '/login', credentials).then (
@@ -102,6 +93,7 @@ authenticate.factory('AuthenticationFactory', ['$http', '$q', '$rootScope', '$co
             return deferred.promise;
         };
 
+        //method for user registration
         function register(user) {
             console.log(user);
 
@@ -118,8 +110,19 @@ authenticate.factory('AuthenticationFactory', ['$http', '$q', '$rootScope', '$co
             return deferred.promise;
         };
 
-        function logout(userId) {
-
+        //Method for user logout
+        function logout(user) {
+            debugger;
+            var deferred = $q.defer();
+            $http.post(url + '/logout', user).then(
+                function (response) {
+                    $cookies.putObject('user', undefined);
+                    userIsAuthenticated = false;
+                    role = 'GUEST';
+                    deferred.resolve(response);
+                    Materialize.toast('Logout successfully!', 2000);
+                });
+            return deferred.promise;
         }
 
     }]);

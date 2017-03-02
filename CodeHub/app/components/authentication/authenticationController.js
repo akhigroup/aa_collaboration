@@ -41,11 +41,11 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
          debugger;
          var date = new Date(self.client.birthDate).toISOString().slice(0, 10);
           self.client.birthDate = date;
-          console.log("Date " + self.client.birthDate);
+          
         AuthenticationFactory.register(self.client)
             .then(
             function (user) {
-                  console.log("Success");
+                 
                 AuthenticationFactory.setUserIsAuthenticated(false);
                 $rootScope.authenticated = false;
                 self.register = true;
@@ -55,7 +55,7 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
                 Materialize.toast('Registration successful!', 2000);
             },
             function (errorResponse) {
-                console.log(errorResponse);
+               
                 AuthenticationFactory.setUserIsAuthenticated(false);
                 $rootScope.authenticated = false;
                 self.error = true;
@@ -67,14 +67,16 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
 
     //Method to check whether username already exist
     self.checkUsername = function () {
-        // debugger;
+        
+        var username = self.client.username;
         //If username is undefined and has some characters
-        if(self.client.username !== undefined && self.client.username.length > 0) {
+        if( username !== undefined && username.length > 0) {
 
-        AuthenticationFactory.checkUsername(self.client.username).then (
-            function (response) {
-                console.log(response);
-                if(response.statusText === 'Found') {
+        AuthenticationFactory.checkUsername(username).then (
+            function (response ) {
+               
+               
+                if(response.status === 302) {
                     self.usernameExist = true;
                     //setting the validity as false if the username already exist
                     $scope.register.reg_username.$setValidity("reg_username", false)
@@ -94,29 +96,39 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
 
     //Method for user login 
     self.login = function() {
-
+        debugger;
         AuthenticationFactory.login(self.credentials).then (
 
             function (user) {
                 debugger;
-                AuthenticationFactory.setUserIsAuthenticated(true);
-                AuthenticationFactory.setRole(user.role);
-                $rootScope.authenticated = true;
-                AuthenticationFactory.saveUser(user);
-                switch(user.role) {
-                    // case 'ADMIN' :
-                    case 'User' :
-                        $location.path('/user');
-                        console.log('success');
-                        break;
-                    default :
-                        $location.path('/home');
+                if(user !== "") {
+                   
+                    AuthenticationFactory.setUserIsAuthenticated(true);
+                    AuthenticationFactory.setRole(user.role);
+                    $rootScope.authenticated = true;
+                    AuthenticationFactory.saveUser(user);
+                    switch(user.role) {
+                        // case 'ADMIN' :
+                        case 'User' :
+                            $location.path('/user');
+                            console.log('success');
+                            break;
+                        default :
+                            $location.path('/home');
+                    }
+                } else {
+                AuthenticationFactory.setUserIsAuthenticated(false);
+                $rootScope.authenticated = false;
+                if($rootScope.message) $rootScope.message = false;
+                self.error = true;
                 }
+               
             }, function(error) {
                 AuthenticationFactory.setUserIsAuthenticated(false);
                 $rootScope.authenticated = false;
                 if($rootScope.message) $rootScope.message = false;
                 self.error = true;
+                console.log('Error occured!');
             }
         )
     }
