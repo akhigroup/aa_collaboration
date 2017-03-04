@@ -1,14 +1,2 @@
-<nav>
-    <div class="nav-wrapper teal lighten-2">
-      <a href="#" class="brand-logo">CodeHub</a>
-      <div class="input-field left" style="margin-left: 250px">
-      <input id="search" type="search" required style="display: inline; width: 300px" placeholder="Search">
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons" >close</i>
-      </div>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a ng-click="logout()">Logout</a></li>
-      </ul>
-    </div>
-  </nav>
-<h1>Welcome user!</h1>
+
+<h1>Welcome {{user.username}}!</h1> You are {{user.role}} of this page

@@ -11,7 +11,7 @@ role varchar2(20) not null,
 profile varchar2(50) not null,
 status varchar2(25) default 'PENDING' not null,
 is_online NUMBER(1) default 0 not null,
-enabled NUMBER(1) default 'enabled' not null
+enabled NUMBER(1) default '1' not null
 );
 
 create sequence USER_SEQ

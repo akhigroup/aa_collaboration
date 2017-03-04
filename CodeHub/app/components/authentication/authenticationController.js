@@ -101,35 +101,55 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
 
             function (user) {
                 debugger;
-                if(user !== "") {
-                   
-                    AuthenticationFactory.setUserIsAuthenticated(true);
-                    AuthenticationFactory.setRole(user.role);
-                    $rootScope.authenticated = true;
-                    AuthenticationFactory.saveUser(user);
-                    switch(user.role) {
-                        // case 'ADMIN' :
-                        case 'User' :
+
+                if(self.credentials.username == null || self.credentials.password == null) {
+                    self.error = true;
+                    $rootScope.message = "Please provide both username and password";
+                }
+                else if(user.username == null || user.password == null) {
+                    self.error = true;
+                    $rootScope.message = "Incorrect username or password";
+                } else if(user.status == 'PENDING') {
+                    self.error = true;
+                    $rootScope.message = "Apparently your registeration request is not approved yet!";
+                } else if(user.status == 'REJECT') {
+                    self.error = true;
+                    $rootScope.message = "Your registeration request has been rejected!";
+                } else {
+                     AuthenticationFactory.setUserIsAuthenticated(true);
+                     AuthenticationFactory.setRole(user.role);
+                     $rootScope.authenticate = true;
+                     $rootScope.message = "Welcome" + user.username;
+                     AuthenticationFactory.saveUser(user);
+                      switch(user.role) {
+                        case 'Super_Admin':
+                            self.isSuperAdmin = true;
                             $location.path('/user');
-                            console.log('success');
+                            break;
+                        case 'Admin':
+                            self.isAdmin = true;
+                            $location.path('/user');
+                            break;
+                        case 'Employer':
+                            self.isEmployer = true;
+                            $location.path('/user');
+                            break;
+                        case 'User' :
+                            self.isUser = true;
+                            $location.path('/user');
                             break;
                         default :
                             $location.path('/home');
                     }
-                } else {
-                AuthenticationFactory.setUserIsAuthenticated(false);
-                $rootScope.authenticated = false;
-                if($rootScope.message) $rootScope.message = false;
-                self.error = true;
-                }
-               
-            }, function(error) {
-                AuthenticationFactory.setUserIsAuthenticated(false);
-                $rootScope.authenticated = false;
-                if($rootScope.message) $rootScope.message = false;
-                self.error = true;
-                console.log('Error occured!');
-            }
-        )
+                    $rootScope.isLogin = true;
+                }   
+            },
+                function(error) {
+                     AuthenticationFactory.setUserIsAuthenticated(false);
+                     $rootScope.authenticate = false;
+                     self.error = true;
+                });
     }
-}]);
+}
+
+]);

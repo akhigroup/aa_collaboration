@@ -20,7 +20,7 @@ authenticate.factory('AuthenticationFactory', ['$http', '$q', '$rootScope', '$co
             register: register,
             logout: logout
         };
-
+        
         function setUserIsAuthenticated(value) {
 
             userIsAuthenticated = value;

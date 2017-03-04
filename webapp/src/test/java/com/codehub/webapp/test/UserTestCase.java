@@ -32,38 +32,38 @@ public class UserTestCase {
 		user = (User) context.getBean("user");
 	}
 	
-	@Test
-	public void addUser() {
-		user.setId(1);
-		user.setUsername("Avadhoot");
-		user.setFirstname("Avadhoot");
-		user.setLastname("Athalye");
-		user.setPassword("1234");
-		user.setEmailId("ava@gmail.com");
-		user.setBirthDate(LocalDate.parse("2007-02-10")); //yyyy-mm-dd
-		user.setGender('M');
-		user.setRole("Admin");
-		user.setStatus("This is a test");
-		user.setEnabled(true);
-		user.setOnline(false);
-		user.setProfile("01.png");
-		
-		Assert.assertEquals(true, userDAO.addUser(user));
-		
-	}
+//	@Test
+//	public void addUser() {
+//		user.setId(1);
+//		user.setUsername("Avadhoot");
+//		user.setFirstname("Avadhoot");
+//		user.setLastname("Athalye");
+//		user.setPassword("Avadhoot");
+//		user.setEmailId("avadhoot.23.11@gmail.com");
+//		user.setBirthDate(LocalDate.parse("1994-11-23")); //yyyy-mm-dd
+//		user.setGender('M');
+//		user.setRole("Super_Admin");
+//		user.setStatus("APPROVED");
+//		user.setEnabled(true);
+//		user.setOnline(true);
+//		user.setProfile("noDP.png");
+//		
+//		Assert.assertEquals(true, userDAO.addUser(user));
+//		
+//	}
 	
 	
 //	@Test
 //	public void updateUser() {
-//		user = userDAO.getUser(101);
-//		user.setEmailId("athalye.49@gmail.com");
+//		user = userDAO.getByUserName("avadhoot");
+//		user.setRole("Admin");
 //		Assert.assertEquals(true, userDAO.updateUser(user));
 //	}
 ////	
 //	
 //	@Test
 //	public void deleteUser() {
-//		user = userDAO.getUser(101);
+//		user = userDAO.getUser(27);
 //		Assert.assertEquals(true, userDAO.deleteUser(user));
 //	}
 //	

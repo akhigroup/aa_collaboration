@@ -1,0 +1,127 @@
+<div ng-if="authenticated">
+<nav>
+    <div class="nav-wrapper teal lighten-2">
+
+      <!-- For toggling sidebar -->
+      <a data-href="#" href="#" data-activates="slide-out" class="side-collapse left"  style="display: inline" >
+      <i class="material-icons" style=" margin-left: 10px;">menu</i></a>
+      <!-- Navbar display of brand image -->
+      <a href="javascript:void(0)" class="brand-logo">CodeHub</a>
+      
+      <ul id="nav-mobile">
+        <!-- Navbar display of  search bar -->
+        <li>
+          <div class="input-field left" style="margin-left: 200px">
+              <input id="search" type="search" required style="display: inline; width: 300px" placeholder="Search">
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons" >close</i>
+          </div>
+        </li>
+
+        <!-- Manage button for admin -->
+        <li>
+          <div style=" display: inline;">
+             <a href="#" class='dropdown-button' data-activates='manage'>Manage</a>
+
+              <!-- Dropdown Structure -->
+              <ul id='manage' class='dropdown-content'>
+                <li><a href="#!">Blogs</a></li>
+                <li><a href="#!">Forums</a></li>
+                <li><a href="#!">Jobs</a></li>
+                <li><a href="#!">Events</a></li>
+                <li><a href="#!">Users</a></li>
+                
+              </ul>
+          </div>
+        </li>
+
+        <li><a href="#!"ng-click="logout()">Log Out</a></li>
+
+      </ul>
+      
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+         <li>
+          <a href="sass.html">Home</a>
+        </li>
+
+        <!-- Navbar display of incoming friend requests -->
+        <li>
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="friend requests">
+            <i class="material-icons" style="display: inline;">supervisor_account</i>
+            <span class="new badge red">5</span>
+          </a>
+        </li>
+        
+        <!-- Navbar display of incoming messages -->
+        <li>
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="messages">
+            <i class="material-icons" style="display: inline;">email</i>
+            <span class="new badge red">4</span>
+          </a>
+        </li>
+        
+        <!-- Navbar display of incoming notifications -->
+        <li>
+          <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="notifications">
+            <i class="material-icons" style="display: inline;">announcement</i>
+            <span class="new badge red">54</span>
+          </a>
+        </li>
+
+        <!-- Navbar display of profile and settings -->
+        <li  style="margin-right: 20px;">
+          <a style="height: 65px;" class="profile-button" data-activates='profile'>
+            <img src="assets/img/noDp.png" alt="" class="square" width="40px;" style="margin-right: 10px; margin-top: 10px;" >
+          </a>
+        
+          <!-- Dropdown Structure -->
+              <ul id='profile' class='dropdown-content'  style="width: 100px; display: inline; position: absolute; left: 11500px; width: 200px;">
+                <li><a href="#!" ><big>Logged in as:<big><br><small>{{user.username}}</small></a></li>
+                <li><a href="#!">View Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="#!"ng-click="logout()">Log Out</a></li>
+                <!--<li><a href="#!">Jobs</a></li>
+                <li><a href="#!">Events</a></li>
+                <li><a href="#!">Users</a></li>-->
+                
+              </ul>
+        
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+    <!-- Side nav options -->
+    <ul id="slide-out" class="side-nav">
+    <li><div class="userView">
+      <div class="background">
+        <img src="assets/img/background.png">
+      </div>
+      <a href="#!user"><img class="circle" src="assets/img/noDp.png"></a>
+      <a href="#!name"><span class="white-text name"><big>{{user.username}}</big></span></a>
+      <a href="#!email"><span class="white-text name" style="margin-top: 5px; margin-bottom: 5px;">{{user.firstname}}&nbsp;{{user.lastname}}</span></a>
+    </div></li>
+    <li><a href="#!">My Stuff</a></li>
+
+    <li><a href="#!"><i class="material-icons">perm_identity</i>My Profile</a></li>
+    <li><a href="#!"><i class="material-icons">supervisor_account</i>My Friends</a></li>
+    <li><a href="#!"><i class="material-icons">description</i>My Blogs</a></li>
+    <li><a href="#!"><i class="material-icons">question_answer</i>My Forums</a></li>
+    <li><a href="#!"><i class="material-icons">work</i>Jobs Applied</a></li>
+    <li><a href="#!"><i class="material-icons">today</i>Events Joined</a></li>
+
+    <!--For super admin, admin and Employers -->
+    <li ng-if="user.role == 'Super_Admin'"><a href="#!"><i class="material-icons">work</i>My Jobs</a></li>
+    <li ng-if="user.role == 'Super_Admin'"><a href="#!"><i class="material-icons">today</i>My Events</a></li>
+
+    <li><a href="#!">Work Shop</a></li>
+
+    <li><a href="#!"><i class="material-icons">description</i>Create new Blog</a></li>
+    <li><a href="#!"><i class="material-icons">question_answer</i>Create new Forum</a></li>
+
+    <!--For super admin, admin and Employers -->
+    <li ng-if="user.role == 'Super_Admin'"><a href="#!"><i class="material-icons">work</i>Create new Job</a></li>
+    <li ng-if="user.role == 'Super_Admin'"><a href="#!"><i class="material-icons">today</i>Create new Event</a></li>
+  </ul> 
+</div>
