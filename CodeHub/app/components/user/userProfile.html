@@ -1,0 +1,400 @@
+<div class="row" >
+    
+    <div class="col m3" style="margin-left: 25px; margin-bottom: 100px;">
+        <div style=" margin-top: 25px;">
+            <img src="assets/img/noDp.png" alt="" class="circle" width="200px;" height="200px" >
+        </div>
+        <h4>{{user.firstname}} {{user.lastname}}</h4>    
+        <h6>@ {{user.username}}</h6>
+        <p>{{user.emailId}}</p>
+        <p>November 23, 1994</p>
+        <p>Male</p>
+        <!--<a href="#">Click here to edit</a>-->
+        <div class="row">
+            <div class="col m6">
+                <a class="waves-effect waves-light btn">BEFRIEND</a>
+            </div>
+            <div class="col m6">
+                <a class="waves-effect waves-light btn">Message</a>
+            </div>
+        </div>
+
+         <div style="margin-top: 20px;">
+             <div class="row">
+                <div class="col m8">
+                    <span class="card-title right-align">Friends (Total 14000)<a></a></span>
+                </div>
+                <div class="col m4">
+                    <a href="#">View All</a>
+                </div>
+             </div>
+            <ul class="collection">
+            <li class="collection-item avatar">
+                <img src="assets/img/noDp.png" alt="" class="circle">
+                <span>FRIEND 1</span>
+                <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
+            </li>
+
+            <li class="collection-item avatar">
+                <img src="assets/img/noDp.png" alt="" class="circle">
+                <span>FRIEND 2</span>
+                <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
+            </li>
+
+            <li class="collection-item avatar">
+                <img src="assets/img/noDp.png" alt="" class="circle">
+                <span>FRIEND 3</span>
+                <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
+            </li>
+
+            <li class="collection-item avatar">
+                <img src="assets/img/noDp.png" alt="" class="circle">
+                <span>FRIEND 4</span>
+                <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
+            </li>
+
+            <li class="collection-item avatar">
+                <img src="assets/img/noDp.png" alt="" class="circle">
+                <span>FRIEND 5</span>
+                <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
+            </li>
+            </ul>
+         </div>
+        
+    </div>
+
+    <div class="col m9" style="width: 900px; margin-top: 25px;">
+     <div class="card hoverable">
+      <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#test1">PROFILE</a></li>
+                <li class="tab col s3"><a href="#test2">BLOGS</a></li>
+                <li class="tab col s3"><a href="#test3">EVENTS JOINED</a></li>
+                <li class="tab col s3"><a href="#test4">JOB APPLIED</a></li>
+            </ul>
+            </div>
+            
+            <!--User profile, jobs and events created will come here -->
+            <div id="test1" class="col s12">
+                <div style="margin-top: 25px;">   
+                    <h5><i class="material-icons">person</i>  Basic Info :&nbsp; <small><a href="#">Click here to edit</a></small></h5> 
+                    <hr>
+                    <div class="row">
+                        <div class="col m6">
+                            <div style="margin-left: 20px; margin-top: 20px;">
+                                <h6>Name: {{user.firstname}} {{user.lastname}}</h6>
+                                <h6>Username: {{user.username}}</h6>
+                                <h6>Birthdate: November 23, 1994</h6>
+                                <h6>Gender: Male</h6>
+                                <h6>Email Id: {{user.emailId}}</h6>
+                                <h6>Contact No: 9769696972</h6>
+                            </div>
+                        </div>
+                        <div class="col m6">
+                            <h6>About Me: </h6>
+                            <h6>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</h6>
+                        </div>
+                    </div>
+
+                    <h5><i class="material-icons">business_center</i> Professional Info :&nbsp; <small><a href="#">Click here to edit</a></small></h5>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col m6">
+                            <div style="margin-left: 20px; margin-top: 20px;">
+                                <h6>School Name: </h6>
+                                <h6>University/College: </h6>
+                                <h6>Field Of Study:</h6>
+                                <h6>Work : </h6>
+                                <h6>Skills: </h6>
+                            </div>
+                        </div>
+                        <div class="col m6">
+                            
+                        </div>
+                    </div>
+                    
+                    <h5><i class="material-icons">today</i> Events created :&nbsp; <small><a href="#">View all</a></small></h5>
+                        <hr>
+                        <div class="card hoverable" style="width: inherit;">
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
+                                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
+                            </div>
+                            </div>
+
+                    <h5><i class="material-icons">work</i> Jobs created :&nbsp; <small><a href="#">View all</a></small></h5>
+                    <hr>
+
+                     <div class="card hoverable" style="width: inherit">
+            
+                        <div class="card-content">
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
+                        </div>
+                        
+                        <div class="card-tabs">
+                        <ul class="tabs tabs-fixed-width">
+                            <li class="tab"><a class="active" href="#t4">QUALIFICATION</a></li>
+                            <li class="tab"><a  href="#t5">SALARY</a></li>
+                            <li class="tab"><a href="#t6">APPLICANTS</a></li>
+                        </ul>
+                        </div>
+
+                        <div class="card-content grey lighten-4">
+                        <div id="t4">Xth : 90% + <br> XIIth with science: 75%<br>Graduated in Computer Engineering with 60%+<br>2 years of experience at least</div>
+                        <div id="t5">&#8377; 600000 pa /-</div>
+                        <div id="t6" class="center-align">45,000 APPLICANTS</div>
+                        </div>
+
+                        
+                    
+          </div>
+                </div>
+            </div>
+            
+            <!--Blogs created by user will come here -->
+            <div id="test2" class="col s12">
+
+                 <div class="row">
+                    <div class="col s12 m7">
+                    <div class="card hoverable" style="width: 800px;">
+                        <span class="card-title" style="margin-left: 10px;">Card Title</span>
+                        <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views"><i class="material-icons" style="position: absolute; left: 80px;">remove_red_eye</i>40000</a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes"><i class="material-icons" style="position: absolute; left: 180px;">thumb_up</i>10000</a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments"><i class="material-icons" style="position: absolute; left: 270px;">comment</i>2000</a>
+                        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="row">
+                    <div class="col s12 m7">
+                    <div class="card hoverable" style="width: 800px;">
+                        <span class="card-title" style="margin-left: 10px;">Card Title</span>
+                        <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views"><i class="material-icons" style="position: absolute; left: 80px;">remove_red_eye</i>40000</a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes"><i class="material-icons" style="position: absolute; left: 180px;">thumb_up</i>10000</a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments"><i class="material-icons" style="position: absolute; left: 270px;">comment</i>2000</a>
+                        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="row">
+                    <div class="col s12 m7">
+                    <div class="card hoverable" style="width: 800px;">
+                        <span class="card-title" style="margin-left: 10px;">Card Title</span>
+                        <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views"><i class="material-icons" style="position: absolute; left: 80px;">remove_red_eye</i>40000</a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes"><i class="material-icons" style="position: absolute; left: 180px;">thumb_up</i>10000</a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments"><i class="material-icons" style="position: absolute; left: 270px;">comment</i>2000</a>
+                        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="row">
+                    <div class="col s12 m7">
+                    <div class="card hoverable" style="width: 800px;">
+                        <span class="card-title" style="margin-left: 10px;">Card Title</span>
+                        <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                        I am convenient because I require little markup to use effectively.</p>
+                        </div>
+                        <div class="card-action">
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views"><i class="material-icons" style="position: absolute; left: 80px;">remove_red_eye</i>40000</a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes"><i class="material-icons" style="position: absolute; left: 180px;">thumb_up</i>10000</a>
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments"><i class="material-icons" style="position: absolute; left: 270px;">comment</i>2000</a>
+                        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Pagination will come here -->
+                  <ul class="pagination center-align ">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="active"><a href="#!">1</a></li>
+                    <li class="waves-effect"><a href="#!">2</a></li>
+                    <li class="waves-effect"><a href="#!">3</a></li>
+                    <li class="waves-effect"><a href="#!">4</a></li>
+                    <li class="waves-effect"><a href="#!">5</a></li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                </ul>
+            </div>
+            
+             <!--All Events joined by user will come here -->
+            <div id="test3" class="col s12">
+
+                 <div class="card hoverable" style="width: inherit;">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
+                    </div>
+                 </div>
+
+                 <div class="card hoverable" style="width: inherit;">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
+                    </div>
+                 </div>
+
+                 <div class="card hoverable" style="width: inherit;">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
+                    </div>
+                 </div>
+
+                 <div class="card hoverable" style="width: inherit;">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
+                    </div>
+                 </div>
+
+                 <div class="card hoverable" style="width: inherit;">
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
+                    </div>
+                 </div>
+
+                  <!--Pagination will come here -->
+                  <ul class="pagination center-align ">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="active"><a href="#!">1</a></li>
+                    <li class="waves-effect"><a href="#!">2</a></li>
+                    <li class="waves-effect"><a href="#!">3</a></li>
+                    <li class="waves-effect"><a href="#!">4</a></li>
+                    <li class="waves-effect"><a href="#!">5</a></li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                </ul>
+            </div>
+            
+             <!--All jobs applied by user will come here -->
+            <div id="test4" class="col s12">
+                 <div class="card hoverable" style="width: inherit">
+            
+                    <div class="card-content">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
+                    </div>
+                    
+                    <div class="card-tabs">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab"><a class="active" href="#test4">QUALIFICATION</a></li>
+                        <li class="tab"><a  href="#test5">SALARY</a></li>
+                        <li class="tab"><a href="#test6">APPLICANTS</a></li>
+                    </ul>
+                    </div>
+
+                    <div class="card-content grey lighten-4">
+                    <div id="test4">Xth : 90% + <br> XIIth with science: 75%<br>Graduated in Computer Engineering with 60%+<br>2 years of experience at least</div>
+                    <div id="test5">&#8377; 600000 pa /-</div>
+                    <div id="test6" class="center-align">45,000 APPLICANTS</div>
+                    </div>
+                
+                </div>
+
+                 <div class="card hoverable" style="width: inherit">
+            
+                        <div class="card-content">
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
+                        </div>
+                        
+                        <div class="card-tabs">
+                        <ul class="tabs tabs-fixed-width">
+                            <li class="tab"><a class="active" href="#test4">QUALIFICATION</a></li>
+                            <li class="tab"><a  href="#test5">SALARY</a></li>
+                            <li class="tab"><a href="#test6">APPLICANTS</a></li>
+                        </ul>
+                        </div>
+
+                        <div class="card-content grey lighten-4">
+                        <div id="test4">Xth : 90% + <br> XIIth with science: 75%<br>Graduated in Computer Engineering with 60%+<br>2 years of experience at least</div>
+                        <div id="test5">&#8377; 600000 pa /-</div>
+                        <div id="test6" class="center-align">45,000 APPLICANTS</div>
+                        </div>
+                    
+                    </div>
+
+                    <!--Pagination will come here -->
+                  <ul class="pagination center-align ">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="active"><a href="#!">1</a></li>
+                    <li class="waves-effect"><a href="#!">2</a></li>
+                    <li class="waves-effect"><a href="#!">3</a></li>
+                    <li class="waves-effect"><a href="#!">4</a></li>
+                    <li class="waves-effect"><a href="#!">5</a></li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

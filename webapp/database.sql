@@ -29,6 +29,7 @@ description CLOB not null,
 post_date Date default sysDate,
 no_of_likes NUMBER(5),
 no_of_comments NUMBER(5),
+no_of_views NUMBER(5),
 user_id NUMBER(5) not null,
 user_name varchar2(10) not null
 );

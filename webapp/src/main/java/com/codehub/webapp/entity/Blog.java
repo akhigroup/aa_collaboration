@@ -46,6 +46,9 @@ public class Blog implements Serializable{
 	@Column(name="No_Of_Comments")
 	private int noOfComments;
 	
+	@Column(name="No_Of_Views")
+	private int noOfViews;
+	
 	@Column(name="User_Id")
 	private int userId;
 	
@@ -109,6 +112,14 @@ public class Blog implements Serializable{
 
 	public void setNoOfComments(int noOfComments) {
 		this.noOfComments = noOfComments;
+	}
+
+	public int getNoOfViews() {
+		return noOfViews;
+	}
+
+	public void setNoOfViews(int noOfViews) {
+		this.noOfViews = noOfViews;
 	}
 
 	public int getUserId() {

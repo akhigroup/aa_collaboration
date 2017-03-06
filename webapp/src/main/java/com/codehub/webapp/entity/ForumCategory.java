@@ -40,6 +40,12 @@ public class ForumCategory implements Serializable{
 	
 	@OneToMany(mappedBy="forumCategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	List<Forum> forum;
+	
+	@Column(name="No_Of_Topics")
+	private int noOfTopics;
+	
+	@Column(name="No_Of_Posts")
+	private int noOfPosts;
 
 	public int getId() {
 		return id;
@@ -80,6 +86,23 @@ public class ForumCategory implements Serializable{
 	public void setForum(List<Forum> forum) {
 		this.forum = forum;
 	}
+
+	public int getNoOfTopics() {
+		return noOfTopics;
+	}
+
+	public void setNoOfTopics(int noOfTopics) {
+		this.noOfTopics = noOfTopics;
+	}
+
+	public int getNoOfPosts() {
+		return noOfPosts;
+	}
+
+	public void setNoOfPosts(int noOfPosts) {
+		this.noOfPosts = noOfPosts;
+	}
+	
 	
 	
 }

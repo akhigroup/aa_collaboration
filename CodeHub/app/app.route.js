@@ -10,8 +10,16 @@ window.routes = {
 
     "/user": {
         templateUrl : 'app/components/user/profile.html',
-        controller : 'userController',
-        controllerAs : 'userCtrl',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+     "/user/profile": {
+        templateUrl : 'app/components/user/userProfile.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
         requireLogin: true,
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
@@ -36,7 +44,7 @@ codehub.config(['$routeProvider', '$httpProvider',  function($routeProvider, $ht
     for(var path in window.routes) {
         $routeProvider.when(path, window.routes[path]); 
     }
-    debugger;
+    
     $routeProvider.otherwise({redirectTo: '/home'});
 
      
@@ -57,7 +65,7 @@ codehub.run(function ($rootScope, $location, AuthenticationFactory) {
 
 
                 //if trying to access page that requires login and user is not authenticated redirect to login page
-                debugger;
+                
                 if (window.routes[i].requireLogin && !AuthenticationFactory.getUserIsAuthenticated()) {
                     $location.path('/home');
                 } 
@@ -76,7 +84,7 @@ codehub.run(function ($rootScope, $location, AuthenticationFactory) {
     //calling the log out function created in the AuthenticationFactory
     AuthenticationFactory.logout($rootScope.user).then(
         function() {
-            debugger;
+            
             AuthenticationFactory.setUserIsAuthenticated(false);
             $rootScope.authenticated = false;
             $rootScope.message = "Logout successfully!";

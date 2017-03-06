@@ -30,7 +30,7 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
         birthDate: '' ,
         gender : ''
     };
-
+    
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -62,8 +62,6 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
             }
             )
     };
-
-    setting();
 
     //Method to check whether username already exist
     self.checkUsername = function () {
