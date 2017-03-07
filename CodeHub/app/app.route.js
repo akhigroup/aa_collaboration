@@ -24,6 +24,38 @@ window.routes = {
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
+    "/blog": {
+        templateUrl : 'app/components/blogs/blog.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+     "/blogs/all": {
+        templateUrl : 'app/components/blogs/bloglist.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+     "/forum/topics/list": {
+        templateUrl : 'app/components/forum/topicList.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/forum/topic": {
+        templateUrl : 'app/components/forum/topic.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
     "/error": {
         templateUrl : 'app/components/authentication/error.html',
         controller : 'authenticationController',

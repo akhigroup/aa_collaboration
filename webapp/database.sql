@@ -1,4 +1,4 @@
-create table USER_DETAILS(
+	create table USER_DETAILS(
 user_id NUMBER(5) primary key,
 username varchar2(10) not null,
 firstname varchar2(25) not null,
