@@ -1,0 +1,15 @@
+Role 1: Super_Admin
+username: Avadhoot
+password: Avadhoot
+
+Role 2: Admin
+username: Sumit30
+password: Sumit
+
+Role 3: Employer
+username: Khozema05
+password: Khozema
+
+Role 4: User (Approved)
+username: Gauresh.G
+password: Gauresh

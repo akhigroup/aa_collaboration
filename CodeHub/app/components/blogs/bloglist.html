@@ -1,9 +1,18 @@
 <div class="row">
+
     <div class="col m9">
-        <div class="card hoverable">
+
+      
+      <div class="col s12" style="margin-top: 25px;">
+        <a href="#!/user" class="breadcrumb">Home</a>
+        <a href="#!//blogs/all" class="breadcrumb">Blog List</a>
+      </div>
+    
+
+        <div class="card hoverable" style="margin-top: 75px;">
 
             <div style=" margin-left: 50px; padding-top: 40px; margin-right: 50px;">
-                <h4><a href="#" style="color: rgba(0, 0, 0, 0.87);">Blog Title</a></h4>
+                <h4><a href="#!/blog" style="color: rgba(0, 0, 0, 0.87);">Blog Title</a></h4>
                 <a href="#">By {{user.username}}</a>
                 <p>Posted on March 07, 2017</p>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
@@ -32,7 +41,7 @@
             </div>
             <hr>
             <div style=" margin-left: 50px; padding-top: 40px; margin-right: 50px;">
-                <h4><a href="#" style="color: rgba(0, 0, 0, 0.87);">Blog Title</a></h4>
+                <h4><a href="#!/blog" style="color: rgba(0, 0, 0, 0.87);">Blog Title</a></h4>
                 <a href="#">By {{user.username}}</a>
                 <p>Posted on March 07, 2017</p>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
@@ -61,7 +70,7 @@
             </div>
              <hr>
             <div style=" margin-left: 50px; padding-top: 40px; margin-right: 50px;">
-                <h4><a href="#" style="color: rgba(0, 0, 0, 0.87);">Blog Title</a></h4>
+                <h4><a href="#!/blog" style="color: rgba(0, 0, 0, 0.87);">Blog Title</a></h4>
                 <a href="#">By {{user.username}}</a>
                 <p>Posted on March 07, 2017</p>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 
@@ -104,5 +113,9 @@
     </div>
     <div class="col m3">
          <div ng-include="'app/shared/rightSide.html'"></div>
+
+          <div style="margin: 25px auto 0 auto;">
+            <a href="#!/blog/new" class="waves-effect waves-light btn-large"><i class="material-icons right">description</i>CREATE YOUR BLOG</a>
+        </div>
     </div>
 </div>

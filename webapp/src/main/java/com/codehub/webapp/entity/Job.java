@@ -32,6 +32,9 @@ public class Job implements Serializable {
 	@Column(name="JOB_ID")
 	private int id;
 	
+	@Column(name="JOB_TITLE")
+	private String title;
+	
 	private String profile;
 	
 	private String Description;
@@ -59,6 +62,14 @@ public class Job implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getProfile() {

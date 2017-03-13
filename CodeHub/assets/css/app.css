@@ -1,7 +1,13 @@
 body {
     font-family: 'Merriweather', serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 
 }
+  main {
+    flex: 1 0 auto;
+  }
 #register {
     position: right;
 }
@@ -120,4 +126,16 @@ input.ng-dirty.ng-invalid{
 
  .pagination li.active {
      background-color: #4db6ac;
+ }
+
+ .breadcrumb {
+    color: #4db6ac; 
+ }
+
+ .breadcrumb:before {
+     color: #4db6ac; 
+ }
+
+ .breadcrumb:last-child {
+     color: #4db6ac;
  }

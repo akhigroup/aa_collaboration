@@ -1,6 +1,13 @@
 <div class="row">
     <div class="col m9">
-        <div style="margin-left: 20px; padding-top: 40px; padding-bottom: 40px; margin-right: 20px;">
+
+        <div class="col s12" style="margin-top: 25px;">
+            <a href="#!/user" class="breadcrumb">Home</a>
+            <a href="#!/blogs/all" class="breadcrumb">Blog List</a>
+            <a href="#!/blog" class="breadcrumb">Blog</a>
+        </div>
+
+        <div style="margin-left: 20px; padding-top: 20px; padding-bottom: 40px; margin-right: 20px; margin-top: 75px;">
 
 
             <h4>Topic Name</h4>
@@ -124,6 +131,8 @@
     </div>
     <div class="col m3">
         <div ng-include="'app/shared/rightSide.html'"></div>
+
+        <!-- Likes, views and comments will come here -->
         <div style="border: 5px solid #4db6ac; height: 300px;" >
             <div style="margin-top: 20px;" class="center-align">
                 <a href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
@@ -142,6 +151,10 @@
                         style="color: #4db6ac; font-size: 40px;"><i class="material-icons" 
                         style="font-size: 50px; position: absolute; right: 250px;">comment</i> 20,000</a>
             </div>
+        </div>
+
+        <div style="margin: 25px auto 0 auto;">
+            <a href="#!/blog/new" class="waves-effect waves-light btn-large"><i class="material-icons right">description</i>CREATE YOUR BLOG</a>
         </div>
     </div>
 </div>

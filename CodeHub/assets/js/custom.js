@@ -29,6 +29,12 @@ var setting = function() {
 
           //For tabs
            $('ul.tabs').tabs();
+
+           $('input#title').characterCounter();
+
+           $('input#name, textarea#description, input#venue, input#title, textarea#profile, textarea#qualification').characterCounter();
+
+           $('.modal').modal();
       });
 
        $('.dropdown-button').dropdown({
@@ -68,6 +74,11 @@ var setting = function() {
       $(".side-collapse").sideNav();
       // Initialize collapsible (uncomment the line below if you use the dropdown variation)
       //$('.collapsible').collapsible();
+        CKEDITOR.replace( 'content' );
+
+     
+
+        
         
 }
 

@@ -24,6 +24,22 @@ window.routes = {
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
+    "/manage/users": {
+        templateUrl : 'app/components/user/manageUser.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/requests/users": {
+        templateUrl : 'app/components/user/userRequests.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
     "/blog": {
         templateUrl : 'app/components/blogs/blog.html',
         controller : 'authenticationController',
@@ -32,8 +48,32 @@ window.routes = {
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
+    "/blog/new": {
+        templateUrl : 'app/components/blogs/newBlog.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
      "/blogs/all": {
         templateUrl : 'app/components/blogs/bloglist.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+     "/manage/blogs": {
+        templateUrl : 'app/components/blogs/manageBlogs.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/requests/blogs": {
+        templateUrl : 'app/components/blogs/blogRequests.html',
         controller : 'authenticationController',
         controllerAs : 'authCtrl',
         requireLogin: true,
@@ -50,6 +90,94 @@ window.routes = {
 
     "/forum/topic": {
         templateUrl : 'app/components/forum/topic.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/forum/topic/new": {
+        templateUrl : 'app/components/forum/newTopic.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/manage/forums": {
+        templateUrl : 'app/components/forum/manageForums.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/requests/forums": {
+        templateUrl : 'app/components/forum/forumRequests.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/events/list": {
+        templateUrl : 'app/components/events/eventlist.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/event/new": {
+        templateUrl : 'app/components/events/newEvent.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+     "/manage/events": {
+        templateUrl : 'app/components/events/manageEvents.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/requests/events": {
+        templateUrl : 'app/components/events/eventsRequests.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/jobs/list": {
+        templateUrl : 'app/components/jobs/joblist.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+    "/job/new": {
+        templateUrl : 'app/components/jobs/newJob.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+     "/manage/jobs": {
+        templateUrl : 'app/components/jobs/manageJobs.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
+     "/requests/jobs": {
+        templateUrl : 'app/components/jobs/jobsRequests.html',
         controller : 'authenticationController',
         controllerAs : 'authCtrl',
         requireLogin: true,

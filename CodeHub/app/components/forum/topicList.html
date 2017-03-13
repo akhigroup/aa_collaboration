@@ -1,6 +1,12 @@
 <div class="row">
     <div class="col m9">
-        <div class="card hoverable">
+
+         <div class="col s12" style="margin-top: 25px;">
+            <a href="#!/user" class="breadcrumb">Home</a>
+            <a href="#!/forum/topics/list" class="breadcrumb">Category</a>
+        </div>
+
+        <div class="card hoverable" style="margin-top: 75px;">
             <div style="margin-left: 20px; padding-top: 40px;">
                 <h4>Forum Category Name</h4>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
@@ -86,5 +92,39 @@
     </div>
     <div class=" col m3">
          <div ng-include="'app/shared/rightSide.html'"></div>
+
+          <div style="margin: 25px auto 0 auto;">
+            <button data-target="modal1" class="waves-effect waves-light btn-large"><i class="material-icons right">question_answer</i>CREATE CATEGORY</a>
+           
+        </div>
     </div>
+     <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                <h4>Create New Category</h4>
+                 <div class="row">
+                    <form class="col s12" style="padding-bottom: 40px;">
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <input id="name" type="text" class="validate" data-length="20">
+                            <label for="name">Cateory Name</label>
+                            </div>
+                        </div>
+
+                        <div class="row" >
+                            <div class="input-field col s12">
+                                <textarea id="description" class="materialize-textarea" data-length="120"></textarea>
+                                <label for="description">Category Description</label>
+                            </div>  
+                        </div>
+
+                        <div class="row">
+                            <button type="submit" class="waves-effect waves-light btn-large" style="margin-top: 10px; left: 10px;">Create</button>
+                        </div>
+
+                    </form>
+                </div>
+                </div>
+            </div>
 </div>
