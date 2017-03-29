@@ -47,7 +47,7 @@ public class BlogTestCase {
 		blog.setId(101);
 		blog.setName("This is test");
 		blog.setStatus("PENDING");
-		blog.setDescription("Test");
+		//blog.setDescription("Test");
 		blog.setPostDate(LocalDate.parse("2007-02-10"));
 		blog.setNoOfLikes(100);
 		blog.setNoOfComments(50);

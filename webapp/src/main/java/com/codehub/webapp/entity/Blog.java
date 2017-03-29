@@ -1,6 +1,8 @@
 package com.codehub.webapp.entity;
 
 import java.io.Serializable;
+
+import oracle.sql.CLOB;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,11 +13,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 
 import org.springframework.stereotype.Component;
+
 @Entity
 @Component
 public class Blog implements Serializable{
@@ -35,7 +39,7 @@ public class Blog implements Serializable{
 	
 	private String status;
 	
-	private String Description;
+	private String description;
 	
 	@Column(name="Post_Date")
 	private LocalDate postDate;
@@ -83,11 +87,11 @@ public class Blog implements Serializable{
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public LocalDate getPostDate() {

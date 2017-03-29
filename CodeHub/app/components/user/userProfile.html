@@ -1,15 +1,23 @@
 <div class="row" >
     
+    <!--For quick preview of user on the left side-->
     <div class="col m3" style="margin-left: 25px; margin-bottom: 100px;">
+
+        <!--User profile picture-->
         <div style=" margin-top: 25px;">
             <img src="assets/img/noDp.png" alt="" class="circle" width="200px;" height="200px" >
         </div>
+
+        <!--user's Basic info-->
         <h4>{{user.firstname}} {{user.lastname}}</h4>    
         <h6>@ {{user.username}}</h6>
         <p>{{user.emailId}}</p>
         <p>November 23, 1994</p>
         <p>Male</p>
-        <!--<a href="#">Click here to edit</a>-->
+        <p ng-if="user.role != 'User' && user.role != 'Super_Admin'">Role: {{user.role}}</p>
+        <p ng-if="user.role == 'Super_Admin'">Role: Super Admin</p>
+
+        <!--For sending friend request and message-->
         <div class="row">
             <div class="col m6">
                 <a class="waves-effect waves-light btn">BEFRIEND</a>
@@ -19,6 +27,7 @@
             </div>
         </div>
 
+        <!--User's Friendlist is shown here-->
          <div style="margin-top: 20px;">
              <div class="row">
                 <div class="col m8">
@@ -63,6 +72,8 @@
         
     </div>
 
+
+    <!--Detail info of user, blogs, topics, event and job created by him are shown on the right side of page-->
     <div class="col m9" style="width: 900px; margin-top: 25px;">
      <div class="card hoverable">
       <div class="row">

@@ -6,8 +6,8 @@
     <ul>
         <li><a href="#!/blog/new" class="btn-floating red tooltipped" data-position="top" data-delay="50" data-tooltip="Blogs"><i class="material-icons">description</i></a></li>
         <li><a href="#!/forum/topic/new" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Forum Topic"><i class="material-icons">question_answer</i></a></li>
-        <li><a href="#!/job/new" class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="job" ng-if="user.role == 'Super_Admin'"><i class="material-icons">work</i></a></li>
-        <li><a href="#!/event/new" class="btn-floating blue tooltipped" data-position="top" data-delay="50" data-tooltip="Events" ng-if="user.role == 'Super_Admin'"><i class="material-icons">today</i></a></li>
+        <li ng-if="user.role != 'User'"><a href="#!/job/new" class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="job"><i class="material-icons">work</i></a></li>
+        <li ng-if="user.role != 'User'"><a href="#!/event/new" class="btn-floating blue tooltipped" data-position="top" data-delay="50" data-tooltip="Events"><i class="material-icons">today</i></a></li>
     </ul>
    
 </div>

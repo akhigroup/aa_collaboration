@@ -21,7 +21,7 @@
         <!-- Manage button for admin -->
         <li>
           <div style=" display: inline;">
-             <a href="#" class='dropdown-button' data-activates='manage'>Manage</a>
+             <a class='dropdown-button' data-activates='manage' ng-if="user.role == 'Super_Admin' || user.role == 'Admin'">Manage</a>
 
               <!-- Dropdown Structure -->
               <ul id='manage' class='dropdown-content'>
@@ -29,7 +29,7 @@
                 <li><a href="#!/manage/forums">Forums</a></li>
                 <li><a href="#!/manage/jobs">Jobs</a></li>
                 <li><a href="#!/manage/events">Events</a></li>
-                <li><a href="#!/manage/users">Users</a></li>
+                <li ng-if="user.role == 'Super_Admin'"><a href="#!/manage/users" >Users</a></li>
                 
               </ul>
           </div>
@@ -38,7 +38,7 @@
         <!-- requests button for admin -->
         <li>
           <div style=" display: inline;">
-             <a href="#" class='dropdown-button' data-activates='request'>Requests <span class="new badge red">4</span></a>
+             <a class='dropdown-button' data-activates='request' ng-if="user.role == 'Super_Admin' || user.role == 'Admin'">Requests <span class="new badge red">4</span></a>
 
               <!-- Dropdown Structure -->
               <ul id='request' class='dropdown-content'>
@@ -46,7 +46,7 @@
                 <li><a href="#!/requests/forums">Forums</a></li>
                 <li><a href="#!/requests/jobs">Jobs</a></li>
                 <li><a href="#!/requests/events">Events</a></li>
-                <li><a href="#!/requests/users">Users <span class="new badge red">4</span></a></li>
+                <li><a href="#!/requests/users" >Users <span class="new badge red">4</span></a></li>
                 
               </ul>
           </div>
@@ -62,7 +62,7 @@
 
         <li>
           <div style=" display: inline;">
-             <a href="#" class='news-button' data-activates='new'>What's new? <span class="new badge red" >103</span></a>
+             <a class='news-button' data-activates='new'>What's new? <span class="new badge red" >103</span></a>
 
               <!-- Dropdown Structure -->
               <ul id='new' class='dropdown-content' style="width: 230px;">
@@ -109,22 +109,22 @@
     <li><a href="#!/user/profile"><i class="material-icons">perm_identity</i>My Profile</a></li>
     <li><a href="#!"><i class="material-icons">supervisor_account</i>My Friends</a></li>
     <li><a href="#!"><i class="material-icons">description</i>My Blogs</a></li>
-    <li><a href="#!"><i class="material-icons">question_answer</i>My Forums</a></li>
+    <li><a href="#!"><i class="material-icons">question_answer</i>My Forum Topics</a></li>
     <li><a href="#!"><i class="material-icons">work</i>Jobs Applied</a></li>
     <li><a href="#!"><i class="material-icons">today</i>Events Joined</a></li>
 
     <!--For super admin, admin and Employers -->
-    <li ng-if="user.role == 'Super_Admin'"><a href="#!"><i class="material-icons">work</i>My Jobs</a></li>
-    <li ng-if="user.role == 'Super_Admin'"><a href="#!"><i class="material-icons">today</i>My Events</a></li>
+    <li ng-if="user.role == 'Super_Admin' || user.role == 'Admin' || user.role == 'Employer'"><a href="#!"><i class="material-icons">work</i>My Jobs</a></li>
+    <li ng-if="user.role == 'Super_Admin' || user.role == 'Admin' || user.role == 'Employer'"><a href="#!"><i class="material-icons">today</i>My Events</a></li>
 
     <li><a href="#!">Work Shop</a></li>
 
-    <li><a href="#!"><i class="material-icons">description</i>Create new Blog</a></li>
-    <li><a href="#!"><i class="material-icons">question_answer</i>Create new Forum</a></li>
+    <li><a href="#!/blog/new"><i class="material-icons">description</i>Create new Blog</a></li>
+    <li><a href="#!/forum/topic/new"><i class="material-icons">question_answer</i>Create new Forum</a></li>
 
     <!--For super admin, admin and Employers -->
-    <li ng-if="user.role == 'Super_Admin'"><a href="#!"><i class="material-icons">work</i>Create new Job</a></li>
-    <li ng-if="user.role == 'Super_Admin'"><a href="#!"><i class="material-icons">today</i>Create new Event</a></li>
+    <li ng-if="user.role == 'Super_Admin' || user.role == 'Admin' || user.role == 'Employer'"><a href="#!/job/new"><i class="material-icons">work</i>Create new Job</a></li>
+    <li ng-if="user.role == 'Super_Admin' || user.role == 'Admin' || user.role == 'Employer'"><a href="#!/event/new"><i class="material-icons">today</i>Create new Event</a></li>
 
     
   </ul> 

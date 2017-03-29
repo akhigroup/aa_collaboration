@@ -1,5 +1,3 @@
-
-
 authenticate.controller('authenticationController', 
 [
         'AuthenticationFactory', 
