@@ -8,12 +8,12 @@ blog.factory('blogFactory', ['$http', '$q',
         var blogUrl = 'http://localhost:7070/webapp';
         
         return {
-            addBlog : addBlog
+            addBlog : addBlog,
+            viewBlog : viewBlog
         };
 
         //Function to add the blog 
         function addBlog(blog) {
-            console.log('Inside factory now');
             var deferred = $q.defer();
 
             $http.post(blogUrl + '/blog/new', blog).then (
@@ -27,6 +27,25 @@ blog.factory('blogFactory', ['$http', '$q',
             );
             return deferred.promise;
         }
+
+
+        //Function for viewing single blog using blog id as a parameter
+        function viewBlog(id) {
+            console.log('Inside factory now');
+            var deferred = $q.defer();
+
+            $http.get(blogUrl + '/blog/' + id)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
 
 
     }

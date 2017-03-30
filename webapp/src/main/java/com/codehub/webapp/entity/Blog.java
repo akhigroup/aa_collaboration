@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-public class Blog implements Serializable{
+public class Blog extends BaseDomain implements Serializable{
 
 	/**
 	 * 

@@ -114,7 +114,7 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
                 } else {
                      AuthenticationFactory.setUserIsAuthenticated(true);
                      AuthenticationFactory.setRole(user.role);
-                     $rootScope.authenticate = true;
+                     $rootScope.authenticated = true;
                      $rootScope.message = "Welcome" + user.username;
                      AuthenticationFactory.saveUser(user);
                       switch(user.role) {
@@ -146,6 +146,7 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
                      self.error = true;
                 });
     }
+
 }
 
 ]);

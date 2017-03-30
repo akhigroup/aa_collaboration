@@ -45,14 +45,6 @@ window.routes = {
         roles: ['Super_Admin', 'Admin']
     },
 
-    //For viewing single blog
-    "/blog": {
-        templateUrl : 'app/components/blogs/blog.html',
-        controller : 'blogController',
-        controllerAs : 'blogCtrl',
-        requireLogin: true,
-        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
-    },
 
     //Form for creating new blog
     "/blog/new": {
@@ -63,6 +55,15 @@ window.routes = {
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
+    //For viewing single blog
+    "/blog/:id": {
+        templateUrl : 'app/components/blogs/blog.html',
+        controller : 'blogController',
+        controllerAs : 'blogCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+     
     //For viewing list of all blogs
      "/blogs/all": {
         templateUrl : 'app/components/blogs/bloglist.html',
@@ -240,10 +241,11 @@ codehub.config(['$routeProvider', '$httpProvider',  function($routeProvider, $ht
 codehub.run(function ($rootScope, $location, AuthenticationFactory) {
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                        debugger;
         // For interating through all the routes
         for (var i in window.routes) {          
-            if (next.indexOf(i) != -1) {
- 
+
+            if (next.indexOf(i) != -1 || i.indexOf(next)!=-1) {
                 $rootScope.user = AuthenticationFactory.loadUserFromCookie();
                 $rootScope.authenticated = AuthenticationFactory.getUserIsAuthenticated();
 
@@ -258,7 +260,7 @@ codehub.run(function ($rootScope, $location, AuthenticationFactory) {
                         (window.routes[i].roles.indexOf(AuthenticationFactory.getRole())==-1)) {
                         $location.path('/error');
                         }
-                
+                        
             }
         }
         
