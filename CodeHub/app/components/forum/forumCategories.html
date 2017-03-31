@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col m9">
+        <div style="margin-bottom: 50px;">
+            <h4>Forum categories</h4>
+
+            <table class="bordered">
+            <thead>
+            <tr>
+                <th data-field="id">CATEGORY NAME</th>
+                <th data-field="name">TOPICS</th>
+                <th data-field="price">POSTS</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>
+                <b  style="font-size: 16px"><a href="#!/forum/topics/list" style="color: rgba(0, 0, 0, 0.87);">Coding for Beginner</a></b>
+                <p style="font-size: 12px">If you are new to coding this one is for you</p>
+                </td>
+                <td>4000</td>
+                <td>45000</td>
+            </tr>
+
+            <tr>
+                <td>
+                <b  style="font-size: 16px"><a href="#!/forum/topics/list" style="color: rgba(0, 0, 0, 0.87);">Coding for Beginner</a></b>
+                <p style="font-size: 12px">If you are new to coding this one is for you</p>
+                </td>
+                <td>4000</td>
+                <td>45000</td>
+            </tr>
+
+            <tr>
+                <td>
+                <b  style="font-size: 16px"><a href="#!/forum/topics/list" style="color: rgba(0, 0, 0, 0.87);">Coding for Beginner</a></b>
+                <p style="font-size: 12px">If you are new to coding this one is for you</p>
+                </td>
+                <td>4000</td>
+                <td>45000</td>
+            </tr>
+
+            <tr>
+                <td>
+                <b  style="font-size: 16px"><a href="#!/forum/topics/list" style="color: rgba(0, 0, 0, 0.87);">Coding for Beginner</a></b>
+                <p style="font-size: 12px">If you are new to coding this one is for you</p>
+                </td>
+                <td>4000</td>
+                <td>45000</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <div class="col m3">
+        <div ng-include="'app/shared/rightSide.html'"></div>
+
+        <div style="margin: 25px auto 0 auto;">
+            <button data-target="category" class="waves-effect waves-light btn-large"><i class="material-icons right">playlist_add</i>CREATE CATEGORY</a>
+        </div>
+
+         <div id="category" class="modal">
+            <div class="modal-content">
+              <h4>Create New Forum Category</h4>
+               <div class="row">
+                    <form class="col s12" style="padding-bottom: 40px;">
+
+                        <!--Category name will come here-->
+                        <div class="row">
+                            <div class="input-field col s12">
+                            <input id="name" type="text" class="validate" data-length="50">
+                            <label for="title">Category Name</label>
+                            </div>
+                        </div>
+
+                        <!--Category description will come here-->
+                         <div class="row" >
+                              <div class="input-field col s12">
+                                  <textarea id="description" class="materialize-textarea" data-length="120"></textarea>
+                                  <label for="description">Category Description</label>
+                              </div> 
+                        </div>
+
+                        <!--Submit button will come here-->
+                         <div class="row">
+                            <button type="submit" class="waves-effect waves-light btn-large" style="margin-top: 10px; left: 10px;">Create</button>
+                        </div>
+
+                    </form>
+               </div>
+            </div>
+         </div>
+    </div>
+</div>

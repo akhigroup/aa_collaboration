@@ -120,6 +120,7 @@
     <li><a href="#!">Work Shop</a></li>
 
     <li><a href="#!/blog/new"><i class="material-icons">description</i>Create new Blog</a></li>
+    <li ng-if="user.role == 'Super_Admin'"><a href="#!/forum/categories/list"><i class="material-icons">playlist_add</i>Forum Categories</a></li>
     <li><a href="#!/forum/topic/new"><i class="material-icons">question_answer</i>Create new Forum</a></li>
 
     <!--For super admin, admin and Employers -->

@@ -36,7 +36,7 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
 
     //function for registering user will come here
      self.register = function () {
-         debugger;
+         
          var date = new Date(self.client.birthDate).toISOString().slice(0, 10);
           self.client.birthDate = date;
           

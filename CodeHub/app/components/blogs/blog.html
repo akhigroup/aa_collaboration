@@ -142,23 +142,33 @@
         <div ng-include="'app/shared/rightSide.html'"></div>
 
         <!-- Likes, views and comments will come here -->
-        <div style="border: 5px solid #4db6ac; height: 300px;" >
+        <div style="border: 5px solid #4db6ac; height: 200px;" >
             <div style="margin-top: 20px;" class="center-align">
-                <a href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
+                <a ng-if="blogCtrl.singleBlog.blog.noOfLikes < 999" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
                         style="color: #4db6ac; font-size: 40px;"><i class="material-icons" 
-                        style="font-size: 50px; position: absolute; right: 250px;">thumb_up</i>{{blogCtrl.singleBlog.blog.noOfLikes}}</a>
+                        style="font-size: 50px; position: absolute; right: 250px;">thumb_up</i>
+                            {{blogCtrl.singleBlog.blog.noOfLikes}} Likes
+                        </a>
+                
+                <a ng-if="blogCtrl.singleBlog.blog.noOfLikes > 999" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
+                        style="color: #4db6ac; font-size: 40px;"><i class="material-icons" 
+                        style="font-size: 50px; position: absolute; right: 250px;">thumb_up</i>
+                            {{blogCtrl.singleBlog.blog.noOfLikes}}
+                        </a>
             </div>
 
             <div style="margin-top: 20px;" class="center-align">
-                <a href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views" 
+                <a ng-if="blogCtrl.singleBlog.blog.noOfViews < 999" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views" 
                         style="color: #4db6ac; font-size: 40px;"><i class="material-icons" 
-                        style="font-size: 50px; position: absolute; right: 250px;">tremove_red_eye</i> {{blogCtrl.singleBlog.blog.noOfViews}}</a>
-            </div>
+                        style="font-size: 50px; position: absolute; right: 250px;">tremove_red_eye</i> 
+                        {{blogCtrl.singleBlog.blog.noOfViews}} Views
+                    </a>
 
-             <div style="margin-top: 20px;" class="center-align">
-                <a href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments" 
+                 <a ng-if="blogCtrl.singleBlog.blog.noOfViews > 999" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views" 
                         style="color: #4db6ac; font-size: 40px;"><i class="material-icons" 
-                        style="font-size: 50px; position: absolute; right: 250px;">comment</i> {{blogCtrl.singleBlog.blog.noOfComments}}</a>
+                        style="font-size: 50px; position: absolute; right: 250px;">tremove_red_eye</i> 
+                        {{blogCtrl.singleBlog.blog.noOfViews}}
+                    </a>   
             </div>
         </div>
 

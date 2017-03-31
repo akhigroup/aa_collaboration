@@ -1,6 +1,6 @@
 blog.controller('blogController', ['blogFactory', 
-        '$timeout', '$cookies', '$routeParams', function(blogFactory, 
-        $timeout, $cookies, $routeParams ) {
+        '$timeout', '$cookies', '$routeParams', '$location', function(blogFactory, 
+        $timeout, $cookies, $routeParams, $location) {
 
     var self = this;
 
@@ -17,6 +17,7 @@ blog.controller('blogController', ['blogFactory',
 
     // For viewing single Blog
     self.singleBlog = {};
+    self.postDate = {};
 
      // calling jQuery once controller has loaded
     $timeout(function () {
@@ -25,7 +26,6 @@ blog.controller('blogController', ['blogFactory',
 
     //function for adding a new blog
     self.addBlog = function () {
-        debugger;
 
         //Setting the user id and username
         self.blog.userId = user.id;
@@ -36,6 +36,9 @@ blog.controller('blogController', ['blogFactory',
             .then (
                 function(blog) {
                     self.blog =  blog;
+                    // console.log(self.blog.id)
+                    var bId = self.blog.id 
+                    $location.path('/blog/' + bId);
                 }, function (errResponse) {
                     console.error('Failure!');
                 }
@@ -45,12 +48,15 @@ blog.controller('blogController', ['blogFactory',
 
     //function for viewing single blog
     self.viewBlog = function() {
-        //Assigning blog id to variable blog id
+        //Assigning blog id to variable blogId
         var blogId = $routeParams.id;
         blogFactory.viewBlog(blogId)
             .then (
                 function(blog) {
+                    debugger;
                     self.singleBlog = blog;
+                    // console.log(self.singleBlog.blog.postDate);
+                    var date = self.singleBlog.blog.postDate
                 },
                 function(errResponse) {
                     console.error('Failure!');

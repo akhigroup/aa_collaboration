@@ -91,6 +91,15 @@ window.routes = {
         roles: ['Super_Admin', 'Admin']
     },
 
+     //For viewing list of forum categories and adding a new one
+     "/forum/categories/list": {
+        templateUrl : 'app/components/forum/forumCategories.html',
+        controller : 'authenticationController',
+        controllerAs : 'authCtrl',
+        requireLogin: true,
+        roles: ['Super_Admin']
+    },
+
     //For viewing list of forum topics
      "/forum/topics/list": {
         templateUrl : 'app/components/forum/topicList.html',
@@ -240,12 +249,10 @@ codehub.config(['$routeProvider', '$httpProvider',  function($routeProvider, $ht
 
 codehub.run(function ($rootScope, $location, AuthenticationFactory) {
 
-    $rootScope.$on('$locationChangeStart', function (event, next, current) {
-                        debugger;
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {                   
         // For interating through all the routes
-        for (var i in window.routes) {          
-
-            if (next.indexOf(i) != -1 || i.indexOf(next)!=-1) {
+        for (var i in window.routes) {         
+            if (next.indexOf(i) != -1 || (i.indexOf("/:id") != -1 )) {
                 $rootScope.user = AuthenticationFactory.loadUserFromCookie();
                 $rootScope.authenticated = AuthenticationFactory.getUserIsAuthenticated();
 

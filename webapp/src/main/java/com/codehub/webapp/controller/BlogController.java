@@ -30,7 +30,7 @@ public class BlogController {
 	@RequestMapping(value = {"/blog/new"}, method = RequestMethod.POST)
 	public ResponseEntity<Blog> addBlog(@RequestBody Blog blog) {
 		System.out.println("Adding blog now");
-		blog.setStatus("APPROVED");
+		blog.setStatus("PENDING");
 		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now(); 
