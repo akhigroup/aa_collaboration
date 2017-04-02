@@ -16,7 +16,7 @@
             </div>
 
             <h4>{{blogCtrl.singleBlog.blog.name}}</h4>  <!--Controllername.objectname.field -->
-            <p>by {{blogCtrl.singleBlog.blog.userName}} | March 07, 2017</p>
+            <p>by {{blogCtrl.singleBlog.blog.userName}} | {{blogCtrl.blogPostDate | date: short}}</p>
             <p>{{blogCtrl.singleBlog.blog.description}}</p>
             
 

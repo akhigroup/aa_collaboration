@@ -34,17 +34,17 @@ public class ForumCategory implements Serializable{
 	@Column(name="Category_Name")
 	private String name;
 	
-	private String Description;
+	private String description;
 	
 	private String status;
 	
 	@OneToMany(mappedBy="forumCategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	List<Forum> forum;
 	
-	@Column(name="No_Of_Topics")
+	@Column(name="Number_Of_Topics")
 	private int noOfTopics;
 	
-	@Column(name="No_Of_Posts")
+	@Column(name="Number_Of_Posts")
 	private int noOfPosts;
 
 	public int getId() {
@@ -64,11 +64,11 @@ public class ForumCategory implements Serializable{
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public String getStatus() {

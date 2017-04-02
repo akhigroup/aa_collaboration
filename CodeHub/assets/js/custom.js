@@ -32,7 +32,7 @@ var setting = function() {
 
            $('input#title').characterCounter();
 
-           $('input#name, textarea#description, input#venue, input#title, textarea#profile, textarea#qualification').characterCounter();
+           $('input#name, textarea#description, input#venue, input#title, textarea#profile, textarea#qualification,  input#company-name, input#subheader, textarea#about, textarea#ontact-info').characterCounter();
 
            $('.modal').modal();
       });

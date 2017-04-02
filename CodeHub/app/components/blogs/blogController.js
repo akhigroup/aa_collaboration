@@ -30,7 +30,7 @@ blog.controller('blogController', ['blogFactory',
         //Setting the user id and username
         self.blog.userId = user.id;
         self.blog.userName = user.username;
-        
+        selg.blogPostDate = "";
          //calling the addBlog method in the factory
          blogFactory.addBlog(self.blog)
             .then (
@@ -55,8 +55,8 @@ blog.controller('blogController', ['blogFactory',
                 function(blog) {
                     debugger;
                     self.singleBlog = blog;
-                    // console.log(self.singleBlog.blog.postDate);
-                    var date = self.singleBlog.blog.postDate
+                    console.log(self.singleBlog.blog.postDate);
+                    self.blogPostDate = new Date(self.singleBlog.blog.postDate[0],self.singleBlog.blog.postDate[1] - 1,self.singleBlog.blog.postDate[2]);
                 },
                 function(errResponse) {
                     console.error('Failure!');

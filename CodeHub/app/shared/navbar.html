@@ -1,4 +1,5 @@
 <div ng-if="authenticated">
+  <header>
 <nav>
     <div class="nav-wrapper teal lighten-2">
 
@@ -128,5 +129,6 @@
     <li ng-if="user.role == 'Super_Admin' || user.role == 'Admin' || user.role == 'Employer'"><a href="#!/event/new"><i class="material-icons">today</i>Create new Event</a></li>
 
     
-  </ul> 
+  </ul>
+  </header> 
 </div>

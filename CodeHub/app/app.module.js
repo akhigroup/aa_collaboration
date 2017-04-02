@@ -3,4 +3,5 @@ var codehub = angular.module('codehub', [
     'authenticationModule',
     'blogModule',
     'textAngular',
+    'forumModule',
     ]);

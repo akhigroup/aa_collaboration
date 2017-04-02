@@ -94,8 +94,8 @@ window.routes = {
      //For viewing list of forum categories and adding a new one
      "/forum/categories/list": {
         templateUrl : 'app/components/forum/forumCategories.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'forumController',
+        controllerAs : 'forCtrl',
         requireLogin: true,
         roles: ['Super_Admin']
     },
@@ -103,8 +103,8 @@ window.routes = {
     //For viewing list of forum topics
      "/forum/topics/list": {
         templateUrl : 'app/components/forum/topicList.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'forumController',
+        controllerAs : 'forCtrl',
         requireLogin: true,
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
@@ -112,8 +112,8 @@ window.routes = {
     //For viewing single forum topic
     "/forum/topic": {
         templateUrl : 'app/components/forum/topic.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'forumController',
+        controllerAs : 'forCtrl',
         requireLogin: true,
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
@@ -121,8 +121,8 @@ window.routes = {
     //Form for creating new forum topic
     "/forum/topic/new": {
         templateUrl : 'app/components/forum/newTopic.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'forumController',
+        controllerAs : 'forCtrl',
         requireLogin: true,
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
@@ -130,8 +130,8 @@ window.routes = {
     //For managing forum topics
     "/manage/forums": {
         templateUrl : 'app/components/forum/manageForums.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'forumController',
+        controllerAs : 'forCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -139,8 +139,8 @@ window.routes = {
     //For accepting request of forum topics
     "/requests/forums": {
         templateUrl : 'app/components/forum/forumRequests.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'forumController',
+        controllerAs : 'forCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },

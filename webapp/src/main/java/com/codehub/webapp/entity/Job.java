@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Component
-@Table(name="JOBS_DETAIL")
+@Table(name="JOB_DETAIL")
 public class Job implements Serializable {
 
 	/**
@@ -32,26 +32,30 @@ public class Job implements Serializable {
 	@Column(name="JOB_ID")
 	private int id;
 	
-	@Column(name="JOB_TITLE")
-	private String title;
+	@Column(name="COMPANY_NAME")
+	private String companyName;
 	
-	private String profile;
+	@Column(name="SUB_TITLE")
+	private String subTitle;
 	
-	private String Description;
+	private String about;
+	
+	@Column(name="Job_Profile")
+	private String jobProfile;
+	
+	private String qualification;
+	
+	@Column(name="CONTACT_INFO")
+	private String contactInfo;
+	
+	@Column(name="Post_Date")
+	private LocalDate postDate;
 	
 	@Column(name="User_Id")
 	private int userId;
 	
 	@Column(name="User_Name")
 	private String username;
-	
-	private String qualification;
-	
-	@Column(name="Post_Date")
-	private LocalDate postDate;
-	
-	@Column(name="no_Of_Applicants")
-	private int noOfApplicants;
 	
 	@OneToMany(mappedBy="job", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<JobApplied> jobApplied;
@@ -64,28 +68,60 @@ public class Job implements Serializable {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
-	public String getProfile() {
-		return profile;
+	public String getSubTitle() {
+		return subTitle;
 	}
 
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public void setSubTitle(String subTitle) {
+		this.subTitle = subTitle;
 	}
 
-	public String getDescription() {
-		return Description;
+	public String getAbout() {
+		return about;
 	}
 
-	public void setDescription(String description) {
-		Description = description;
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+	public String getJobProfile() {
+		return jobProfile;
+	}
+
+	public void setJobProfile(String jobProfile) {
+		this.jobProfile = jobProfile;
+	}
+
+	public String getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+
+	public String getContactInfo() {
+		return contactInfo;
+	}
+
+	public void setContactInfo(String contactInfo) {
+		this.contactInfo = contactInfo;
+	}
+
+	public LocalDate getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(LocalDate postDate) {
+		this.postDate = postDate;
 	}
 
 	public int getUserId() {
@@ -104,30 +140,6 @@ public class Job implements Serializable {
 		this.username = username;
 	}
 
-	public String getQualification() {
-		return qualification;
-	}
-
-	public void setQualification(String qualification) {
-		this.qualification = qualification;
-	}
-
-	public LocalDate getPostDate() {
-		return postDate;
-	}
-
-	public void setPostDate(LocalDate postDate) {
-		this.postDate = postDate;
-	}
-
-	public int getNoOfApplicants() {
-		return noOfApplicants;
-	}
-
-	public void setNoOfApplicants(int noOfApplicants) {
-		this.noOfApplicants = noOfApplicants;
-	}
-
 	public List<JobApplied> getJobApplied() {
 		return jobApplied;
 	}
@@ -135,7 +147,4 @@ public class Job implements Serializable {
 	public void setJobApplied(List<JobApplied> jobApplied) {
 		this.jobApplied = jobApplied;
 	}
-	
-	
-	
 }
