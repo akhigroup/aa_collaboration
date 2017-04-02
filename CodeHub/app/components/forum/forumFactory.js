@@ -8,17 +8,18 @@ forum.factory('ForumFactory', ['$http', '$q',
 
             return {
 
-                addForumCategory : addForumCategory,
-                fetchForumCategories : fetchForumCategories,
+                addForum : addForum,
+                fetchForums : fetchForums,
             };
 
             //function to add a new forum Forum Category
-            function addForumCategory(category) {
+            function addForum(forum) {
 
                 var deferred = $q.defer();
 
-                $http.post(url + '/forum/category/new', category).then(
+                $http.post(url + '/forum/new', forum).then(
                     function(response) {
+                        debugger;
                         deferred.resolve(response.data);
                     }, function(errResponse) {
                         deferred.reject(response.data);
@@ -28,11 +29,11 @@ forum.factory('ForumFactory', ['$http', '$q',
             }
 
             //Function to fetch list of forum categories
-            function fetchForumCategories() {
+            function fetchForums() {
                 
                 var deferred = $q.defer();
 
-                $http.get(url + '/forum/categories/list').then(
+                $http.get(url + '/forum/list').then(
                     function(response) {
                         deferred.resolve(response.data);
                     }, function(errResponse) {

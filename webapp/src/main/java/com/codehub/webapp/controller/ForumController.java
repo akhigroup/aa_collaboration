@@ -10,32 +10,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codehub.webapp.dao.ForumCategoryDAO;
-import com.codehub.webapp.entity.ForumCategory;
+import com.codehub.webapp.dao.ForumDAO;
+import com.codehub.webapp.entity.Forum;
 
 @RestController
 public class ForumController {
 
 	@Autowired
-	ForumCategoryDAO forumCategoryDAO;
+	ForumDAO forumDAO;
 	
 	//Method for creating new forum category
-	@RequestMapping(value = {"/forum/category/new"}, method = RequestMethod.POST)
-	public ResponseEntity<ForumCategory> addForumCategory(@RequestBody ForumCategory forumCategory) {
+	@RequestMapping(value = {"/forum/new"}, method = RequestMethod.POST)
+	public ResponseEntity<Forum> addForumCategory(@RequestBody Forum forum) {
 		
-		forumCategory.setStatus("APPROVED");
-		forumCategory.setNoOfPosts(0);
-		forumCategory.setNoOfTopics(0);
+		forum.setStatus("APPROVED");
+		forum.setNoOfPosts(0);
 		
-		forumCategoryDAO.addForumCategory(forumCategory);
-		return new ResponseEntity<ForumCategory>(forumCategory, HttpStatus.OK);
+		forumDAO.addForum(forum);
+		return new ResponseEntity<Forum>(forum, HttpStatus.OK);
 	}
 	
 	//Method for fetching list of all forum categories
-	@RequestMapping(value = {"/forum/categories/list"}, method = RequestMethod.GET)
-	public ResponseEntity<List<ForumCategory>> fetchForumCategories() {
+	@RequestMapping(value = {"/forum/list"}, method = RequestMethod.GET)
+	public ResponseEntity<List<Forum>> fetchForums() {
 		System.out.println("Method called");
-		List<ForumCategory> forumCategories = forumCategoryDAO.list();	
-		return new ResponseEntity<List<ForumCategory>>(forumCategories, HttpStatus.OK);
+		List<Forum> forums = forumDAO.list();
+		return new ResponseEntity<List<Forum>>(forums, HttpStatus.OK);
 	}
 }

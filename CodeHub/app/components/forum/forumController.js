@@ -4,7 +4,7 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
             var self = this;
 
             //Setting up the field for creating new forum category
-            self.ForumCategory = {
+            self.Forum = {
 
                 id : null,
                 name : '',
@@ -12,7 +12,7 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
             }
 
             //array for displaying list of forum categories
-            self.forumCategories = [];
+            self.forums = [];
 
             // calling jQuery once controller has loaded
             $timeout(function () {
@@ -20,12 +20,13 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
             }, 100);
 
             //method for adding new category
-            self.addCategory = function() {
-                ForumFactory.addForumCategory(self.ForumCategory) 
+            self.addForum = function() {
+                debugger;
+                ForumFactory.addForum(self.Forum) 
                         .then(
-                            function(category) {
+                            function(forum) {
                                 debugger;
-                                self.ForumCategory = category;
+                                self.Forum = forum;
                                 $route.reload();
                                 $('#category').modal('close');
                             }, function(errResponse) {
@@ -34,16 +35,16 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
                         );
             }
 
-            fetchForumCategories();
+            fetchForums();
             //method to fetch all the forum categories
-            function fetchForumCategories() {
+            function fetchForums() {
                 console.log('method called');
                 debugger;
-                ForumFactory.fetchForumCategories().then(
-                        function(categories) {
+                ForumFactory.fetchForums().then(
+                        function(forums) {
                             debugger;
-                            self.forumCategories = categories;
-                            // console.log(self.forumCategories["0"].id);
+                            self.forums = forums;
+                            console.log(self.forums);
                     }, function(errResponse) {
                             console.log('Failure!');
                         }

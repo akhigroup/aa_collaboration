@@ -1,17 +1,15 @@
 package com.codehub.webapp.test;
 
-import java.time.LocalDate;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.codehub.webapp.dao.ForumCategoryDAO;
+import com.codehub.webapp.dao.ForumDAO;
 import com.codehub.webapp.dao.ForumDAO;
 import com.codehub.webapp.dao.ForumPostDAO;
 import com.codehub.webapp.dao.ForumRequestDAO;
 import com.codehub.webapp.entity.Forum;
-import com.codehub.webapp.entity.ForumCategory;
+import com.codehub.webapp.entity.Forum;
 import com.codehub.webapp.entity.ForumPosts;
 import com.codehub.webapp.entity.ForumRequest;
 
@@ -26,10 +24,10 @@ public class ForumTestCase {
 	ForumDAO forumDAO;
 	
 	@Autowired
-	ForumCategory forumCategory;
+	Forum forumCategory;
 	
 	@Autowired
-	ForumCategoryDAO forumCategoryDAO;
+	ForumDAO forumCategoryDAO;
 	
 	@Autowired
 	ForumPosts forumPosts;
@@ -53,8 +51,8 @@ public class ForumTestCase {
 		context.refresh();
 		forumDAO = (ForumDAO) context.getBean("forumDAO");
 		forum = (Forum) context.getBean("forum");
-		forumCategoryDAO = (ForumCategoryDAO) context.getBean("forumCategoryDAO");
-		forumCategory = (ForumCategory) context.getBean("forumCategory");
+		forumCategoryDAO = (ForumDAO) context.getBean("forumCategoryDAO");
+		forumCategory = (Forum) context.getBean("forumCategory");
 		forumPostDAO = (ForumPostDAO) context.getBean("forumPostDAO");
 		forumPosts = (ForumPosts) context.getBean("forumPosts");
 		forumRequestDAO = (ForumRequestDAO) context.getBean("forumRequestDAO");
@@ -62,41 +60,33 @@ public class ForumTestCase {
 	}
 	
 	@Test
-	public void addForum() {
-		forum.setId(1);
-		forum.setName("Forum");
-		forum.setDescription("This is a forum");
-		forum.setDateCreated(LocalDate.parse("2007-02-10"));
-		forum.setNoOfPosts(25);
-		forum.setNoOfmembers(50);
-		forum.setNoOfrequests(30);
-		forum.setStatus("PENDING");
-		forumCategory = forumCategoryDAO.getForumCategory(2);
-		forum.setForumCategory(forumCategory);
-		forum.setUserId(101);
-		forum.setUsername("Avadhoot");
-		
-		Assert.assertEquals(true, forumDAO.addForum(forum));
+	public void addForumCategory() {
+		forumCategory.setId(1);
+		forumCategory.setName("Java");
+		forumCategory.setDescription("Category for java");
+		forumCategory.setStatus("PENDING");
+				
+		Assert.assertEquals(true, forumCategoryDAO.addForum(forumCategory));
 	}
-//	
-//	@Test
-//	public void updateForum() {
-//		forum = forumDAO.getForum(2);
-//		forumCategory.setStatus("Approved");
-//		Assert.assertEquals(true, forumDAO.updateForum(forum));
-//	}
 	
 //	@Test
-//	public void getAllForum() {
+//	public void updateForumCategory() {
+//		forumCategory = forumCategoryDAO.getForumCategory(1);
+//		forumCategory.setStatus("Approved");
+//		Assert.assertEquals(true, forumCategoryDAO.updateForumCategory(forumCategory));
+//	}
+//	
+//	@Test
+//	public void getAllForumCategoryCategory() {
 //		
-//		int size = forumDAO.list().size();
+//		int size = forumCategoryDAO.list().size();
 //		Assert.assertEquals(1, size);
 //	}
 //	
 //	@Test
-//	public void deleteForum() {
-//		forum = forumDAO.getForum(2);
-//		Assert.assertEquals(true, forumDAO.deleteForum(forum));
+//	public void deleteForumCategory() {
+//		forumCategory = forumCategoryDAO.getForumCategory(1);
+//		Assert.assertEquals(true, forumCategoryDAO.deleteForumCategory(forumCategory));
 //	}
 
 }

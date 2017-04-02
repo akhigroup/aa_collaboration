@@ -6,12 +6,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.codehub.webapp.dao.ForumCategoryDAO;
+import com.codehub.webapp.dao.ForumDAO;
 import com.codehub.webapp.dao.ForumDAO;
 import com.codehub.webapp.dao.ForumPostDAO;
 import com.codehub.webapp.dao.ForumRequestDAO;
 import com.codehub.webapp.entity.Forum;
-import com.codehub.webapp.entity.ForumCategory;
+import com.codehub.webapp.entity.Forum;
 import com.codehub.webapp.entity.ForumPosts;
 import com.codehub.webapp.entity.ForumRequest;
 
@@ -26,10 +26,10 @@ public class ForumPostTestCase {
 	ForumDAO forumDAO;
 	
 	@Autowired
-	ForumCategory forumCategory;
+	Forum forumCategory;
 	
 	@Autowired
-	ForumCategoryDAO forumCategoryDAO;
+	ForumDAO forumCategoryDAO;
 	
 	@Autowired
 	ForumPosts forumPosts;
@@ -53,8 +53,8 @@ public class ForumPostTestCase {
 		context.refresh();
 		forumDAO = (ForumDAO) context.getBean("forumDAO");
 		forum = (Forum) context.getBean("forum");
-		forumCategoryDAO = (ForumCategoryDAO) context.getBean("forumCategoryDAO");
-		forumCategory = (ForumCategory) context.getBean("forumCategory");
+		forumCategoryDAO = (ForumDAO) context.getBean("forumCategoryDAO");
+		forumCategory = (Forum) context.getBean("forumCategory");
 		forumPostDAO = (ForumPostDAO) context.getBean("forumPostDAO");
 		forumPosts = (ForumPosts) context.getBean("forumPosts");
 		forumRequestDAO = (ForumRequestDAO) context.getBean("forumRequestDAO");

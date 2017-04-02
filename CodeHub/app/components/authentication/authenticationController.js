@@ -1,13 +1,14 @@
 authenticate.controller('authenticationController', 
 [
-        'AuthenticationFactory', 
+        'AuthenticationFactory',
+        'ForumFactory', 
         '$rootScope', 
         '$location', 
         '$timeout', 
         '$scope', 
         '$route', 
 
-function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route){
+function(AuthenticationFactory, ForumFactory, $rootScope, $location, $timeout, $scope, $route){
 
     var self = this;
     self.credentials = {};
@@ -29,6 +30,7 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
         gender : ''
     };
     
+    self.forums = [];
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -60,6 +62,16 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
             }
             )
     };
+
+     ForumFactory.fetchForums().then(
+                        function(forums) {
+                            debugger;
+                            self.forums = forums;
+                            console.log(self.forums);
+                    }, function(errResponse) {
+                            console.log('Failure!');
+                        }
+                    );
 
     //Method to check whether username already exist
     self.checkUsername = function () {

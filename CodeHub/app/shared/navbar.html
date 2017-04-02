@@ -110,7 +110,7 @@
     <li><a href="#!/user/profile"><i class="material-icons">perm_identity</i>My Profile</a></li>
     <li><a href="#!"><i class="material-icons">supervisor_account</i>My Friends</a></li>
     <li><a href="#!"><i class="material-icons">description</i>My Blogs</a></li>
-    <li><a href="#!"><i class="material-icons">question_answer</i>My Forum Topics</a></li>
+    <li><a href="#!"><i class="material-icons">question_answer</i>Joined Forums</a></li>
     <li><a href="#!"><i class="material-icons">work</i>Jobs Applied</a></li>
     <li><a href="#!"><i class="material-icons">today</i>Events Joined</a></li>
 
@@ -121,13 +121,11 @@
     <li><a href="#!">Work Shop</a></li>
 
     <li><a href="#!/blog/new"><i class="material-icons">description</i>Create new Blog</a></li>
-    <li ng-if="user.role == 'Super_Admin'"><a href="#!/forum/categories/list"><i class="material-icons">playlist_add</i>Forum Categories</a></li>
-    <li><a href="#!/forum/topic/new"><i class="material-icons">question_answer</i>Create new Forum</a></li>
+    <li ng-if="user.role != 'User' && user.role != 'Employer'"><a href="#!/forum/list"><i class="material-icons">question_answer</i>Create new Forums</a></li>
 
     <!--For super admin, admin and Employers -->
     <li ng-if="user.role == 'Super_Admin' || user.role == 'Admin' || user.role == 'Employer'"><a href="#!/job/new"><i class="material-icons">work</i>Create new Job</a></li>
     <li ng-if="user.role == 'Super_Admin' || user.role == 'Admin' || user.role == 'Employer'"><a href="#!/event/new"><i class="material-icons">today</i>Create new Event</a></li>
-
     
   </ul>
   </header> 

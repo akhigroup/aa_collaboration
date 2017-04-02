@@ -22,7 +22,7 @@
     <!--Tab heads are here-->
       <ul class="tabs">
         <li class="tab col s3"><a class="active" href="#blogs">TOP 5 Blogs</a></li>
-        <li class="tab col s3"><a href="#forums">Forums Categories</a></li>
+        <li class="tab col s3"><a href="#forums">Forums</a></li>
         <li class="tab col s3"><a href="#jobs">Top 3 Jobs</a></li>
         <li class="tab col s3"><a href="#events">Top 5 Events</a></li>
       </ul>
@@ -134,38 +134,23 @@
     </div>
     
     <!-- All forums will come here -->
-    <div id="forums" class="col s12" ng-click="showButton">
-     <table class="bordered">
-        <thead>
-          <tr>
-              <th data-field="id">CATEGORY NAME</th>
-              <th data-field="name">TOPICS</th>
-              <th data-field="price">POSTS</th>
-          </tr>
-        </thead>
+    <div id="forums" class="col s12">   
 
-        <tbody>
-          <tr>
-            <td>
-              <b  style="font-size: 16px"><a href="#!/forum/topics/list" style="color: rgba(0, 0, 0, 0.87);">Coding for Beginner</a></b>
-              <p style="font-size: 12px">If you are new to coding this one is for you</p>
-            </td>
-            <td>4000</td>
-            <td>45000</td>
-          </tr>
-
-          <tr>
-            <td>
-              <b  style="font-size: 16px"><a href="#!/forum/topics/list" style="color: rgba(0, 0, 0, 0.87);">Coding for Beginner</a></b>
-              <p style="font-size: 12px">If you are new to coding this one is for you</p>
-            </td>
-            <td>4000</td>
-            <td>45000</td>
-          </tr>
-        
-        </tbody>
-      </table>
-    </div>
+       <div class="row">
+                <div class="col s12 m7">
+                    <div class="card hoverable" style="width: 800px;" ng-repeat="forums in authCtrl.forums | orderBy : 'id' : reverse">
+                        <span class="card-title" style="margin-left: 10px;"><a href="#!/blog" style=" color: rgba(0, 0, 0, 0.87);">{{forums.name}}</a></span>
+                        <div class="card-content">
+                        <p>{{forums.description}}</p>
+                        </div>
+                        <div class="card-action">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Join Forum"><i class="material-icons">add</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+      
+      </div>
     
     <!-- All jobs will come here -->
     <div id="jobs" class="col s12">

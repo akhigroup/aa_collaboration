@@ -13,10 +13,10 @@ import com.codehub.webapp.entity.Forum;
 
 @Repository("forumDAO")
 public class ForumDAOImpl implements ForumDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	@Override
 	@Transactional
 	public List<Forum> list() {
@@ -34,13 +34,13 @@ public class ForumDAOImpl implements ForumDAO {
 	@Override
 	@Transactional
 	public boolean addForum(Forum forum) {
-			try {
-				sessionFactory.getCurrentSession().save(forum);
-				return true;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return false;
-			}
+		try {
+			sessionFactory.getCurrentSession().save(forum);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override

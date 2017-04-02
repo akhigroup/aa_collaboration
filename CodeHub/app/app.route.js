@@ -91,13 +91,13 @@ window.routes = {
         roles: ['Super_Admin', 'Admin']
     },
 
-     //For viewing list of forum categories and adding a new one
-     "/forum/categories/list": {
-        templateUrl : 'app/components/forum/forumCategories.html',
+     //For viewing list of forums and adding a new one
+     "/forum/list": {
+        templateUrl : 'app/components/forum/forumlist.html',
         controller : 'forumController',
         controllerAs : 'forCtrl',
         requireLogin: true,
-        roles: ['Super_Admin']
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
     //For viewing list of forum topics
@@ -249,7 +249,12 @@ codehub.config(['$routeProvider', '$httpProvider',  function($routeProvider, $ht
 
 codehub.run(function ($rootScope, $location, AuthenticationFactory) {
 
-    $rootScope.$on('$locationChangeStart', function (event, next, current) {                   
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        if(next == current) {
+                $rootScope.user = AuthenticationFactory.loadUserFromCookie();
+                $rootScope.authenticated = AuthenticationFactory.getUserIsAuthenticated();
+                return;            
+        }                   
         // For interating through all the routes
         for (var i in window.routes) {         
             if (next.indexOf(i) != -1 || (i.indexOf("/:id") != -1 )) {

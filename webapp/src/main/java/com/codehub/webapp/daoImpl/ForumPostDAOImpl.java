@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codehub.webapp.dao.ForumPostDAO;
-import com.codehub.webapp.entity.ForumCategory;
+import com.codehub.webapp.entity.Forum;
 import com.codehub.webapp.entity.ForumPosts;
 
 @Repository("forumPostDAO")
