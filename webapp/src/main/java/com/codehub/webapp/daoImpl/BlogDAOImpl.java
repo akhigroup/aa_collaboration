@@ -24,6 +24,22 @@ public class BlogDAOImpl implements BlogDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
+	
+	@Override
+	@Transactional
+	public List<Blog> getBlogsByStatus(String status) {
+		String hql = "FROM Blog where status = '" + status +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
+	
+	@Override
+	@Transactional
+	public List<Blog> getUsersBlogs(int id) {
+		String hql = "FROM Blog where USER_ID = '" + id +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
 
 	@Override
 	@Transactional
@@ -66,5 +82,7 @@ public class BlogDAOImpl implements BlogDAO {
 			return false;
 		}
 	}
+
+	
 
 }

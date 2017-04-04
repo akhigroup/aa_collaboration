@@ -17,7 +17,11 @@ blog.controller('blogController', ['blogFactory',
 
     // For viewing single Blog
     self.singleBlog = {};
+    
+    // For posting date on blog
     self.postDate = {};
+
+    self.bloglist = [];
 
      // calling jQuery once controller has loaded
     $timeout(function () {
@@ -30,7 +34,7 @@ blog.controller('blogController', ['blogFactory',
         //Setting the user id and username
         self.blog.userId = user.id;
         self.blog.userName = user.username;
-        selg.blogPostDate = "";
+        self.blogPostDate = "";
          //calling the addBlog method in the factory
          blogFactory.addBlog(self.blog)
             .then (
@@ -63,6 +67,32 @@ blog.controller('blogController', ['blogFactory',
                 }
             );
 
+    }
+
+    //calling method for bloglist
+     bloglist();
+
+    //Function to view list of all blogs
+    function bloglist() {
+
+        // var status = "APPROVED"
+        debugger;
+        blogFactory.bloglist()
+            .then (
+                function(blogs) {
+                    debugger;   
+                    self.bloglist = blogs;
+                    for(var [blog] in self.bloglist) {
+                        // console.log(self.bloglist[blog].postDate);
+                        self.bloglist[blog].postDate = new Date(self.bloglist[blog].postDate[0],self.bloglist[blog].postDate[1] - 1,self.bloglist[blog].postDate[2]);
+                        // console.log(self.bloglist[blog].postDate);
+                    }
+                    console.log(self.bloglist.postDate);
+                },
+                function(errResponse) {
+                    console.log('Failure!');
+                }
+            );
     }
 
 }])

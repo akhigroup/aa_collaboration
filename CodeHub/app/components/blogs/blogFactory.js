@@ -9,7 +9,9 @@ blog.factory('blogFactory', ['$http', '$q',
         
         return {
             addBlog : addBlog,
-            viewBlog : viewBlog
+            viewBlog : viewBlog,
+            bloglist : bloglist,
+            userBlogList : userBlogList,
         };
 
         //Function to add the blog 
@@ -46,7 +48,38 @@ blog.factory('blogFactory', ['$http', '$q',
                 return deferred.promise;
         }
 
+        //Function to fetch blog list
+        function bloglist() {
+             console.log('Inside factory now');
+            var deferred = $q.defer();
 
+            $http.get(blogUrl + '/blog/list/status')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        function userBlogList() {
+            console.log('Inside factory now');
+            var deferred = $q.defer();
+
+            $http.get(blogUrl + '/user/blogs/list')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
 
     }
 ])

@@ -174,88 +174,27 @@
             <!--Blogs created by user will come here -->
             <div id="test2" class="col s12">
 
-                 <div class="row">
-                    <div class="col s12 m7">
-                    <div class="card hoverable" style="width: 800px;">
-                        <span class="card-title" style="margin-left: 10px;">Card Title</span>
-                        <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
+                    <div class="row">
+                        <div class="col s12 m7">
+                        <div class="card hoverable" style="width: 800px;" ng-repeat="blogs in authCtrl.myblogs| orderBy : 'id'" >
+                            <span class="card-title" style="margin-left: 10px;"><a href="#!/blog/{{blogs.id}}" style=" color: rgba(0, 0, 0, 0.87);">{{blogs.name}}</a></span>
+                            <div class="card-content">
+                            <p class="truncate">{{blogs.description}}</p>
+                            </div>
+                            <div class="card-action">
+                                    <a href="javascript:void(0)" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views">Views {{blogs.noOfViews}}</a>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <a href="javascript:void(0)" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes">Likes {{blogs.noOfLikes}}</a>
+                                    &nbsp; &nbsp; &nbsp;
+                                    <a href="javascript:void(0)" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments">Comments {{blogs.noOfComments}}</a>
+                                    
+                            </div>
                         </div>
-                        <div class="card-action">
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views"><i class="material-icons" style="position: absolute; left: 80px;">remove_red_eye</i>40000</a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes"><i class="material-icons" style="position: absolute; left: 180px;">thumb_up</i>10000</a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments"><i class="material-icons" style="position: absolute; left: 270px;">comment</i>2000</a>
-                        
                         </div>
-                      </div>
                     </div>
-                  </div>
-
-                   <div class="row">
-                    <div class="col s12 m7">
-                    <div class="card hoverable" style="width: 800px;">
-                        <span class="card-title" style="margin-left: 10px;">Card Title</span>
-                        <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
-                        </div>
-                        <div class="card-action">
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views"><i class="material-icons" style="position: absolute; left: 80px;">remove_red_eye</i>40000</a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes"><i class="material-icons" style="position: absolute; left: 180px;">thumb_up</i>10000</a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments"><i class="material-icons" style="position: absolute; left: 270px;">comment</i>2000</a>
-                        
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                   <div class="row">
-                    <div class="col s12 m7">
-                    <div class="card hoverable" style="width: 800px;">
-                        <span class="card-title" style="margin-left: 10px;">Card Title</span>
-                        <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
-                        </div>
-                        <div class="card-action">
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views"><i class="material-icons" style="position: absolute; left: 80px;">remove_red_eye</i>40000</a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes"><i class="material-icons" style="position: absolute; left: 180px;">thumb_up</i>10000</a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments"><i class="material-icons" style="position: absolute; left: 270px;">comment</i>2000</a>
-                        
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                   <div class="row">
-                    <div class="col s12 m7">
-                    <div class="card hoverable" style="width: 800px;">
-                        <span class="card-title" style="margin-left: 10px;">Card Title</span>
-                        <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
-                        </div>
-                        <div class="card-action">
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views"><i class="material-icons" style="position: absolute; left: 80px;">remove_red_eye</i>40000</a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes"><i class="material-icons" style="position: absolute; left: 180px;">thumb_up</i>10000</a>
-                        &nbsp; &nbsp; &nbsp;
-                        <a href="sass.html" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="comments"><i class="material-icons" style="position: absolute; left: 270px;">comment</i>2000</a>
-                        
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
                   <!--Pagination will come here -->
-                  <ul class="pagination center-align ">
+                  <!--<ul class="pagination center-align ">
                     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                     <li class="active"><a href="#!">1</a></li>
                     <li class="waves-effect"><a href="#!">2</a></li>
@@ -263,7 +202,7 @@
                     <li class="waves-effect"><a href="#!">4</a></li>
                     <li class="waves-effect"><a href="#!">5</a></li>
                     <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                </ul>
+                </ul>-->
             </div>
             
              <!--All Events joined by user will come here -->

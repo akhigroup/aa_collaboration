@@ -100,49 +100,13 @@ window.routes = {
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
-    //For viewing list of forum topics
-     "/forum/topics/list": {
-        templateUrl : 'app/components/forum/topicList.html',
-        controller : 'forumController',
-        controllerAs : 'forCtrl',
-        requireLogin: true,
-        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
-    },
-
     //For viewing single forum topic
-    "/forum/topic": {
-        templateUrl : 'app/components/forum/topic.html',
+    "/forum": {
+        templateUrl : 'app/components/forum/forum.html',
         controller : 'forumController',
         controllerAs : 'forCtrl',
         requireLogin: true,
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
-    },
-
-    //Form for creating new forum topic
-    "/forum/topic/new": {
-        templateUrl : 'app/components/forum/newTopic.html',
-        controller : 'forumController',
-        controllerAs : 'forCtrl',
-        requireLogin: true,
-        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
-    },
-
-    //For managing forum topics
-    "/manage/forums": {
-        templateUrl : 'app/components/forum/manageForums.html',
-        controller : 'forumController',
-        controllerAs : 'forCtrl',
-        requireLogin: true,
-        roles: ['Super_Admin', 'Admin']
-    },
-
-    //For accepting request of forum topics
-    "/requests/forums": {
-        templateUrl : 'app/components/forum/forumRequests.html',
-        controller : 'forumController',
-        controllerAs : 'forCtrl',
-        requireLogin: true,
-        roles: ['Super_Admin', 'Admin']
     },
 
     //For viewing event list
