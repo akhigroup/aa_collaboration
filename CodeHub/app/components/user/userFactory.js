@@ -10,6 +10,7 @@ user.factory('userFactory', ['$http', '$q',
         return {
             userBlogList : userBlogList,
             userJobList : userJobList,
+            userEventList : userEventList
         };
 
          //Function to fetch userblog list
@@ -37,6 +38,24 @@ user.factory('userFactory', ['$http', '$q',
             var deferred = $q.defer();
 
             $http.get(url + '/user/jobs/list/'+ id)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+         //Function to fetch user event list
+         
+         function userEventList(id) {
+            console.log('Inside factory now');
+            var deferred = $q.defer();
+
+            $http.get(url + '/user/events/list/'+ id)
                 .then (
                     function(response) {
                         deferred.resolve(response.data);

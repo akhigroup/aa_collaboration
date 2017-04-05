@@ -10,6 +10,7 @@ forum.factory('ForumFactory', ['$http', '$q',
 
                 addForum : addForum,
                 fetchForums : fetchForums,
+                viewForum : viewForum,
             };
 
             //function to add a new forum Forum Category
@@ -42,4 +43,22 @@ forum.factory('ForumFactory', ['$http', '$q',
                 );
                 return deferred.promise;
             }
+
+             //Function for viewing single blog using blog id as a parameter
+            function viewForum(id) {
+                console.log('Inside factory now');
+                var deferred = $q.defer();
+
+                $http.get(url + '/forum/' + id)
+                    .then (
+                        function(response) {
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            deferred.reject(errResponse);
+                        }
+                    );
+                    return deferred.promise;
+            }
+
         }])

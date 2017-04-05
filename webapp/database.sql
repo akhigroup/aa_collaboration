@@ -61,7 +61,10 @@ FORUM_ID NUMBER(5) PRIMARY KEY,
 FORUM_NAME VARCHAR2(50) NOT NULL,
 DESCRIPTION CLOB NOT NULL,
 status varchar2(25) default 'PENDING' not null,
-NUMBER_OF_POSTS NUMBER(5)
+NUMBER_OF_POSTS NUMBER(5),
+post_date Date default sysDate,
+user_id NUMBER(5) not null,
+user_name varchar2(10) not null
 );
 
 create sequence forum_category_seq
@@ -161,6 +164,7 @@ user_name varchar2(10) not null,
 NAME VARCHAR2(25) not null,
 VENUE VARCHAR2(100) NOT NULL,
 DESCRIPTION CLOB NOT NULL,
+STATUS VARCHAR2(25) default 'PENDING' not null,
 START_DATE DATE NOT NULL,
 END_DATE DATE NOT NULL,
 POST_DATE DATE DEFAULT SYSDATE NOT NULL

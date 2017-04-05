@@ -42,6 +42,8 @@ public class Events implements Serializable {
 	
 	private String description;
 	
+	private String status;
+	
 	@Column(name="Start_Date")
 	private LocalDate startDate;
 	
@@ -51,7 +53,7 @@ public class Events implements Serializable {
 	@Column(name="Post_Date")
 	private LocalDate postDate;
 	
-	@OneToMany(mappedBy="events", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="events", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<EventJoined> eventJoined;
 
 	public int getId() {
@@ -100,6 +102,22 @@ public class Events implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public List<EventJoined> getEventJoined() {
+		return eventJoined;
+	}
+
+	public void setEventJoined(List<EventJoined> eventJoined) {
+		this.eventJoined = eventJoined;
 	}
 
 	public LocalDate getStartDate() {

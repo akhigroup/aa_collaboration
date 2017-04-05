@@ -24,7 +24,7 @@
         <li class="tab col s3"><a class="active" href="#blogs">Blogs</a></li>
         <li class="tab col s3"><a href="#forums">Forums</a></li>
         <li class="tab col s3"><a href="#jobs">Jobs</a></li>
-        <li class="tab col s3"><a href="#events">Top 5 Events</a></li>
+        <li class="tab col s3"><a href="#events">Events</a></li>
       </ul>
     </div>
 
@@ -59,7 +59,7 @@
        <div class="row">
                 <div class="col s12 m7">
                     <div class="card hoverable" style="width: 800px;" ng-repeat="forums in userCtrl.forums | orderBy : 'id' : reverse">
-                        <span class="card-title" style="margin-left: 10px;"><a href="#!/blog" style=" color: rgba(0, 0, 0, 0.87);">{{forums.name}}</a></span>
+                        <span class="card-title" style="margin-left: 10px;"><a ng-href="#!/forum/{{forums.id}}" style=" color: rgba(0, 0, 0, 0.87);">{{forums.name}}</a></span>
                         <div class="card-content">
                         <p>{{forums.description}}</p>
                         </div>
@@ -87,9 +87,9 @@
               
               <div class="card-tabs">
                 <ul class="tabs tabs-fixed-width">
-                  <li class="tab"><a class="active" href="#job{{job.id + 1}}">JOB PROFILE</a></li>
-                  <li class="tab"><a  href="#job{{job.id + 2}}">QUALIFICATION</a></li>
-                  <li class="tab"><a href="#job{{job.id + 3}}">CONTACT INFO</a></li>
+                  <li class="tab"><a class="active" ng-href="#job{{job.id + 1}}">JOB PROFILE</a></li>
+                  <li class="tab"><a  ng-href="#job{{job.id + 2}}">QUALIFICATION</a></li>
+                  <li class="tab"><a ng-href="#job{{job.id + 3}}">CONTACT INFO</a></li>
                 </ul>
               </div>
 
@@ -107,70 +107,25 @@
       <!-- All events will come here -->
       <div id="events" class="col s12">
 
-        <div class="card hoverable" style="width: inherit;">
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
-              dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-               <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
-          </div>
-        </div>
-
-        <div class="card hoverable" style="width: inherit;">
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
-              dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-               <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
-          </div>
-        </div>
-
-        <div class="card hoverable" style="width: inherit;">
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
-              dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-               <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
-          </div>
-        </div>
-
-        <div class="card hoverable" style="width: inherit;">
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
-              dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-               <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
-          </div>
-        </div>
-
-        <div class="card hoverable" style="width: inherit;">
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
-              dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-               <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
-          </div>
-        </div>
+        <div class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.eventlist">
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4 ">{{event.name}}</span>
+                    <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: short}}</p><br>
+                    <p>{{event.description}}</p>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                    <br>
+                    <div class="row">
+                    <div class="col m6">
+                        <p><b>Venue</b></p>
+                        <p>{{event.venue}}</p>
+                    </div>
+                    <div class="col m6">
+                        <p><b>Start Date</b> {{event.startDate | date: short}}</p>
+                        <p><b>End Date</b> {{event.endDate | date: short}}</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
 
         <a href="#!/events/list" class="center-align">View All</a>
       </div>

@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col s12 m7">
                     <div class="card hoverable" style="width: 900px;" ng-repeat="forums in forCtrl.forums | orderBy : 'id' : reverse">
-                        <span class="card-title" style="margin-left: 10px;"><a href="#!/blog" style=" color: rgba(0, 0, 0, 0.87);">{{forums.name}}</a></span>
+                        <span class="card-title" style="margin-left: 10px;"><a ng-href="#!/forum/{{forums.id}}" style=" color: rgba(0, 0, 0, 0.87);">{{forums.name}}</a></span>
                         <div class="card-content">
                         <p>{{forums.description}}</p>
                         </div>

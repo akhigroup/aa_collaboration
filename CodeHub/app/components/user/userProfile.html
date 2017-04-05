@@ -134,18 +134,25 @@
                     <div ng-if="user.role != 'User'">
                     <h5><i class="material-icons">today</i> Events created :&nbsp; <small><a href="#">View all</a></small></h5>
                         <hr>
-                        <div class="card hoverable" style="width: inherit;">
+                        <div class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.myEvents">
                             <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4 ">Event Name<i class="material-icons right tooltipped"  data-position="bottom" data-delay="50" data-tooltip="more details">keyboard_arrow_up</i></span>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
-                                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                <span class="card-title activator grey-text text-darken-4 ">{{event.name}}</span>
+                                <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: short}}</p><br>
+                                <p>{{event.description}}</p>
                                 <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                                <br>
+                                <div class="row">
+                                <div class="col m6">
+                                    <p><b>Venue</b></p>
+                                    <p>{{event.venue}}</p>
+                                </div>
+                                <div class="col m6">
+                                    <p><b>Start Date</b> {{event.startDate | date: short}}</p>
+                                    <p><b>End Date</b> {{event.endDate | date: short}}</p>
+                                </div>
+                                </div>
                             </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
-                            </div>
-                            </div>
+                        </div>
 
                     <!-- Jobs created by user will come here-->
                     <h5><i class="material-icons">work</i> Jobs created :&nbsp; <small><a href="#">View all</a></small></h5>

@@ -1,6 +1,7 @@
 package com.codehub.webapp.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -36,6 +37,9 @@ public class Forum implements Serializable{
 	
 	private String description;
 	
+	@Column(name="Post_Date")
+	private LocalDate postDate;
+	
 	private String status;
 	
 	@OneToMany(mappedBy="forum", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -43,6 +47,12 @@ public class Forum implements Serializable{
 	
 	@Column(name="Number_Of_Posts")
 	private int noOfPosts;
+	
+	@Column(name="User_Id")
+	private int userId;
+	
+	@Column(name="User_Name")
+	private String userName;
 
 	public int getId() {
 		return id;
@@ -66,6 +76,30 @@ public class Forum implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public LocalDate getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(LocalDate postDate) {
+		this.postDate = postDate;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getStatus() {

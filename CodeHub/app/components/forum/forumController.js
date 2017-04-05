@@ -9,10 +9,16 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
                 id : null,
                 name : '',
                 description : '',
+                postDate : '',
+                userId : '',
+                userName : ''
             }
 
             //array for displaying list of forum categories
             self.forums = [];
+
+             // For viewing single forum
+             self.singleForum = {};
 
             // calling jQuery once controller has loaded
             $timeout(function () {
@@ -21,11 +27,15 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
 
             //method for adding new category
             self.addForum = function() {
-                debugger;
+                
+                //Setting the user id and username
+                self.Forum.userId = user.id;
+                self.Forum.userName = user.username;
+                
                 ForumFactory.addForum(self.Forum) 
                         .then(
                             function(forum) {
-                                debugger;
+                                
                                 self.Forum = forum;
                                 $route.reload();
                                 $('#category').modal('close');
@@ -39,16 +49,35 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
             //method to fetch all the forum categories
             function fetchForums() {
                 console.log('method called');
-                debugger;
+                
                 ForumFactory.fetchForums().then(
                         function(forums) {
-                            debugger;
+                            
                             self.forums = forums;
                             console.log(self.forums);
                     }, function(errResponse) {
                             console.log('Failure!');
                         }
                     );
+            }
+
+            //function for viewing single forum
+            self.viewForum = function() {
+                //Assigning forum id to variable forumId
+                var forumId = $routeParams.id;
+                ForumFactory.viewForum(forumId)
+                    .then (
+                        function(forum) {
+                            debugger;
+                            self.singleForum = forum;
+                            // console.log(self.singleForum.postDate);
+                            self.singleForum.postDate = new Date(self.singleForum.postDate[0],self.singleForum.postDate[1] - 1,self.singleForum.postDate[2]);
+                        },
+                        function(errResponse) {
+                            console.error('Failure!');
+                        }
+                    );
+
             }
 
 }])

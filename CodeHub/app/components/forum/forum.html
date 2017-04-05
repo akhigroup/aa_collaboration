@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col m9">
+<div class="row" ng-init="forCtrl.viewForum()">
+    <div class="col m9" style="margin-bottom: 50px;">
         
          <div class="col s12" style="margin-top: 25px;">
             <a href="#!/user" class="breadcrumb">Home</a>
@@ -12,83 +12,57 @@
              <div class="row">
                  <div class="col m3" style="margin-top: 20px">
                     <img src="assets/img/noDp.png" alt="" class="circle" width="150px;">
-                    <p>Started by: {{user.username}}</p>
+                    <p>Started by: {{forCtrl.singleForum.userName}}</p>
                  </div>
                 <div class="col m9">
                     <div class="row">
                         <div class="col m8">
-                            <h4>FORUM Name</h4>
+                            <h4>{{forCtrl.singleForum.name}}</h4>
                         </div>
                         <div class="col m4">
                             <a class="waves-effect waves-light btn"><i class="material-icons right">add</i>JOIN FORUM</a>
                         </div>
                     </div>
-                    <p>Posted on: March 07, 2017</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo 
-                        ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis 
-                        dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, 
-                        pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede 
-                        justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus 
-                        ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis 
-                        pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. 
-                        Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat 
-                        vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, 
-                        feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque 
-                        rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper 
-                        ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget 
-                        condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque 
-                        sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. 
-                        Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero 
-                        venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus 
-                        tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.
-                        Sed consequat, leo eget bibendum sodales, augue velit cursus nunc</p>
+                    <p>Posted on: {{forCtrl.singleForum.postDate | date: short}}</p>
+                    <p>{{forCtrl.singleForum.description}}</p>
                     <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Reply To This Thread"><i class="material-icons">reply</i></a>
                 </div>
              </div>
          </div>
         </div>
 
-        <div class="card hoverable">
-         <div style=" padding-top: 40px; padding-bottom: 40px;">
-             <div class="row">
-                 <div class="col m3" style="margin-top: 20px">
-                    <img src="assets/img/noDp.png" alt="" class="circle" width="150px;">
-                    <p>Started by: {{user.username}}</p>
-                 </div>
-                <div class="col m9">
-                    <h4>POST 1</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo 
-                        ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis 
-                        dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, 
-                        pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede 
-                        justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus 
-                        ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis 
-                        pretium. Integer tincidunt. </p>
-                </div>
-             </div>
-         </div>
+        <!-- If no posts are available -->
+        <div ng-if="forCtrl.singleForum.noOfPosts == 0">
+             <div class="card hoverable" style="height: 200px;">
+                <h3 style="padding-top: 75px; padding-left: 250px;">No Posts Yet!</h3>
+           </div>
         </div>
 
-        <div class="card hoverable">
-         <div style=" padding-top: 40px; padding-bottom: 40px;">
-             <div class="row">
-                 <div class="col m3" style="margin-top: 20px">
-                    <img src="assets/img/noDp.png" alt="" class="circle" width="150px;">
-                    <p>Started by: {{user.username}}</p>
-                 </div>
-                <div class="col m9">
-                    <h4>POST 2</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo 
-                        ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis 
-                        dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, 
-                        pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede 
-                        justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus 
-                        ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis 
-                        pretium. Integer tincidunt. </p>
+        <!-- If posts are available -->
+        <div ng-if="forCtrl.singleForum.noOfPosts != 0">
+            <div class="card hoverable">
+            <div style=" padding-top: 40px; padding-bottom: 40px;">
+                <div class="row">
+                    <div class="col m3" style="margin-top: 20px">
+                        <img src="assets/img/noDp.png" alt="" class="circle" width="150px;">
+                        <p>Started by: {{user.username}}</p>
+                    </div>
+                    <div class="col m9">
+                        <h4>POST 1</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo 
+                            ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis 
+                            dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, 
+                            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede 
+                            justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus 
+                            ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis 
+                            pretium. Integer tincidunt. </p>
+                    </div>
                 </div>
-             </div>
-         </div>
+            </div>
+            </div>
         </div>
+
+       
     </div>
     <div class="col m3">
         <div ng-include="'app/shared/rightSide.html'"></div>

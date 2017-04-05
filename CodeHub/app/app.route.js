@@ -101,7 +101,7 @@ window.routes = {
     },
 
     //For viewing single forum topic
-    "/forum": {
+    "/forum/:id": {
         templateUrl : 'app/components/forum/forum.html',
         controller : 'forumController',
         controllerAs : 'forCtrl',
@@ -109,22 +109,22 @@ window.routes = {
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
-    //For viewing event list
-    "/events/list": {
-        templateUrl : 'app/components/events/eventlist.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
-        requireLogin: true,
-        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
-    },
-
     //Form for creating new event
     "/event/new": {
         templateUrl : 'app/components/events/newEvent.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'eventController',
+        controllerAs : 'eventCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin', 'Employer']
+    },
+
+    //For viewing event list
+    "/events/list": {
+        templateUrl : 'app/components/events/eventlist.html',
+        controller : 'eventController',
+        controllerAs : 'eventCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
     //For updating and deleting event

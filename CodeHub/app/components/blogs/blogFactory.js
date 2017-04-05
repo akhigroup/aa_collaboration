@@ -51,7 +51,7 @@ blog.factory('blogFactory', ['$http', '$q',
         function bloglist() {
              console.log('Inside factory now');
             var deferred = $q.defer();
-
+            debugger;
             $http.get(blogUrl + '/blog/list/status')
                 .then (
                     function(response) {

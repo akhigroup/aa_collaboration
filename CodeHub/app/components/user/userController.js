@@ -3,13 +3,14 @@ user.controller('userController',
     'userFactory',
     'ForumFactory',
     'blogFactory',
-    'jobFactory', 
+    'jobFactory',
+    'eventFactory', 
     '$timeout', 
     '$cookies', 
     '$routeParams', 
     '$location', 
     
-    function(userFactory, ForumFactory, blogFactory, jobFactory,  $timeout, $cookies, $routeParams, $location) {
+    function(userFactory, ForumFactory, blogFactory, jobFactory, eventFactory, $timeout, $cookies, $routeParams, $location) {
 
     var self = this;
 
@@ -30,6 +31,13 @@ user.controller('userController',
 
     // For posting date on blog
     self.birthDate = {};
+
+    //For fetching events
+    self.eventlist = [];
+
+    //Fetching list of events created by user
+    self.myEvents = [];
+
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -49,7 +57,7 @@ user.controller('userController',
      blogFactory.bloglist()
             .then (
                 function(blogs) {
-                    
+                    debugger;
                     self.bloglist = blogs;
                     for(var [blog] in self.bloglist) {
                         // console.log(self.bloglist[blog].postDate);
@@ -121,5 +129,46 @@ user.controller('userController',
                     console.log('Failure!');
                 }
             );
+
+        //calling the function in the event factory
+        eventFactory.eventlist()
+            .then (
+                function(events) {
+                    debugger;   
+                    self.eventlist = events;
+                    for(var [events] in self.eventlist) {
+                        self.eventlist[events].postDate = new Date(self.eventlist[events].postDate[0],self.eventlist[events].postDate[1] - 1,self.eventlist[events].postDate[2]);
+                    }
+                     for(var [startDate] in self.eventlist) {
+                        self.eventlist[startDate].startDate = new Date(self.eventlist[startDate].startDate[0],self.eventlist[startDate].startDate[1] - 1,self.eventlist[startDate].startDate[2]);
+                    }
+                     for(var [endDate] in self.eventlist) {
+                        self.eventlist[endDate].endDate = new Date(self.eventlist[endDate].endDate[0],self.eventlist[endDate].endDate[1] - 1,self.eventlist[endDate].endDate[2]);
+                    }
+                },
+                function(errResponse) {
+                    console.log('Failure!');
+                }
+            );
+
+    
+    userEventList();
+
+     //calling method to fetch user's blogs
+     function userEventList() {
+    
+        var id = user.id;
+        userFactory.userEventList(id)
+                .then (
+                    function(events) {
+                        self.myEvents = events;
+                    },
+                    function(errResponse) {
+                        console.log('Failure!');
+                    }
+                );
+        
+
+    }
     
     }])

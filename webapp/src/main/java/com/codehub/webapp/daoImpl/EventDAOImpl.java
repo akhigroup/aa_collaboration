@@ -24,6 +24,22 @@ public class EventDAOImpl implements EventsDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
+	
+	@Override
+	@Transactional
+	public List<Events> getEventsByStatus(String status) {
+		String hql = "FROM Events where status = '" + status +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
+	
+	@Override
+	@Transactional
+	public List<Events> getUserEvents(int id) {
+		String hql = "FROM Events where USER_ID = '" + id +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
 
 	@Override
 	@Transactional

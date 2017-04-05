@@ -6,4 +6,5 @@ var codehub = angular.module('codehub', [
     'forumModule',
     'userModule',
     'jobModule',
+    'eventModule'
     ]);
