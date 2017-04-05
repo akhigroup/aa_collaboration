@@ -51,13 +51,15 @@ public class Job implements Serializable {
 	@Column(name="Post_Date")
 	private LocalDate postDate;
 	
+	private String status;
+	
 	@Column(name="User_Id")
 	private int userId;
 	
 	@Column(name="User_Name")
 	private String username;
 	
-	@OneToMany(mappedBy="job", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="job", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<JobApplied> jobApplied;
 
 	public int getId() {
@@ -106,6 +108,14 @@ public class Job implements Serializable {
 
 	public void setQualification(String qualification) {
 		this.qualification = qualification;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getContactInfo() {

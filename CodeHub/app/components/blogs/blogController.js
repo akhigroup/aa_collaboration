@@ -23,6 +23,9 @@ blog.controller('blogController', ['blogFactory',
 
     self.bloglist = [];
 
+    //calling list of user's blogs
+    self.myblogs = [];
+
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -95,4 +98,5 @@ blog.controller('blogController', ['blogFactory',
             );
     }
 
-}])
+    
+        }]);

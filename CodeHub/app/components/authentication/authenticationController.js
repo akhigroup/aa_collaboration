@@ -1,15 +1,13 @@
 authenticate.controller('authenticationController', 
 [
         'AuthenticationFactory',
-        'ForumFactory',
-        'blogFactory', 
         '$rootScope', 
         '$location', 
         '$timeout', 
         '$scope', 
         '$route', 
 
-function(AuthenticationFactory, ForumFactory, blogFactory, $rootScope, $location, $timeout, $scope, $route){
+function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route){
 
     var self = this;
     self.credentials = {};
@@ -30,15 +28,6 @@ function(AuthenticationFactory, ForumFactory, blogFactory, $rootScope, $location
         birthDate: '' ,
         gender : ''
     };
-    
-    // calling list of forums
-    self.forums = [];
-
-    //calling list of blogs
-    self.bloglist = [];
-
-    //calling list of user's blogs
-    self.myblogs = [];
 
      // calling jQuery once controller has loaded
     $timeout(function () {
@@ -71,56 +60,7 @@ function(AuthenticationFactory, ForumFactory, blogFactory, $rootScope, $location
             }
             )
     };
-
-    //calling method in formfactory to fetch forums
-     ForumFactory.fetchForums().then(
-                        function(forums) {
-                            self.forums = forums;
-                            console.log(self.forums);
-                    }, function(errResponse) {
-                            console.log('Failure!');
-                        }
-                    );
-
-    //calling method in blogfactory to fetch blogs
-     blogFactory.bloglist()
-            .then (
-                function(blogs) {
-                    
-                    self.bloglist = blogs;
-                    for(var [blog] in self.bloglist) {
-                        // console.log(self.bloglist[blog].postDate);
-                        self.bloglist[blog].postDate = new Date(self.bloglist[blog].postDate[0],self.bloglist[blog].postDate[1] - 1,self.bloglist[blog].postDate[2]);
-                        // console.log(self.bloglist[blog].postDate);
-                    }
-                    console.log(self.bloglist.postDate);
-                },
-                function(errResponse) {
-                    console.log('Failure!');
-                }
-            );
-
-    userBlogList();
-
-     //calling method to fetch user's blogs
-     function userBlogList() {
-     debugger;
-    //  var id = user.id;
-     blogFactory.userBlogList()
-            .then (
-                function(blogs) {
-                    debugger;
-                    self.myblogs = blogs;
-                    
-                    console.log(myblogs);
-                },
-                function(errResponse) {
-                    console.log('Failure!');
-                }
-            );
-     }
-
-
+    
     //Method to check whether username already exist
     self.checkUsername = function () {
         

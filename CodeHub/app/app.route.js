@@ -12,8 +12,8 @@ window.routes = {
     //For user home page
     "/user": {
         templateUrl : 'app/components/user/profile.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'userController',
+        controllerAs : 'userCtrl',
         requireLogin: true,
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
@@ -21,8 +21,8 @@ window.routes = {
     //For user's profile
      "/user/profile": {
         templateUrl : 'app/components/user/userProfile.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'userController',
+        controllerAs : 'userCtrl',
         requireLogin: true,
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
@@ -145,22 +145,22 @@ window.routes = {
         roles: ['Super_Admin', 'Admin']
     },
 
-    //For viewing job list
-    "/jobs/list": {
-        templateUrl : 'app/components/jobs/joblist.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
-        requireLogin: true,
-        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
-    },
-
     //Form for creating new job
     "/job/new": {
         templateUrl : 'app/components/jobs/newJob.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'jobController',
+        controllerAs : 'jobCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin', 'Employer']
+    },
+
+    //For viewing job list
+    "/jobs/list": {
+        templateUrl : 'app/components/jobs/joblist.html',
+        controller : 'jobController',
+        controllerAs : 'jobCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
     //For updating and deleting jobs

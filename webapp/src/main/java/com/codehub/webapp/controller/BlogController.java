@@ -74,6 +74,14 @@ public class BlogController {
 		
 	}
 	
+	//Method for fetching user's blogs
+	@RequestMapping(value = {"/user/blogs/list/{id}"}, method = RequestMethod.GET)
+	public ResponseEntity<List<Blog>> fetchUsersBlogs(@PathVariable("id") int id) {
+		System.out.println("Fetching users blogs");
+		List<Blog> blog = blogDAO.getUsersBlogs(id);
+		return new ResponseEntity<List<Blog>>(blog, HttpStatus.OK);
+	}
+	
 	//Method for fetching bloglist
 	@RequestMapping(value = {"/blog/list"}, method = RequestMethod.GET)
 	public ResponseEntity<List<Blog>> fetchBlogs() {
@@ -90,13 +98,6 @@ public class BlogController {
 		return new ResponseEntity<List<Blog>>(blog, HttpStatus.OK);
 	}
 
-	//Method for fetching user's blogs
-	@RequestMapping(value = {"/user/blogs/list"}, method = RequestMethod.GET)
-	public ResponseEntity<List<Blog>> fetchUsersBlogs() {
-		System.out.println("Fetching users blogs");
-		int id = 29;
-		List<Blog> blog = blogDAO.getUsersBlogs(id);
-		return new ResponseEntity<List<Blog>>(blog, HttpStatus.OK);
-	}
+	
 }
 

@@ -25,6 +25,22 @@ public class JobDAOImpl implements JobDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
+	
+	@Override
+	@Transactional
+	public List<Job> getJobsByStatus(String status) {
+		String hql = "FROM Job where status = '" + status +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
+	
+	@Override
+	@Transactional
+	public List<Job> getUserJobs(int id) {
+		String hql = "FROM Job where USER_ID = '" + id +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
 
 	@Override
 	@Transactional
@@ -67,5 +83,6 @@ public class JobDAOImpl implements JobDAO {
 			return false;
 		}
 	}
+	
 
 }
