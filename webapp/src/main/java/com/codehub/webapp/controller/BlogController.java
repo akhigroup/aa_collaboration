@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codehub.webapp.dao.BlogDAO;
 import com.codehub.webapp.dao.UserDAO;
 import com.codehub.webapp.entity.Blog;
-import com.codehub.webapp.entity.BlogListModel;
 import com.codehub.webapp.entity.Forum;
 import com.codehub.webapp.entity.User;
 
@@ -59,18 +58,19 @@ public class BlogController {
 	//Method for viewing single blog using blog id as a parameter
 	
 	@RequestMapping(value = {"/blog/{id}"}, method = RequestMethod.GET)
-	public ResponseEntity<BlogListModel> viewBlog(@PathVariable("id") int id) {
+	public ResponseEntity<Blog> viewBlog(@PathVariable("id") int id) {
 		System.out.println("Calling method");
-		BlogListModel blogListModel = new BlogListModel();
 		Blog blog = new Blog();
 		blog = blogDAO.getBlog(id);
-		blogListModel.setBlog(blog);
+		int views = blog.getNoOfViews();
+		blog.setNoOfViews(views + 1);
+		blogDAO.updateBlog(blog);
 		if(blog == null) {
 			blog = new Blog();
 			blog.setErrCode("404");
 			blog.setErrMessage("Blog not found!");
 		}
-		return new ResponseEntity<BlogListModel>(blogListModel, HttpStatus.OK);
+		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 		
 	}
 	

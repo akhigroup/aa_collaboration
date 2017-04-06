@@ -30,8 +30,8 @@ window.routes = {
     //For assigning role to the user and to update or delete user
     "/manage/users": {
         templateUrl : 'app/components/user/manageUser.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
         requireLogin: true,
         roles: ['Super_Admin']
     },
@@ -39,8 +39,8 @@ window.routes = {
     //For accepting requests of user
     "/requests/users": {
         templateUrl : 'app/components/user/userRequests.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -76,8 +76,8 @@ window.routes = {
     //For updating or deleting any blog
      "/manage/blogs": {
         templateUrl : 'app/components/blogs/manageBlogs.html',
-        controller : 'blogController',
-        controllerAs : 'blogCtrl',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -85,8 +85,8 @@ window.routes = {
     //For accepting request of blogs
     "/requests/blogs": {
         templateUrl : 'app/components/blogs/blogRequests.html',
-        controller : 'blogController',
-        controllerAs : 'blogCtrl',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -130,8 +130,8 @@ window.routes = {
     //For updating and deleting event
      "/manage/events": {
         templateUrl : 'app/components/events/manageEvents.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -139,8 +139,8 @@ window.routes = {
     //For accepting new event requests 
     "/requests/events": {
         templateUrl : 'app/components/events/eventsRequests.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -166,8 +166,8 @@ window.routes = {
     //For updating and deleting jobs
      "/manage/jobs": {
         templateUrl : 'app/components/jobs/manageJobs.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -175,8 +175,8 @@ window.routes = {
     //For accepting request of new job
      "/requests/jobs": {
         templateUrl : 'app/components/jobs/jobsRequests.html',
-        controller : 'authenticationController',
-        controllerAs : 'authCtrl',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },

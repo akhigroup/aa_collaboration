@@ -1,12 +1,10 @@
 package com.codehub.webapp.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Component
@@ -40,17 +40,17 @@ public class BlogComments implements Serializable{
 	@Column(name="User_Name")
 	private String username;
 	
-	@Column(name="Blog_Comment")
+	private String title;
+	
+	@Column(name="Blog_Comment")	
 	private String blogComment;
 	
 	@Column(name="Comment_Date")
 	private LocalDate commentDate;
 	
-	@Column(name="No_Of_Likes")
-	private int noOfLikes;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="Blog_Id")
+	@JsonBackReference
 	private Blog blog;
 
 	public int getId() {
@@ -59,6 +59,14 @@ public class BlogComments implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Blog getBlog() {
@@ -99,14 +107,6 @@ public class BlogComments implements Serializable{
 
 	public void setCommentDate(LocalDate commentDate) {
 		this.commentDate = commentDate;
-	}
-
-	public int getNoOfLikes() {
-		return noOfLikes;
-	}
-
-	public void setNoOfLikes(int noOfLikes) {
-		this.noOfLikes = noOfLikes;
 	}
 	
 	

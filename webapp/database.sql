@@ -43,11 +43,11 @@ NOCYCLE;
 create table BLOG_COMMENT (
 BLOG_COMMENT_ID NUMBER(5) primary key,
 BLOG_ID NUMBER(5) NOT NULL,
+COMMENT_DATE Date default sysDate,
 user_id NUMBER(5) not null,
 user_name varchar2(10) not null,
-BLOG_COMMENT CLOB NOT NULL,
-COMMENT_DATE DATE SYSDATE,
-no_of_likes NUMBER(5)
+title varchar2(50) not null,
+BLOG_COMMENT CLOB NOT NULL
 )
 
 CREATE sequence BLOG_COMMENT_SEQ

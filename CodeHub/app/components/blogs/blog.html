@@ -1,5 +1,5 @@
 <div class="row" ng-init="blogCtrl.viewBlog()">
-    <div class="col m9">
+    <div class="col m9" style="margin-bottom: 50px;">
 
         <div class="col s12" style="margin-top: 25px;">
             <a href="#!/user" class="breadcrumb">Home</a>
@@ -15,10 +15,9 @@
                 </div>
             </div>
 
-            <h4>{{blogCtrl.singleBlog.blog.name}}</h4>  <!--Controllername.objectname.field -->
-            <p>by {{blogCtrl.singleBlog.blog.userName}} | {{blogCtrl.blogPostDate | date: short}}</p>
-            <p>{{blogCtrl.singleBlog.blog.description}}</p>
-            
+            <h4>{{blogCtrl.singleBlog.name}}</h4>  <!--Controllername.objectname.field -->
+            <p>by {{blogCtrl.singleBlog.userName}} | {{blogCtrl.singleBlog.blogPostDate | date: short}}</p>
+            <p>{{blogCtrl.singleBlog.description}}</p>
 
             <a class="waves-effect waves-light btn-large" style="margin-bottom: 20px;"><i class="material-icons right">thumb_up</i>Like</a>
             <!--<a href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
@@ -30,37 +29,16 @@
         <!-- Blog Comments starts here -->
         
         <!-- Display this if no comments are available -->
-        <div  ng-if="blogCtrl.singleBlog.blog.noOfComments == 0 ">
+        <div  ng-if="blogCtrl.singleBlog.noOfComments == 0 ">
            <div class="card hoverable" style="height: 200px;">
                 <h3 style="padding-top: 75px; padding-left: 250px;">No Comments Yet!</h3>
            </div>
         </div>
         
         <!-- Display this if comments are available -->
-        <div ng-if="blogCtrl.singleBlog.blog.noOfComments != 0 ">
-            <div class="row">
-                <div class="card hoverable">
-                    <div style=" padding-top: 40px; padding-bottom: 40px;">
-                        <div class="row">
-                            <div class="col m2" style="margin-top: 20px">
-                                <img src="assets/img/noDp.png" alt="" class="circle" width="80px;">
-                            </div>
-                            <div class="col m10">
-                                <h4>Comment Title</h4>
-                                <p>Commented by {{user.username}}</p>
-                            </div>
-                        </div>
-                        <p style="margin-left: 20px; margin-right: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-                        massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-                        enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus
-                        ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer
-                        tincidunt. </p>
-                    </div>
-                </div>
-            </div>
+        <div ng-if="blogCtrl.singleBlog.noOfComments != 0 ">
 
-            <div class="row">
+            <div class="row" ng-repeat="blogComment in blogCtrl.blogCommentList| orderBy : 'id'">
                 <div class="card hoverable">
                     <div style=" padding-top: 40px; padding-bottom: 40px;">
                         <div class="row">
@@ -68,71 +46,44 @@
                                 <img src="assets/img/noDp.png" alt="" class="circle" width="80px;">
                             </div>
                             <div class="col m10">
-                                <h4>Comment Title</h4>
-                                <p>Commented by {{user.username}}</p>
+                                <h4>{{blogComment.title}}</h4>
+                                <p>Commented by {{blogComment.username}} | Posted on : {{blogComment.commentDate | date : short}}</p>
                             </div>
                         </div>
-                        <p style="margin-left: 20px; margin-right: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-                        massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-                        enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus
-                        ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer
-                        tincidunt. </p>
+                        <p style="margin-left: 20px; margin-right: 10px;">{{blogComment.blogComment}}</p>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="card hoverable">
-                    <div style=" padding-top: 40px; padding-bottom: 40px;">
-                        <div class="row">
-                            <div class="col m2" style="margin-top: 20px">
-                                <img src="assets/img/noDp.png" alt="" class="circle" width="80px;">
-                            </div>
-                            <div class="col m10">
-                                <h4>Comment Title</h4>
-                                <p>Commented by {{user.username}}</p>
-                            </div>
-                        </div>
-                        <p style="margin-left: 20px; margin-right: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-                        massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                        Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-                        enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus
-                        ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer
-                        tincidunt. </p>
-                    </div>
-                </div>
-            </div>
+            
         </div>
 
             <!--Section for leaving comment on blogs will come here-->
             <div style="padding-top: 20px; margin-bottom: 50px;">
                 <h4>Leave a comment</h4>
+                    <form id="newBlogComment" name="newBlogComment" ng-submit="blogCtrl.addBlogComment()" class="col s12">
+                        <input type="hidden" ng-model="blogCtrl.blogComment.id" />
+                        <input type="hidden" ng-model="blogCtrl.blogComment.blogId" />
 
-                    <div class="row">
-                        <form class="col s12">
+                        <div class="row">
                             <div class="input-field col s12">
-                                <input id="title" type="text" class="validate">
+                                <input id="title" type="text" class="validate" ng-model="blogCtrl.blogComment.title">
                                 <label for="title">Title</label>
                             </div>
-                          </form>
-                    </div>
+                        </div>
 
-                    <div class="row">
-                        <form class="col s12">
+                        <div class="row">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <textarea id="comment" class="materialize-textarea"></textarea>
+                                    <textarea id="comment" class="materialize-textarea" ng-model="blogCtrl.blogComment.blogComment"></textarea>
                                     <label for="comment">Comment</label>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
 
-                    <div class="row">
-                        <button type="submit" class="waves-effect waves-light btn-large" style="margin-top: 10px; left: 20px;">Post</button>
-                    </div>
-
+                        <div class="row">
+                            <button type="submit" class="waves-effect waves-light btn-large" style="margin-top: 10px; left: 20px;">Post</button>
+                        </div>
+                    </form>
             </div>
 
         </div>
@@ -144,31 +95,17 @@
         <!-- Likes, views and comments will come here -->
         <div style="border: 5px solid #4db6ac; height: 200px;" >
             <div style="margin-top: 20px;" class="center-align">
-                <a ng-if="blogCtrl.singleBlog.blog.noOfLikes < 999" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
-                        style="color: #4db6ac; font-size: 40px;"><i class="material-icons" 
-                        style="font-size: 50px; position: absolute; right: 250px;">thumb_up</i>
-                            {{blogCtrl.singleBlog.blog.noOfLikes}} Likes
-                        </a>
-                
-                <a ng-if="blogCtrl.singleBlog.blog.noOfLikes > 999" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
-                        style="color: #4db6ac; font-size: 40px;"><i class="material-icons" 
-                        style="font-size: 50px; position: absolute; right: 250px;">thumb_up</i>
-                            {{blogCtrl.singleBlog.blog.noOfLikes}}
+                <a href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
+                        style="color: #4db6ac; font-size: 40px;">
+                            {{blogCtrl.singleBlog.noOfLikes}} Likes
                         </a>
             </div>
 
             <div style="margin-top: 20px;" class="center-align">
-                <a ng-if="blogCtrl.singleBlog.blog.noOfViews < 999" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views" 
-                        style="color: #4db6ac; font-size: 40px;"><i class="material-icons" 
-                        style="font-size: 50px; position: absolute; right: 250px;">tremove_red_eye</i> 
-                        {{blogCtrl.singleBlog.blog.noOfViews}} Views
+                <a href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views" 
+                        style="color: #4db6ac; font-size: 40px;">
+                        {{blogCtrl.singleBlog.noOfViews}} Views
                     </a>
-
-                 <a ng-if="blogCtrl.singleBlog.blog.noOfViews > 999" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="views" 
-                        style="color: #4db6ac; font-size: 40px;"><i class="material-icons" 
-                        style="font-size: 50px; position: absolute; right: 250px;">tremove_red_eye</i> 
-                        {{blogCtrl.singleBlog.blog.noOfViews}}
-                    </a>   
             </div>
         </div>
 

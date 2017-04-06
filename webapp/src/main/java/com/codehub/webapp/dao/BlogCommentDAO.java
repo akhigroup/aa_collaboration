@@ -6,7 +6,7 @@ import com.codehub.webapp.entity.BlogComments;
 
 public interface BlogCommentDAO {
 
-	List<BlogComments> list();
+	List<BlogComments> list(int id);
 	BlogComments getBlogComments(int id);
 	boolean addBlogComments(BlogComments blogComments);
 	boolean updateBlogComments(BlogComments blogComments);

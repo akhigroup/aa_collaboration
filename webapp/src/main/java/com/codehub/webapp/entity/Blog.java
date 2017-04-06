@@ -1,8 +1,6 @@
 package com.codehub.webapp.entity;
 
 import java.io.Serializable;
-
-import oracle.sql.CLOB;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,12 +11,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Component
@@ -60,6 +58,7 @@ public class Blog extends BaseDomain implements Serializable{
 	private String userName;
 	
 	@OneToMany(mappedBy="blog", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<BlogComments> blogComments;
 
 	public int getId() {

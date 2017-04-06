@@ -7,6 +7,7 @@ import com.codehub.webapp.entity.User;
 public interface UserDAO {
 	
 	List<User> list();
+	List<User> list(String status);
 	User getUser(int id);
 	User getByUserName(String username);
 	User validateUser(User user);

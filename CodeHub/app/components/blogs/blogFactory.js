@@ -11,6 +11,7 @@ blog.factory('blogFactory', ['$http', '$q',
             addBlog : addBlog,
             viewBlog : viewBlog,
             bloglist : bloglist,
+            blogCommentlist: blogCommentlist
         };
 
         //Function to add the blog 
@@ -51,8 +52,25 @@ blog.factory('blogFactory', ['$http', '$q',
         function bloglist() {
              console.log('Inside factory now');
             var deferred = $q.defer();
-            debugger;
+            
             $http.get(blogUrl + '/blog/list/status')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        //Function to fetch blog comment list
+        function blogCommentlist(blogId) {
+            console.log('Inside factory now');
+            var deferred = $q.defer();
+            
+            $http.get(blogUrl + '/blog/comment/list/' + blogId)
                 .then (
                     function(response) {
                         deferred.resolve(response.data);

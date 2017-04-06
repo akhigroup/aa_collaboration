@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codehub.webapp.dao.ForumDAO;
 import com.codehub.webapp.entity.Blog;
-import com.codehub.webapp.entity.BlogListModel;
 import com.codehub.webapp.entity.Forum;
 
 @RestController

@@ -1,10 +1,10 @@
-<div class="row">
+<div class="row" >
         <div style="margin-top: 25px; margin-left: 25px;">
             <h5>New User Requests</h5>
         </div>
         <br /> <br />
 
-        <div style="margin-left: 25px; margin-bottom: 75px;">
+        <div style="margin-left: 25px; margin-bottom: 250px;">
             <table class="highlight centered responsive-table">
                 <thead>
                 <tr>
@@ -19,60 +19,26 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>Avadhoot05</td>
-                        <td>Avadhoot</td>
-                        <td>Athalye</td>
-                        <td>avadhoot.23.11@gmail.com</td>
-                        <td>November 23, 1994</td>
-                        <td>Male</td>
+                    <tr ng-repeat="user in adminCtrl.pendingUserList | orderBy : 'id'">
+                        <td>{{user.username}}</td>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.emailId}}</td>
+                        <td>{{user.birthDate| date: short}}</td>
+                        <td>{{user.gender}}</td>
+                        
                         <td> 
                             <div class="switch">
                             <label>
                             Disable
-                            <input type="checkbox">
+                            <input type="checkbox" ng-model="user.status" ng-change="adminCtrl.changeStatus(user.id)">
                             <span class="lever"></span>
                             Active
                             </label>
                             </div>
                         </td>
                     </tr>
-                <tr>
-                        <td>Avadhoot05</td>
-                        <td>Avadhoot</td>
-                        <td>Athalye</td>
-                        <td>avadhoot.23.11@gmail.com</td>
-                        <td>November 23, 1994</td>
-                        <td>Male</td>
-                        <td> 
-                            <div class="switch">
-                            <label>
-                            Disable
-                            <input type="checkbox">
-                            <span class="lever"></span>
-                            Active
-                            </label>
-                            </div>
-                        </td>
-                    </tr>
-                     <tr>
-                        <td>Avadhoot05</td>
-                        <td>Avadhoot</td>
-                        <td>Athalye</td>
-                        <td>avadhoot.23.11@gmail.com</td>
-                        <td>November 23, 1994</td>
-                        <td>Male</td>
-                        <td> 
-                            <div class="switch">
-                            <label>
-                            Disable
-                            <input type="checkbox">
-                            <span class="lever"></span>
-                            Active
-                            </label>
-                            </div>
-                        </td>
-                    </tr>
+                
                 </tbody>
         </table>
     </div>
