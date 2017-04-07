@@ -11,7 +11,8 @@ blog.factory('blogFactory', ['$http', '$q',
             addBlog : addBlog,
             viewBlog : viewBlog,
             bloglist : bloglist,
-            blogCommentlist: blogCommentlist
+            blogCommentlist: blogCommentlist,
+            likes : likes,
         };
 
         //Function to add the blog 
@@ -19,6 +20,22 @@ blog.factory('blogFactory', ['$http', '$q',
             var deferred = $q.defer();
 
             $http.post(blogUrl + '/blog/new', blog).then (
+
+                function(response) {
+                    deferred.resolve(response.data);
+                }, 
+                function (errResponse) {
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+
+         //Function to like the blog 
+        function likes(id) {
+            var deferred = $q.defer();
+
+            $http.post(blogUrl + '/blog/like/' + id).then (
 
                 function(response) {
                     deferred.resolve(response.data);

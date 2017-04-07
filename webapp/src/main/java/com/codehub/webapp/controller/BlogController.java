@@ -97,6 +97,18 @@ public class BlogController {
 		List<Blog> blog = blogDAO.getBlogsByStatus("APPROVED");
 		return new ResponseEntity<List<Blog>>(blog, HttpStatus.OK);
 	}
+	
+	//Method to like blog
+	@RequestMapping(value = {"/blog/like/{id}"}, method = RequestMethod.POST)
+		public ResponseEntity<Blog> likes(@PathVariable("id") int id) {
+			System.out.println("liking blog");
+			Blog blog = new Blog();
+			blog = blogDAO.getBlog(id);
+			int like = blog.getNoOfLikes();
+			blog.setNoOfLikes(like + 1);
+			blogDAO.updateBlog(blog);
+			return new ResponseEntity<Blog>(blog, HttpStatus.OK);
+		}
 
 	
 }

@@ -16,13 +16,11 @@
             </div>
 
             <h4>{{blogCtrl.singleBlog.name}}</h4>  <!--Controllername.objectname.field -->
-            <p>by {{blogCtrl.singleBlog.userName}} | {{blogCtrl.singleBlog.blogPostDate | date: short}}</p>
+            <p>by {{blogCtrl.singleBlog.userName}} | {{blogCtrl.singleBlog.postDate | date: short}}</p>
             <p>{{blogCtrl.singleBlog.description}}</p>
 
-            <a class="waves-effect waves-light btn-large" style="margin-bottom: 20px;"><i class="material-icons right">thumb_up</i>Like</a>
-            <!--<a href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
-                        style="color: #4db6ac; font-size: 40px;">Likes <i class="material-icons" 
-                        style="font-size: 50px; position: absolute;">thumb_up</i>40,000</a>-->
+            <a class="waves-effect waves-light btn-large" style="margin-bottom: 20px;" ng-click="blogCtrl.likes(blogCtrl.singleBlog.id);"><i class="material-icons right">thumb_up</i>Like</a>
+            
 
             <hr>
 
@@ -38,6 +36,7 @@
         <!-- Display this if comments are available -->
         <div ng-if="blogCtrl.singleBlog.noOfComments != 0 ">
 
+            <h5><b>Comments ({{blogCtrl.singleBlog.noOfComments}})</b></h5>
             <div class="row" ng-repeat="blogComment in blogCtrl.blogCommentList| orderBy : 'id'">
                 <div class="card hoverable">
                     <div style=" padding-top: 40px; padding-bottom: 40px;">
@@ -95,9 +94,13 @@
         <!-- Likes, views and comments will come here -->
         <div style="border: 5px solid #4db6ac; height: 200px;" >
             <div style="margin-top: 20px;" class="center-align">
-                <a href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
+                <a ng-if="blogCtrl.singleBlog.noOfLikes != 1" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
                         style="color: #4db6ac; font-size: 40px;">
                             {{blogCtrl.singleBlog.noOfLikes}} Likes
+                        </a>
+                <a ng-if="blogCtrl.singleBlog.noOfLikes == 1" href="#!" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="likes" 
+                        style="color: #4db6ac; font-size: 40px;">
+                            {{blogCtrl.singleBlog.noOfLikes}} Like
                         </a>
             </div>
 

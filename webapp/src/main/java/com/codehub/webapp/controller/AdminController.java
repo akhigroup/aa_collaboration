@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.codehub.webapp.dao.ForumRequestDAO;
 import com.codehub.webapp.dao.UserDAO;
+import com.codehub.webapp.entity.ForumRequest;
 import com.codehub.webapp.entity.User;
 
 @RestController
@@ -17,6 +20,9 @@ public class AdminController {
 	
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	ForumRequestDAO forumRequestDAO;
 
 		//Method for fetching pending user list by status
 		@RequestMapping(value = {"/user/request/list"}, method = RequestMethod.GET)
@@ -36,6 +42,17 @@ public class AdminController {
 				userDAO.updateUser(user);
 				return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
+		
+		//Method to change forum request status
+		@RequestMapping(value = {"/forum/request/approval/{id}"}, method = RequestMethod.POST)
+		public ResponseEntity<ForumRequest> changeFRStatus(@PathVariable("id") int id) {
+			 	System.out.println("changing status");
+				ForumRequest forumRequest = new ForumRequest();
+				forumRequest = forumRequestDAO.getForumRequest(id);
+				forumRequest.setStatus("APPROVED");
+				forumRequestDAO.updateForumRequest(forumRequest);
+						return new ResponseEntity<ForumRequest>(forumRequest, HttpStatus.OK);
+				}
 		
 		
 }

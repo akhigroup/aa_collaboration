@@ -1,7 +1,7 @@
 var forum = angular.module('forumModule', []);
 
-forum.factory('ForumFactory', ['$http', '$q',   
-        function($http, $q){
+forum.factory('ForumFactory', ['$http', '$q', '$routeParams',  
+        function($http, $q, $routeParams){
 
             //Linking backend project
             var url = 'http://localhost:7070/webapp';
@@ -11,6 +11,8 @@ forum.factory('ForumFactory', ['$http', '$q',
                 addForum : addForum,
                 fetchForums : fetchForums,
                 viewForum : viewForum,
+                joinRequest : joinRequest,
+                getParticipatedUsers : getParticipatedUsers
             };
 
             //function to add a new forum Forum Category
@@ -46,7 +48,7 @@ forum.factory('ForumFactory', ['$http', '$q',
 
              //Function for viewing single blog using blog id as a parameter
             function viewForum(id) {
-                console.log('Inside factory now');
+                
                 var deferred = $q.defer();
 
                 $http.get(url + '/forum/' + id)
@@ -60,5 +62,40 @@ forum.factory('ForumFactory', ['$http', '$q',
                     );
                     return deferred.promise;
             }
+
+            //Function to send forum join request
+            function joinRequest() {
+                
+                var deferred = $q.defer();
+                var id = user.id;
+                var forumId =  $routeParams.id;
+                $http.post(url + '/forum/request/' + id, forumId)
+                    .then (
+                        function(response) {
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            deferred.reject(errResponse);
+                        }
+                    );
+                    return deferred.promise;
+            }
+
+            //Function to fetch the list of ParticipatedUsers
+            function getParticipatedUsers(id) {
+                
+                var deferred = $q.defer();
+                $http.get(url + '/forum/participatedUsers/list/' + id)
+                    .then (
+                        function(response) {
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            deferred.reject(errResponse);
+                        }
+                    );
+                    return deferred.promise;
+            }
+           
 
         }])

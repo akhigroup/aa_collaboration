@@ -1,5 +1,5 @@
 <div class="row" ng-init="forCtrl.viewForum()">
-    <div class="col m9" style="margin-bottom: 50px;">
+    <div class="col m9" style="margin-bottom: 200px;">
         
          <div class="col s12" style="margin-top: 25px;">
             <a href="#!/user" class="breadcrumb">Home</a>
@@ -19,27 +19,32 @@
                         <div class="col m8">
                             <h4>{{forCtrl.singleForum.name}}</h4>
                         </div>
-                        <div class="col m4">
-                            <a class="waves-effect waves-light btn"><i class="material-icons right">add</i>JOIN FORUM</a>
+                        <div class="col m4" ng-if=" ((user.id != forCtrl.singleForum.userId) && !forCtrl.isParticipant)">
+                            <a class="waves-effect waves-light btn" ng-click="forCtrl.joinRequest()"><i class="material-icons right">add</i>JOIN FORUM</a>
                         </div>
                     </div>
                     <p>Posted on: {{forCtrl.singleForum.postDate | date: short}}</p>
                     <p>{{forCtrl.singleForum.description}}</p>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Reply To This Thread"><i class="material-icons">reply</i></a>
+                    <a ng-if= "forCtrl.isParticipant && forCtrl.isApproved" class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Reply To This Thread"><i class="material-icons">reply</i></a>
                 </div>
              </div>
          </div>
         </div>
-
         <!-- If no posts are available -->
-        <div ng-if="forCtrl.singleForum.noOfPosts == 0">
+        <div ng-if="((forCtrl.singleForum.noOfPosts == 0) && forCtrl.isApproved)">
              <div class="card hoverable" style="height: 200px;">
                 <h3 style="padding-top: 75px; padding-left: 250px;">No Posts Yet!</h3>
            </div>
         </div>
 
+        <div ng-if="!forCtrl.isApproved">
+            <div class="card hoverable" style="background-color: #ff0000">
+                    <span style="color: #fff; padding-left: 25px;">You are not a participant of this thread. Join the forum to post and to view other's post</span>
+            </div>
+        </div>
+
         <!-- If posts are available -->
-        <div ng-if="forCtrl.singleForum.noOfPosts != 0">
+        <div ng-if="(forCtrl.isApproved) && forCtrl.singleForum.noOfPosts != 0">
             <div class="card hoverable">
             <div style=" padding-top: 40px; padding-bottom: 40px;">
                 <div class="row">
@@ -66,9 +71,5 @@
     </div>
     <div class="col m3">
         <div ng-include="'app/shared/rightSide.html'"></div>
-
-         <div style="margin: 25px auto 0 auto;">
-            <a href="#!/forum/topic/new" class="waves-effect waves-light btn-large"><i class="material-icons right">question_answer</i>NEW TOPIC</a>
-        </div>
     </div>
 </div>

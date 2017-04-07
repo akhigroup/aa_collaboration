@@ -1,5 +1,6 @@
-forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$routeParams', '$location', '$route', function(ForumFactory, 
-        $timeout, $cookies, $routeParams, $location, $route) {
+forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$routeParams', '$location', '$route', '$q',
+function(ForumFactory, 
+        $timeout, $cookies, $routeParams, $location, $route, $q) {
 
             var self = this;
 
@@ -14,11 +15,24 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
                 userName : ''
             }
 
+
             //array for displaying list of forum categories
             self.forums = [];
 
              // For viewing single forum
              self.singleForum = {};
+
+             //For list of participated users
+             self.participatedUsers = []; 
+
+             //Flag to see whether user is particant or not
+            self.isParticipant = false;
+
+            //Flag to check request status
+            self.isApproved = false;
+
+            //For storing participant status
+            self.participantStatus = "PENDING";
 
             // calling jQuery once controller has loaded
             $timeout(function () {
@@ -40,7 +54,7 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
                                 $route.reload();
                                 $('#category').modal('close');
                             }, function(errResponse) {
-                                console.log('Failure!');
+                                
                             }
                         );
             }
@@ -48,36 +62,82 @@ forum.controller('forumController', ['ForumFactory', '$timeout', '$cookies', '$r
             fetchForums();
             //method to fetch all the forum categories
             function fetchForums() {
-                console.log('method called');
+                
                 
                 ForumFactory.fetchForums().then(
                         function(forums) {
-                            
                             self.forums = forums;
-                            console.log(self.forums);
                     }, function(errResponse) {
-                            console.log('Failure!');
                         }
                     );
             }
 
             //function for viewing single forum
             self.viewForum = function() {
-                //Assigning forum id to variable forumId
-                var forumId = $routeParams.id;
-                ForumFactory.viewForum(forumId)
+                //Method for fetching particapted user list
+                 getParticipatedUsers().then(
+                        function(participatedUsers){
+                            self.participatedUsers = participatedUsers;
+                            debugger;
+                             console.log(self.isParticipant);
+                            for(var id in self.participatedUsers) {
+                                console.log(self.participatedUsers[id].userId);
+                                if(user.id == self.participatedUsers[id].userId) { //If user id matches with those of participant user set the flag as true
+                                    self.isParticipant = true;
+                                    console.log(self.participatedUsers[id].status);
+                                    self.participantStatus = self.participatedUsers[id].status;                       
+                                    break;                     
+                                    // console.log(self.isParticipant);
+                                }
+                            
+                            }
+                            if(self.participantStatus == "APPROVED") {    //if user is participant
+                                         self.isApproved = true;
+                            }
+
+                            //Assigning forum id to variable forumId
+                            var forumId = $routeParams.id;
+                            ForumFactory.viewForum(forumId)
+                                .then (
+                                    function(forum) {
+                                        self.singleForum = forum;
+                                        self.singleForum.postDate = new Date(self.singleForum.postDate[0],self.singleForum.postDate[1] - 1,self.singleForum.postDate[2]);
+                                    },
+                                    function(errResponse) {
+                                    }
+                                );
+                        } 
+                 );
+
+            }
+
+            //Function to send forum join request
+            self.joinRequest = function() {
+                 ForumFactory.joinRequest()
                     .then (
                         function(forum) {
-                            debugger;
-                            self.singleForum = forum;
-                            // console.log(self.singleForum.postDate);
-                            self.singleForum.postDate = new Date(self.singleForum.postDate[0],self.singleForum.postDate[1] - 1,self.singleForum.postDate[2]);
+                            $route.reload();
                         },
                         function(errResponse) {
-                            console.error('Failure!');
+                        }
+                    );
+            }
+
+            //Function to fetch the list of participated users
+            function getParticipatedUsers() {
+                var deferred = $q.defer();
+                var forumId = $routeParams.id;
+                ForumFactory.getParticipatedUsers(forumId)
+                    .then (
+                        function(participatedUsers) {
+                            
+                         deferred.resolve(participatedUsers);
+                        },
+                        function(errResponse) {
                         }
                     );
 
+                    return deferred.promise;
             }
 
 }])

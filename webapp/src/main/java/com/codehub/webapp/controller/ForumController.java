@@ -15,14 +15,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codehub.webapp.dao.ForumDAO;
+import com.codehub.webapp.dao.ForumRequestDAO;
+import com.codehub.webapp.dao.UserDAO;
 import com.codehub.webapp.entity.Blog;
 import com.codehub.webapp.entity.Forum;
+import com.codehub.webapp.entity.ForumRequest;
+import com.codehub.webapp.entity.User;
 
 @RestController
 public class ForumController {
 
 	@Autowired
 	ForumDAO forumDAO;
+	
+	@Autowired
+	UserDAO userDAO;
+	
+	@Autowired
+	ForumRequestDAO forumRequestDAO;
 	
 	//Method for creating new forum category
 	@RequestMapping(value = {"/forum/new"}, method = RequestMethod.POST)
@@ -32,8 +42,18 @@ public class ForumController {
 		forum.setPostDate(LocalDate.parse(dtf.format(now)));
 		forum.setStatus("APPROVED");
 		forum.setNoOfPosts(0);
-		
+		User user = null;	//creating instance of user
+		int id = forum.getUserId();	//retrieving user id from forum
+		user = userDAO.getUser(id);	//fetching user detail by its id
 		forumDAO.addForum(forum);
+		int forumId = forum.getId();
+		ForumRequest fr = new ForumRequest();
+		fr.setUserId(id);
+		fr.setUsername(user.getUsername());
+		fr.setStatus("APPROVED");
+		fr.setForum(forum);
+		forumRequestDAO.addForumRequest(fr);
+		
 		return new ResponseEntity<Forum>(forum, HttpStatus.OK);
 	}
 	
@@ -56,4 +76,6 @@ public class ForumController {
 		return new ResponseEntity<Forum>(forum, HttpStatus.OK);
 			
 		}
+	
+	
 }

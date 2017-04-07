@@ -109,6 +109,24 @@ window.routes = {
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
+    //For viewing single forum topic
+    "/manage/forums": {
+        templateUrl : 'app/components/forum/manageForums.html',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
+        requireLogin: true,
+        roles: ['Super_Admin', 'Admin']
+    },
+
+    //For viewing single forum topic
+    "/requests/forums": {
+        templateUrl : 'app/components/forum/forumRequests.html',
+        controller : 'adminController',
+        controllerAs : 'adminCtrl',
+        requireLogin: true,
+        roles: ['Super_Admin', 'Admin']
+    },
+
     //Form for creating new event
     "/event/new": {
         templateUrl : 'app/components/events/newEvent.html',
@@ -225,7 +243,7 @@ codehub.run(function ($rootScope, $location, AuthenticationFactory) {
                 $rootScope.user = AuthenticationFactory.loadUserFromCookie();
                 $rootScope.authenticated = AuthenticationFactory.getUserIsAuthenticated();
 
-
+                console.log(AuthenticationFactory.getUserIsAuthenticated());
                 //if trying to access page that requires login and user is not authenticated redirect to login page
                 
                 if (window.routes[i].requireLogin && !AuthenticationFactory.getUserIsAuthenticated()) {

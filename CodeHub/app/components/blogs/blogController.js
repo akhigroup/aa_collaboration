@@ -86,6 +86,22 @@ blog.controller('blogController', ['blogFactory', 'BlogCommentFactory',
 
     }
 
+    //Function to add likes to blog
+    self.likes = function(id) {
+        debugger;
+        
+        blogFactory.likes(id)
+            .then (
+                function(blog) {
+                    debugger;
+                    $route.reload();
+                },
+                function(errResponse) {
+                    console.error('Failure!');
+                }
+            );
+    }
+
     //function for adding a new blog comment
     self.addBlogComment = function () {
         

@@ -63,15 +63,14 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
     
     //Method to check whether username already exist
     self.checkUsername = function () {
-        
+        debugger;
         var username = self.client.username;
         //If username is undefined and has some characters
         if( username !== undefined && username.length > 0) {
 
         AuthenticationFactory.checkUsername(username).then (
             function (response ) {
-               
-               
+               debugger;
                 if(response.status === 302) {
                     self.usernameExist = true;
                     //setting the validity as false if the username already exist
