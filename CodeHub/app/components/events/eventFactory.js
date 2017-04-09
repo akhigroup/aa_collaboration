@@ -32,7 +32,6 @@ blog.factory('eventFactory', ['$http', '$q',
         function eventlist() {
              console.log('Inside factory now');
             var deferred = $q.defer();
-            debugger;
             $http.get(eventUrl + '/events/list/status')
                 .then (
                     function(response) {

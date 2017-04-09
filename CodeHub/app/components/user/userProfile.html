@@ -5,39 +5,39 @@
 
         <!--User profile picture-->
         <div class="display-photo" style=" margin-top: 25px;">
-            <img src="assets/img/noDp.png" alt="" class="circle" width="200px;" height="200px" >
+            <img ng-src="assets/img/{{userCtrl.user.profile}}" alt="" class="circle" width="200px;" height="200px" >
                 <button data-target="change-photo" class="change-photo" style="opacity: .5; width: 200px;">Change Photo</button>
         
+            <!-- Modal to change display picture -->
              <div id="change-photo" class="modal" style="width: 500px;">
                 <div class="modal-content">
                 <h4 style="margin-left: 90px;">Change avatar</h4>
                
                     <div style="margin-top: 10px;">
-                         <img src="assets/img/noDp.png" alt="" class="circle" width="200px;" height="200px" style="margin-left: 100px;">
-                          <form action="#">
+                         <img ng-src="assets/img/{{userCtrl.user.profile}}" alt="" class="circle" width="200px;" height="200px" style="margin-left: 100px;">
+                          
                             <div class="file-field input-field">
                             <div class="btn">
                                 <span>File</span>
-                                <input type="file">
+                                <input type="file" file-model="userCtrl.picture">
                             </div>
                             <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
+                                <input class="file-path validate" type="text"  >
                             </div>
                             </div>
 
                              <div class="row">
-                                <button type="submit" class="waves-effect waves-light btn-large" style="margin-top: 10px; left: 10px; margin-left: 135px;">Change</button>
+                                <button ng-click="userCtrl.uploadFile()" type="submit" class="waves-effect waves-light btn-large" style="margin-top: 10px; left: 10px; margin-left: 135px;">Change</button>
                             </div>
-                        </form>
+                       
                     </div>
                     
                 </div>
-            </div>
-        
+             </div>
         </div>
 
         <!--user's Basic info-->
-        <h4>{{user.firstname}} {{user.lastname}}</h4>    
+        <h4>{{user.firstname}} {{user.lastname}}</h4>
         <h6>@ {{user.username}}</h6>
         <p>{{user.emailId}}</p>
         <p>{{user.birthDate | date: short}}</p>

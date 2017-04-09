@@ -9,6 +9,7 @@
       <!-- Navbar display of brand image -->
       <a href="#!/user" class="brand-logo">CodeHub</a>
       
+      
       <ul id="nav-mobile">
         <!-- Navbar display of  search bar -->
         <li>
@@ -16,6 +17,7 @@
                 <input id="search" type="search" required style="display: inline; width: 300px" placeholder="Search for friends">
                   <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                   <i class="material-icons" >close</i>
+                
           </div>
         </li>
 
@@ -78,7 +80,7 @@
         <!-- Navbar display of profile and settings -->
         <li  style="margin-right: 20px;">
           <a style="height: 65px;" class="profile-button" data-activates='profile'>
-            <img src="assets/img/noDp.png" alt="" class="square" width="40px;" style="margin-right: 10px; margin-top: 10px;" >
+            <img ng-src="assets/img/{{user.profile}}" alt="" class="square" width="40px;" style="margin-right: 10px; margin-top: 10px;" >
           </a>
         
           <!-- Dropdown Structure -->
@@ -101,7 +103,7 @@
       <div class="background">
         <img src="assets/img/background.png">
       </div>
-      <a href="#!user/profile"><img class="circle" src="assets/img/noDp.png"></a>
+      <a href="#!user/profile"><img  ng-src="assets/img/{{user.profile}}" class="circle"></a>
       <a href="#!user/profile"><span class="white-text name"><big>{{user.username}}</big></span></a>
       <a href="#!user/profile"><span class="white-text name" style="margin-top: 5px; margin-bottom: 5px;">{{user.firstname}}&nbsp;{{user.lastname}}</span></a>
     </div></li>

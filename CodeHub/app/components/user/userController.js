@@ -1,6 +1,7 @@
 user.controller('userController', 
 [
     'userFactory',
+    'AuthenticationFactory',
     'ForumFactory',
     'blogFactory',
     'jobFactory',
@@ -8,11 +9,26 @@ user.controller('userController',
     '$timeout', 
     '$cookies', 
     '$routeParams', 
-    '$location', 
+    '$location',
+    '$rootScope', 
     
-    function(userFactory, ForumFactory, blogFactory, jobFactory, eventFactory, $timeout, $cookies, $routeParams, $location) {
+    function(
+        userFactory, 
+        AuthenticationFactory, 
+        ForumFactory, 
+        blogFactory, 
+        jobFactory, 
+        eventFactory, 
+        $timeout, 
+        $cookies, 
+        $routeParams, 
+        $location,
+        $rootScope) {
 
     var self = this;
+
+    //Load user from cookie
+    self.user = AuthenticationFactory.loadUserFromCookie();
 
      // calling list of forums
     self.forums = [];
@@ -38,6 +54,10 @@ user.controller('userController',
     //Fetching list of events created by user
     self.myEvents = [];
 
+    self.picture = undefined;
+
+    self.user.profile = self.user.profile + '?decached=' + Math.random(); 
+
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -57,7 +77,6 @@ user.controller('userController',
      blogFactory.bloglist()
             .then (
                 function(blogs) {
-                    debugger;
                     self.bloglist = blogs;
                     for(var [blog] in self.bloglist) {
                         // console.log(self.bloglist[blog].postDate);
@@ -97,12 +116,10 @@ user.controller('userController',
 
      //calling method to fetch user's jobs
      function userJobList() {
-     debugger;
         var id = user.id;
         userFactory.userJobList(id)
                 .then (
                     function(jobs) {
-                        debugger;
                          self.myjobs = jobs;
                          console.log(self.myjobs);
                     },
@@ -110,9 +127,7 @@ user.controller('userController',
                         console.log('Failure!');
                     }
                 );
-        
-
-    }
+     }
 
     jobFactory.joblist()
             .then (
@@ -134,7 +149,6 @@ user.controller('userController',
         eventFactory.eventlist()
             .then (
                 function(events) {
-                    debugger;   
                     self.eventlist = events;
                     
                     for(var [events] in self.eventlist) {
@@ -172,5 +186,34 @@ user.controller('userController',
         
 
     }
+
+    // to upload the file    
+    self.uploadFile = function () {
+        if(self.picture == undefined) {
+            return;
+        }    
+    	
+        userFactory.uploadFile(self.picture)
+        .then(
+            function(response){
+                debugger;
+                $rootScope.message = 'Profile picture updated successfully!';
+                self.user.profile = response.message + '?decached=' + Math.random();
+                // update the controller user too
+                $rootScope.user.profile = response.message + '?decached=' + Math.random();
+                // need to update the cookie value too
+                AuthenticationFactory.saveUser($rootScope.user);
+                 $('#change-photo').modal('close');
+                // hide the card panel by setting the rootScope.message as undefined
+                // $timeout(function() {                    
+                //     $rootScope.message = undefined;
+                // },2000);
+
+            },
+            function(error){
+                console.log(error);
+            } 
+        )
     
-    }])
+    }
+}])

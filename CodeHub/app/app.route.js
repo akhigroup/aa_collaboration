@@ -227,7 +227,7 @@ codehub.config(['$routeProvider', '$httpProvider',  function($routeProvider, $ht
 }]);
 
 //Rest server from where data is coming
-// codehub.constant('url', 'http://localhost:7070/webapp');
+codehub.constant('url', 'http://localhost:7070/webapp');
 
 codehub.run(function ($rootScope, $location, AuthenticationFactory) {
 

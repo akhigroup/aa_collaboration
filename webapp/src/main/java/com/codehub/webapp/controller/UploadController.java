@@ -32,15 +32,15 @@ public class UploadController {
 	private String imageBasePath;
 	
 	@PostMapping("/profile-picture")
-	public ResponseEntity<Response> uploadProfilePicture(@RequestParam("file") MultipartFile file, @RequestParam("id") Long id) {
-		
+	public ResponseEntity<Response> uploadProfilePicture(@RequestParam("file") MultipartFile file, @RequestParam("id") Integer id) {
+		System.out.println("Uploading image now!");
 		String message = null;
 		
 		String fileName = "User_Profile" + id + ".png";
 		
 		if(uploadFile(imageBasePath, fileName, file)) {
 			
-			userDAO.updateUserPictureId(fileName, id);
+			userDAO.updateUserProfile(fileName, id);
 			
 			return new ResponseEntity<Response>(new Response(1,fileName,null), HttpStatus.OK);
 			
