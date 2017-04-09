@@ -39,8 +39,8 @@ window.routes = {
     //For accepting requests of user
     "/requests/users": {
         templateUrl : 'app/components/user/userRequests.html',
-        controller : 'adminController',
-        controllerAs : 'adminCtrl',
+        controller : 'requestController',
+        controllerAs : 'requestCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -85,8 +85,8 @@ window.routes = {
     //For accepting request of blogs
     "/requests/blogs": {
         templateUrl : 'app/components/blogs/blogRequests.html',
-        controller : 'adminController',
-        controllerAs : 'adminCtrl',
+        controller : 'requestController',
+        controllerAs : 'requestCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -121,8 +121,8 @@ window.routes = {
     //For viewing single forum topic
     "/requests/forums": {
         templateUrl : 'app/components/forum/forumRequests.html',
-        controller : 'adminController',
-        controllerAs : 'adminCtrl',
+        controller : 'requestController',
+        controllerAs : 'requestCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -157,8 +157,8 @@ window.routes = {
     //For accepting new event requests 
     "/requests/events": {
         templateUrl : 'app/components/events/eventsRequests.html',
-        controller : 'adminController',
-        controllerAs : 'adminCtrl',
+        controller : 'requestController',
+        controllerAs : 'requestCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },
@@ -193,8 +193,8 @@ window.routes = {
     //For accepting request of new job
      "/requests/jobs": {
         templateUrl : 'app/components/jobs/jobsRequests.html',
-        controller : 'adminController',
-        controllerAs : 'adminCtrl',
+        controller : 'requestController',
+        controllerAs : 'requestCtrl',
         requireLogin: true,
         roles: ['Super_Admin', 'Admin']
     },

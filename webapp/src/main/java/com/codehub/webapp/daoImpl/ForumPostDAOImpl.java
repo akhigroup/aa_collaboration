@@ -25,6 +25,14 @@ public class ForumPostDAOImpl implements ForumPostDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
+	
+	@Override
+	@Transactional
+	public List<ForumPosts> list(int id) {
+		String hql = "FROM ForumPosts where forum = " + id +"";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
 
 	@Override
 	@Transactional
@@ -67,5 +75,7 @@ public class ForumPostDAOImpl implements ForumPostDAO {
 			return false;
 		}
 	}
+
+	
 
 }

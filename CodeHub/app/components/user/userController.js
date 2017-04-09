@@ -136,8 +136,10 @@ user.controller('userController',
                 function(events) {
                     debugger;   
                     self.eventlist = events;
+                    
                     for(var [events] in self.eventlist) {
                         self.eventlist[events].postDate = new Date(self.eventlist[events].postDate[0],self.eventlist[events].postDate[1] - 1,self.eventlist[events].postDate[2]);
+                        console.log( self.eventlist[events].postDate)    
                     }
                      for(var [startDate] in self.eventlist) {
                         self.eventlist[startDate].startDate = new Date(self.eventlist[startDate].startDate[0],self.eventlist[startDate].startDate[1] - 1,self.eventlist[startDate].startDate[2]);

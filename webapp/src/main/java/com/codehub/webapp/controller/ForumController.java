@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codehub.webapp.dao.ForumDAO;
+import com.codehub.webapp.dao.ForumPostDAO;
 import com.codehub.webapp.dao.ForumRequestDAO;
 import com.codehub.webapp.dao.UserDAO;
 import com.codehub.webapp.entity.Blog;
+import com.codehub.webapp.entity.BlogComments;
 import com.codehub.webapp.entity.Forum;
+import com.codehub.webapp.entity.ForumPosts;
 import com.codehub.webapp.entity.ForumRequest;
 import com.codehub.webapp.entity.User;
 
@@ -30,6 +33,12 @@ public class ForumController {
 	
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	Forum forum;
+	
+	@Autowired
+	ForumPostDAO forumPostDAO;
 	
 	@Autowired
 	ForumRequestDAO forumRequestDAO;
@@ -77,5 +86,27 @@ public class ForumController {
 			
 		}
 	
+	@RequestMapping(value = {"/forum/post/new/{id}"}, method = RequestMethod.POST)
+	public ResponseEntity<ForumPosts> addForumPost(@PathVariable("id") int id, @RequestBody ForumPosts forumPosts) {
+		System.out.println("Adding forum post now");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime now = LocalDateTime.now(); 
+		forumPosts.setPostDate(LocalDate.parse(dtf.format(now)));
+		forum = forumDAO.getForum(id);
+		forum.setNoOfPosts(forum.getNoOfPosts() + 1);
+		forumDAO.updateForum(forum);
+		forumPosts.setForum(forum);
+		forumPostDAO.addForumPosts(forumPosts);
+		
+		return new ResponseEntity<ForumPosts>(forumPosts, HttpStatus.OK);	
+	}
+	
+	 //Function to fetch forum post list
+	 @RequestMapping(value = {"/forum/posts/list/{id}"}, method = RequestMethod.GET)
+	 public ResponseEntity<List<ForumPosts>> fetchForumPosts(@PathVariable("id") int id) {
+			System.out.println("fetching list of forum posts now");
+			List<ForumPosts> forumPosts = forumPostDAO.list(id);
+			return new ResponseEntity<List<ForumPosts>>(forumPosts, HttpStatus.OK);
+	}
 	
 }

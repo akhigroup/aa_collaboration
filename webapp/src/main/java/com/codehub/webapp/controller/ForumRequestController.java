@@ -57,13 +57,6 @@ public class ForumRequestController {
 			return new ResponseEntity<ForumRequest>(forumRequest, HttpStatus.OK);
 		}
 		
-		//Method for fetching list of all forum request with pending status
-		@RequestMapping(value = {"/forum/request/list"}, method = RequestMethod.GET)
-		public ResponseEntity<List<ForumRequest>> fetchForumRequests() {
-			System.out.println("Method called");
-			List<ForumRequest> forumsRequests = forumRequestDAO.list("PENDING");
-			return new ResponseEntity<List<ForumRequest>>(forumsRequests, HttpStatus.OK);
-		}
 		
 		//Method for fetching list of participated users
 		@RequestMapping(value = {"/forum/participatedUsers/list/{id}"}, method = RequestMethod.GET)

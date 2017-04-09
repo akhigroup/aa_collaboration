@@ -4,8 +4,36 @@
     <div class="col m3" style="margin-left: 25px; margin-bottom: 100px;">
 
         <!--User profile picture-->
-        <div style=" margin-top: 25px;">
+        <div class="display-photo" style=" margin-top: 25px;">
             <img src="assets/img/noDp.png" alt="" class="circle" width="200px;" height="200px" >
+                <button data-target="change-photo" class="change-photo" style="opacity: .5; width: 200px;">Change Photo</button>
+        
+             <div id="change-photo" class="modal" style="width: 500px;">
+                <div class="modal-content">
+                <h4 style="margin-left: 90px;">Change avatar</h4>
+               
+                    <div style="margin-top: 10px;">
+                         <img src="assets/img/noDp.png" alt="" class="circle" width="200px;" height="200px" style="margin-left: 100px;">
+                          <form action="#">
+                            <div class="file-field input-field">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                            </div>
+
+                             <div class="row">
+                                <button type="submit" class="waves-effect waves-light btn-large" style="margin-top: 10px; left: 10px; margin-left: 135px;">Change</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        
         </div>
 
         <!--user's Basic info-->
@@ -134,10 +162,10 @@
                     <div ng-if="user.role != 'User'">
                     <h5><i class="material-icons">today</i> Events created :&nbsp; <small><a href="#">View all</a></small></h5>
                         <hr>
-                        <div class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.myEvents">
+                        <div class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.eventlist">
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4 ">{{event.name}}</span>
-                                <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: short}}</p><br>
+                                <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: 'MMMM d, y'}}</p><br>
                                 <p>{{event.description}}</p>
                                 <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
                                 <br>
@@ -147,8 +175,8 @@
                                     <p>{{event.venue}}</p>
                                 </div>
                                 <div class="col m6">
-                                    <p><b>Start Date</b> {{event.startDate | date: short}}</p>
-                                    <p><b>End Date</b> {{event.endDate | date: short}}</p>
+                                    <p><b>Start Date</b> {{event.startDate | date: 'MMMM d, y'}}</p>
+                                    <p><b>End Date</b> {{event.endDate | date: 'MMMM d, y'}}</p>
                                 </div>
                                 </div>
                             </div>
@@ -171,21 +199,25 @@
                             <p>{{job.about}}</p>
                             <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
                         </div>
-                        
-                        <div class="card-tabs">
-                            <ul class="tabs tabs-fixed-width">
-                            <li class="tab"><a class="active" href="#job{{job.id + 1}}">JOB PROFILE</a></li>
-                            <li class="tab"><a  href="#job{{job.id + 2}}">QUALIFICATION</a></li>
-                            <li class="tab"><a href="#job{{job.id + 3}}">CONTACT INFO</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="card-content grey lighten-4">
-                            <div id="job{{job.id + 1}}">{{job.jobProfile}}</div>
-                            <div id="job{{job.id + 2}}">{{job.qualification}}</div>
-                            <div id="job{{job.id + 3}}">{{job.contactInfo}}</div>
-                        </div>
-                    
+                         <hr>
+                            <div class="row">
+                                
+                                <div class="col m4">
+                                <b>JOB PROFILE</b>
+                                <p>{{job.jobProfile}}</p>
+                                </div>
+                                
+                                <div class="col m4">
+                                <b>QUALIFICATION</b>
+                                <p>{{job.qualification}}</p>
+                                </div>
+                                
+                                <div class="col m4">
+                                <b>CONTACT INFO</b>
+                                <p>{{job.contactInfo}}</p>
+                                </div>
+                            
+                            </div>
                     </div>
                     </div>
                 </div>

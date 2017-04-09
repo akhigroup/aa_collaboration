@@ -17,24 +17,25 @@
               <p>{{job.about}}</p>
               <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
             </div>
-            
-            <div class="card-tabs">
-              <ul class="tabs tabs-fixed-width">
-                <li class="tab"><a class="active" href="#job{{job.id + 1
+            <hr>
+            <div class="row">
                 
-                
-                
-                }}">JOB PROFILE</a></li>
-                <li class="tab"><a  href="#job{{job.id + 2}}">QUALIFICATION</a></li>
-                <li class="tab"><a href="#job{{job.id + 3}}">CONTACT INFO</a></li>
-              </ul>
-            </div>
-
-            <div class="card-content grey lighten-4">
-              <div id="job{{job.id + 1}}">{{job.jobProfile}}</div>
-              <div id="job{{job.id + 2}}">{{job.qualification}}</div>
-              <div id="job{{job.id + 3}}">{{job.contactInfo}}</div>
-            </div>
+                <div class="col m4">
+                  <b>JOB PROFILE</b>
+                  <p>{{job.jobProfile}}</p>
+                </div>
+                 
+                 <div class="col m4">
+                  <b>QUALIFICATION</b>
+                  <p>{{job.qualification}}</p>
+                </div>
+                 
+                 <div class="col m4">
+                  <b>CONTACT INFO</b>
+                  <p>{{job.contactInfo}}</p>
+                </div>
+              
+              </div>
           
           </div>
 

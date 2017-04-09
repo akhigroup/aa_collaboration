@@ -67,26 +67,6 @@ user_id NUMBER(5) not null,
 user_name varchar2(10) not null
 );
 
-create sequence forum_category_seq
-start with 1
-increment by 1
-NOCACHE
-NOCYCLE
-
-CREATE table FORUM (
-FORUM_ID NUMBER(5) PRIMARY KEY,
-FORUM_NAME VARCHAR2(20) NOT NULL,
-FORUM_CONTAINT CLOB NOT NULL,
-DATE_CREATED DATE DEFAULT SYSDATE,
-NUMBER_OF_POSTS NUMBER(5),
-NUMBER_OF_MEMBERS NUMBER(5),
-NUMBER_OF_REQUESTS NUMBER(5),
-STATUS VARCHAR2(25) default 'PENDING' not null,
-CATEGORY_ID NUMBER(5) NOT NULL,
-user_id NUMBER(5) not null,
-user_name varchar2(10) not null
-);
-
 CREATE SEQUENCE FORUM_SEQ
 START WITH 1
 INCREMENT BY 1
@@ -98,6 +78,7 @@ POST_ID NUMBER(5) PRIMARY KEY,
 FORUM_ID NUMBER(5) NOT NULL,
 user_id NUMBER(5) not null,
 user_name varchar2(10) not null,
+title  varchar2(50) not null,
 POST_CONTAINT CLOB NOT NULL,
 POST_DATE DATE DEFAULT SYSDATE
 );

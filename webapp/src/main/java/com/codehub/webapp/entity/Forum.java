@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Component
 @Table(name="FORUM")
@@ -43,6 +45,7 @@ public class Forum implements Serializable{
 	private String status;
 	
 	@OneToMany(mappedBy="forum", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonManagedReference
 	List<ForumPosts> forumPosts;
 	
 	@Column(name="Number_Of_Posts")

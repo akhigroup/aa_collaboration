@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-init="adminCtrl.approvedUserList();">
         <div style="margin-top: 25px; margin-left: 25px;">
             <h5>Manage All Users</h5>
         </div>
@@ -8,37 +8,36 @@
             <table class="highlight centered responsive-table">
                 <thead>
                 <tr>
+                     <th data-field="userid">User Id</th>
                     <th data-field="username">Username</th>
                     <th data-field="firstname">First Name</th>
                     <th data-field="lastname">Last Name</th>
                     <th data-field="role">Role</th>
-                    <th data-field="status">Options</th>
+                    <!--<th data-field="status">Options</th>-->
                 </tr>
                 </thead>
 
                 <tbody>
-                     <tr>
-                        <td>Avadhoot05</td>
-                        <td>Avadhoot</td>
-                        <td>Athalye</td>
+                     <tr ng-repeat="users in adminCtrl.approvedUserList">
+                        <td>{{users.id}}</td> 
+                        <td>{{users.username}}</td>
+                        <td>{{users.firstname}}</td>
+                        <td>{{users.lastname}}</td>
                         <td>
+                            <!--{{users.role}}
+                            <div>
+                                <button data-target="role" class="btn">change</button>
+                            </div>-->
+                           
                             <div class="input-field col s12">
-                                <select >
-                                    <option value="user" selected>User</option>
+                                <select ng-model="users.role" ng-options="users.role for users in adminCtrl.approvedUserList">
+                                    <option value="user" >User</option>
                                     <option value="employer">Employer</option>
                                     <option value="admin">Admin</option>
                                 </select>
                             </div>
                         </td>
-                        <td> 
-                            <a class="waves-effect waves-light btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit"><i class="material-icons">mode_edit</i></a>
-                            <a class="waves-effect waves-light btn tooltipped red darken-4" data-position="bottom" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
-                        </td>
-                        
                     </tr>
-
-                    
-                     
                 </tbody>
         </table>
     </div>

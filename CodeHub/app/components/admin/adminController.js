@@ -4,92 +4,56 @@ admin.controller('adminController', ['adminFactory',
 
     var self = this;
 
-    //For storing list of pending users
-    self.pendingUserList = [];
+    //For temparary storing list of users
+    self.tempUserList = [];
 
-    //For fetching list of forumRequest with pending status
-    self.forumRequest = [];
+    //For list of approved user list
+    self.approvedUserList = [];
+
+    //For list of approved blog list
+    self.approvedBlogList = [];
 
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
     }, 100);
 
-     //calling method for bloglist
-     pendingUserList();
-
-    //Function to view list of all pending users
-    function pendingUserList() {
-
-        // var status = "APPROVED"
-        
-        adminFactory.pendingUserList()
+    //Function to fetch approved User List
+    self.approvedUserList = function() {
+        debugger;   
+         adminFactory.approvedUserList()
             .then (
-                function(pendingUsers) {
-               
-                    self.pendingUserList = pendingUsers;
-                    for(var [birthDate] in self.pendingUserList) {
-                        self.pendingUserList[birthDate].birthDate = new Date(self.pendingUserList[birthDate].birthDate[0],self.pendingUserList[birthDate].birthDate[1] - 1,self.pendingUserList[birthDate].birthDate[2]);
+                function(approvedUsers) {
+                    debugger;
+                    var index = 0;  //setting up an var index as 0
+                    for (var user in approvedUsers) {   //traversing through array to remove user with Super admin role
+                        var role = approvedUsers[user].role; 
+                        if( role != 'Super_Admin') {    //if role is not super admin add the user to new list
+                            self.tempUserList[index++] = approvedUsers[user]; 
+                        } 
                     }
-                    // console.log(self.bloglist.postDate);
+                     self.approvedUserList = self.tempUserList; //assigning temp user list to approvedUserList
+                    
                 },
                 function(errResponse) {
-                    console.log('Failure!');
                 }
             );
     }
 
-    //Function to change status of user registration
-    self.changeStatus = function(id) {
-        console.log(id);
-        console.log('test');
+    //Function to fetch approved blog List
+    self.approvedBlogList = function() {
         
-        adminFactory.changeStatus(id)
+         adminFactory.approvedBlogList()
             .then (
-                function(user) {
-                    console.log('success!');
-                    $route.reload();
+                function(approvedBlogs) {
+                    self.approvedBlogList = approvedBlogs; 
+                    for (var postDate in self.approvedBlogList) {   
+                        self.approvedBlogList[postDate].postDate = new Date(self.approvedBlogList[postDate].postDate[0],self.approvedBlogList[postDate].postDate[1] - 1,self.approvedBlogList[postDate].postDate[2]);
+                    }
                 },
                 function(errResponse) {
-                    console.log('Failure!');
                 }
             );
-    }
-
-     //calling method to fetch forum fetchForumRequests
-    fetchForumRequests();
-            
-            //Function to fetch forum requests
-            function fetchForumRequests() {
-                
-                adminFactory.fetchForumRequests()
-                    .then (
-                        function(forumRequests) {
-                            
-                           self.forumRequest = forumRequests;
-                           console.log(self.forumRequest);
-                        },
-                        function(errResponse) {
-                            console.error('Failure!');
-                        }
-                    );
-
-            }
-
-            //Function to change status of forumRequests
-            self.changeFRStatus = function(id) {
-                
-                adminFactory.changeFRStatus(id)
-                    .then (
-                        function(forumRequest) {
-                            
-                            console.log('success!');
-                            $route.reload();
-                        },
-                        function(errResponse) {
-                            console.log('Failure!');
-                        }
-                    );
     }
         
     

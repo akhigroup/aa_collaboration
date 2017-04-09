@@ -12,7 +12,9 @@ forum.factory('ForumFactory', ['$http', '$q', '$routeParams',
                 fetchForums : fetchForums,
                 viewForum : viewForum,
                 joinRequest : joinRequest,
-                getParticipatedUsers : getParticipatedUsers
+                getParticipatedUsers : getParticipatedUsers,
+                addForumPost : addForumPost,
+                fetchBlogPosts : fetchBlogPosts,
             };
 
             //function to add a new forum Forum Category
@@ -97,5 +99,37 @@ forum.factory('ForumFactory', ['$http', '$q', '$routeParams',
                     return deferred.promise;
             }
            
+            //function to add a new forum post
+            function addForumPost(forumPost) {
+
+                var deferred = $q.defer();
+                var forumId = $routeParams.id;
+                $http.post(url + '/forum/post/new/' + forumId, forumPost).then(
+                    function(response) {
+                        debugger;
+                        deferred.resolve(response.data);
+                    }, function(errResponse) {
+                        deferred.reject(response.data);
+                    }
+                );
+                return deferred.promise;
+            }
+
+        //Function to fetch forum post list
+        function fetchBlogPosts(forumId) {
+            console.log('Inside factory now');
+            var deferred = $q.defer();
+            
+            $http.get(url + '/forum/posts/list/' + forumId)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
 
         }])

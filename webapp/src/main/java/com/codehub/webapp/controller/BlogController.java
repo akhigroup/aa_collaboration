@@ -60,10 +60,14 @@ public class BlogController {
 	@RequestMapping(value = {"/blog/{id}"}, method = RequestMethod.GET)
 	public ResponseEntity<Blog> viewBlog(@PathVariable("id") int id) {
 		System.out.println("Calling method");
-		Blog blog = new Blog();
+		Blog blog = null;
 		blog = blogDAO.getBlog(id);
-		int views = blog.getNoOfViews();
-		blog.setNoOfViews(views + 1);
+		if(blog.getStatus().equals("APPROVED")) {
+			blog.setNoOfViews(blog.getNoOfViews() + 1);
+		} else {
+			blog.setNoOfViews(0);
+		}
+		
 		blogDAO.updateBlog(blog);
 		if(blog == null) {
 			blog = new Blog();

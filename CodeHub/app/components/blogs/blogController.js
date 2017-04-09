@@ -56,11 +56,9 @@ blog.controller('blogController', ['blogFactory', 'BlogCommentFactory',
             .then (
                 function(blog) {
                     self.blog =  blog;
-                    // console.log(self.blog.id)
                     var bId = self.blog.id 
                     $location.path('/blog/' + bId);
                 }, function (errResponse) {
-                    console.error('Failure!');
                 }
             );
          
@@ -68,44 +66,36 @@ blog.controller('blogController', ['blogFactory', 'BlogCommentFactory',
 
     //function for viewing single blog
     self.viewBlog = function() {
-        debugger;
         //Assigning blog id to variable blogId
         var blogId = $routeParams.id;
         blogFactory.viewBlog(blogId)
             .then (
                 function(blog) {
-                    debugger;
                     self.singleBlog = blog;
-                    console.log(self.singleBlog.postDate);
                     self.singleBlog.postDate = new Date(self.singleBlog.postDate[0],self.singleBlog.postDate[1] - 1,self.singleBlog.postDate[2]);
+                    blogCommentlist();  //Fetching blog comment list
                 },
                 function(errResponse) {
-                    console.error('Failure!');
                 }
             );
 
     }
 
     //Function to add likes to blog
-    self.likes = function(id) {
-        debugger;
-        
+    self.likes = function(id) {      
         blogFactory.likes(id)
             .then (
                 function(blog) {
-                    debugger;
                     $route.reload();
                 },
                 function(errResponse) {
-                    console.error('Failure!');
                 }
             );
     }
 
     //function for adding a new blog comment
     self.addBlogComment = function () {
-        
-        // console.log(blog)
+
         //Setting the user id and username
         self.blogComment.userId = user.id;
         self.blogComment.username = user.username;
@@ -114,57 +104,40 @@ blog.controller('blogController', ['blogFactory', 'BlogCommentFactory',
          BlogCommentFactory.addBlogComment(self.blogComment)
             .then (
                 function(blogComment) {
-                    
                     self.blogComment =  blogComment;
                     $route.reload();
-                    var id = $routeParams.id;
-                    $location.path('/blog/' + id);
-                    // console.log(self.blogComment); 
-                    // $location.path('/blog/' + $routeParams.id);
-                    // self.blogComment.title = '';
-                    // self.blogComment.blogComment = '';
+                   
                 }, function (errResponse) {
-                    console.error('Failure!');
+                    
                 }
             );
          
     }
 
-    
-
-    //calling method for bloglist
-     bloglist();
-
     //Function to view list of all blogs
-    function bloglist() {
+    self.bloglist = function() {
 
         // var status = "APPROVED"
-
         blogFactory.bloglist()
             .then (
                 function(blogs) {
                
                     self.bloglist = blogs;
                     for(var [blog] in self.bloglist) {
-                        // console.log(self.bloglist[blog].postDate);
                         self.bloglist[blog].postDate = new Date(self.bloglist[blog].postDate[0],self.bloglist[blog].postDate[1] - 1,self.bloglist[blog].postDate[2]);
-                        // console.log(self.bloglist[blog].postDate);
                     }
-                    console.log(self.bloglist.postDate);
                 },
                 function(errResponse) {
-                    console.log('Failure!');
                 }
             );
     }
 
     
-     blogCommentlist();
+    
 
     //Function to view list of all blog comments
     function blogCommentlist() {
 
-        
         var blogId = $routeParams.id;
         blogFactory.blogCommentlist(blogId)
             .then (
@@ -176,7 +149,6 @@ blog.controller('blogController', ['blogFactory', 'BlogCommentFactory',
                     }
                 },
                 function(errResponse) {
-                    console.log('Failure!');
                 }
             );
     }

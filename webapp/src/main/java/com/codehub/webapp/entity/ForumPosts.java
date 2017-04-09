@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Component
 @Table(name="FORUM_POSTS")
@@ -29,8 +31,11 @@ public class ForumPosts implements Serializable {
 	@Column(name="POST_ID")
 	private int id;
 	
+	private String title;
+	
 	@ManyToOne
 	@JoinColumn(name="Forum_Id")
+	@JsonBackReference
 	private Forum forum;
 	
 	@Column(name="User_Id")
@@ -40,7 +45,7 @@ public class ForumPosts implements Serializable {
 	private String username;
 	
 	@Column(name="Post_Containt")
-	private String Description;
+	private String description;
 	
 	@Column(name="Post_Date")
 	private LocalDate postDate;
@@ -77,12 +82,20 @@ public class ForumPosts implements Serializable {
 		this.username = username;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public LocalDate getPostDate() {

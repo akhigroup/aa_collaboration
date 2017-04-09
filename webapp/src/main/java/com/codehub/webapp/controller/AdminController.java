@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codehub.webapp.dao.BlogDAO;
 import com.codehub.webapp.dao.ForumRequestDAO;
 import com.codehub.webapp.dao.UserDAO;
+import com.codehub.webapp.entity.Blog;
 import com.codehub.webapp.entity.ForumRequest;
 import com.codehub.webapp.entity.User;
 
@@ -22,37 +24,24 @@ public class AdminController {
 	UserDAO userDAO;
 	
 	@Autowired
-	ForumRequestDAO forumRequestDAO;
-
-		//Method for fetching pending user list by status
-		@RequestMapping(value = {"/user/request/list"}, method = RequestMethod.GET)
-		public ResponseEntity<List<User>> fetchPendingUsers() {
-			System.out.println("fetching list of pending users");
-			List<User> user = userDAO.list("PENDING");
-			return new ResponseEntity<List<User>>(user, HttpStatus.OK);
+	BlogDAO blogDAO;
+	
+	
+		//Method for fetching approved user list by status
+		@RequestMapping(value = {"/user/manage/list"}, method = RequestMethod.GET)
+		public ResponseEntity<List<User>> fetchApprovedUsers() {
+				System.out.println("fetching list of approved users");
+				List<User> user = userDAO.list("APPROVED");
+				return new ResponseEntity<List<User>>(user, HttpStatus.OK);
 		}
 		
-		//Method to change user registration status
-		@RequestMapping(value = {"/user/request/approval/{id}"}, method = RequestMethod.POST)
-		public ResponseEntity<User> changeStatus(@PathVariable("id") int id) {
-				System.out.println("changing status");
-				User user = new User();
-				user = userDAO.getUser(id);
-				user.setStatus("APPROVED");
-				userDAO.updateUser(user);
-				return new ResponseEntity<User>(user, HttpStatus.OK);
+		//Method for fetching approved blog list by status
+		@RequestMapping(value = {"/blog/manage/list"}, method = RequestMethod.GET)
+		public ResponseEntity<List<Blog>> fetchApprovedBlogs() {
+				System.out.println("fetching list of approved blogs");
+				List<Blog> blog = blogDAO.getBlogsByStatus("APPROVED");
+				return new ResponseEntity<List<Blog>>(blog, HttpStatus.OK);
 		}
-		
-		//Method to change forum request status
-		@RequestMapping(value = {"/forum/request/approval/{id}"}, method = RequestMethod.POST)
-		public ResponseEntity<ForumRequest> changeFRStatus(@PathVariable("id") int id) {
-			 	System.out.println("changing status");
-				ForumRequest forumRequest = new ForumRequest();
-				forumRequest = forumRequestDAO.getForumRequest(id);
-				forumRequest.setStatus("APPROVED");
-				forumRequestDAO.updateForumRequest(forumRequest);
-						return new ResponseEntity<ForumRequest>(forumRequest, HttpStatus.OK);
-				}
 		
 		
 }

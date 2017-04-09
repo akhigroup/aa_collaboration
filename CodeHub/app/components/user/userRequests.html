@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row" ng-init="requestCtrl.pendingUserList()">
         <div style="margin-top: 25px; margin-left: 25px;">
             <h5>New User Requests</h5>
         </div>
@@ -19,7 +19,7 @@
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="user in adminCtrl.pendingUserList | orderBy : 'id'">
+                    <tr ng-repeat="user in requestCtrl.pendingUsers | orderBy : 'user.id'">
                         <td>{{user.username}}</td>
                         <td>{{user.firstname}}</td>
                         <td>{{user.lastname}}</td>
@@ -31,7 +31,7 @@
                             <div class="switch">
                             <label>
                             Disable
-                            <input type="checkbox" ng-model="user.status" ng-change="adminCtrl.changeStatus(user.id)">
+                            <input type="checkbox" ng-model="user.status" ng-change="requestCtrl.changeStatus(user.id)">
                             <span class="lever"></span>
                             Active
                             </label>

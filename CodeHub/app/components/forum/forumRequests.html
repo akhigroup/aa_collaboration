@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-init="requestCtrl.fetchForumRequests()">
    
         <div style="margin-top: 25px; margin-left: 25px;">
             <h5>New Forum Join Requests</h5>
@@ -16,14 +16,14 @@
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="forumRequest in adminCtrl.forumRequest | orderBy : 'id'">
-                        <td><a href="#!/forum/{{forumRequest.forum.id}}">{{forumRequest.forum.name}}</a></td>
+                    <tr ng-repeat="forumRequest in requestCtrl.forumRequest | orderBy : 'id'">
+                        <td><a href="#!/forum/{{forumRequest.forum.id}}" target="_blank">{{forumRequest.forum.name}}</a></td>
                         <td>{{forumRequest.username}}</td>
                         <td> 
                             <div class="switch">
                             <label>
                             Disable
-                            <input type="checkbox" ng-model="forumRequest.status" ng-change="adminCtrl.changeFRStatus(forumRequest.id)">
+                            <input type="checkbox" ng-model="forumRequest.status" ng-change="requestCtrl.changeFRStatus(forumRequest.id)">
                             <span class="lever"></span>
                             Active
                             </label>

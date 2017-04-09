@@ -14,5 +14,6 @@ public interface UserDAO {
 	boolean addUser(User user);
 	boolean updateUser(User user);
 	boolean deleteUser(User user);
-
+	// for changing the profile picture
+	boolean updateUserPictureId(String fileName, Long id);
 }
