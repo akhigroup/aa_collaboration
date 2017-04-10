@@ -19,21 +19,21 @@
 
                 <tbody>
                      <tr ng-repeat="users in adminCtrl.approvedUserList">
-                        <td>{{users.id}}</td> 
-                        <td>{{users.username}}</td>
-                        <td>{{users.firstname}}</td>
-                        <td>{{users.lastname}}</td>
-                        <td>
+                        <td  width="10%">{{users.id}}</td> 
+                        <td  width="10%">{{users.username}}</td>
+                        <td  width="10%">{{users.firstname}}</td>
+                        <td  width="10%">{{users.lastname}}</td>
+                        <td width="10%">
                             <!--{{users.role}}
                             <div>
                                 <button data-target="role" class="btn">change</button>
                             </div>-->
                            
                             <div class="input-field col s12">
-                                <select ng-model="users.role" ng-options="users.role for users in adminCtrl.approvedUserList">
-                                    <option value="user" >User</option>
-                                    <option value="employer">Employer</option>
-                                    <option value="admin">Admin</option>
+                                <select ng-model="users.role" ng-change="adminCtrl.changeUserRole(users);">
+                                    <option value="User" >User</option>
+                                    <option value="Employer">Employer</option>
+                                    <option value="Admin">Admin</option>
                                 </select>
                             </div>
                         </td>

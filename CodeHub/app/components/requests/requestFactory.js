@@ -19,6 +19,13 @@ request.factory('requestFactory', ['$http', '$q',
             //for fetching pending blog list and changing their status
             pendingBlogList : pendingBlogList,
             changeBlogStatus : changeBlogStatus,
+
+            //for fetching pending job list and changing their status
+            pendingJobList : pendingJobList,            
+            approveJob : approveJob,
+
+            //for fetching pending event list and changing their status
+            pendingEventList : pendingEventList,
         };
     
          //Function to fetch pending user list
@@ -118,6 +125,53 @@ request.factory('requestFactory', ['$http', '$q',
         }
 
     
+    //Function to fetch pending job list
+    function pendingJobList() {
+            var deferred = $q.defer();
+            
+            $http.get(url + '/job/request/list')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+         //Function to approve jobs
+        function approveJob(id) {
+            var deferred = $q.defer();
+            
+            $http.post(url + '/job/request/approval/' + id)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+    //Function to fetch pending event list
+    function pendingEventList() {
+            var deferred = $q.defer();
+            
+            $http.get(url + '/event/request/list')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
 
 
     }

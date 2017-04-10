@@ -16,6 +16,8 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
     //flag to display whether the username exist or not
     self.usernameExist = false;
 
+    self.temp = [];
+
     //setting up the fields for registration - should be same as fields in the entity class
     self.client = {
         id :  null,
@@ -36,10 +38,10 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
 
     //function for registering user will come here
      self.register = function () {
-         
+         debugger;
          var date = new Date(self.client.birthDate).toISOString().slice(0, 10);
-          self.client.birthDate = date;
-          
+         self.client.birthDate = date;
+           
         AuthenticationFactory.register(self.client)
             .then(
             function (user) {
@@ -111,7 +113,9 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
                     self.error = true;
                     $rootScope.message = "Your registeration request has been rejected!";
                 } else {
+                    debugger;
                      AuthenticationFactory.setUserIsAuthenticated(true);
+                     console.log(user);
                      AuthenticationFactory.setRole(user.role);
                      $rootScope.authenticated = true;
                      $rootScope.message = "Welcome" + user.username;

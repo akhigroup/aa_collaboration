@@ -40,8 +40,14 @@ job.controller('jobController', ['jobFactory',
                 function(job) {
                     debugger;
                     self.job =  job;
-                    console.log(self.job); 
+                    if(self.job.staus == 'APPROVED') {
+                        Materialize.toast('Job created successfully!', 2000); 
+                    } else {
+                        Materialize.toast('Job created successfully and now waiting for admin approval!', 3000); 
+                    }
+                    
                     $location.path('/jobs/list');
+
                 }, function (errResponse) {
                     console.error('Failure!');
                 }

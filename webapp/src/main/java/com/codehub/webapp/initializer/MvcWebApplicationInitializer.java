@@ -9,6 +9,7 @@ import javax.servlet.ServletRegistration.Dynamic;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.codehub.webapp.config.CORSFilter;
+import com.codehub.webapp.config.EmailConfig;
 import com.codehub.webapp.config.HibernateConfig;
 import com.codehub.webapp.config.MvcConfig;
 
@@ -18,7 +19,7 @@ public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispat
 
 	 @Override
      protected Class<?>[] getRootConfigClasses() {
-         return new Class[] {HibernateConfig.class};
+         return new Class[] {HibernateConfig.class, EmailConfig.class};
      }
 
      @Override
@@ -36,6 +37,7 @@ public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispat
     	 Filter [] singleton = { new CORSFilter() };
     	 return singleton;
      }
+     
      
      @Override
  	protected void customizeRegistration(Dynamic registration) {

@@ -13,10 +13,15 @@ admin.controller('adminController', ['adminFactory',
     //For list of approved blog list
     self.approvedBlogList = [];
 
+    //For list of approved job list
+    self.approvedJobList = [];
+
      // calling jQuery once controller has loaded
     $timeout(function () {
-        setting();
-    }, 100);
+        console.log('Here in controller');
+        setting();       
+
+    }, 1000);
 
     //Function to fetch approved User List
     self.approvedUserList = function() {
@@ -30,10 +35,13 @@ admin.controller('adminController', ['adminFactory',
                         var role = approvedUsers[user].role; 
                         if( role != 'Super_Admin') {    //if role is not super admin add the user to new list
                             self.tempUserList[index++] = approvedUsers[user]; 
-                        } 
+                        }
                     }
+
                      self.approvedUserList = self.tempUserList; //assigning temp user list to approvedUserList
-                    
+                    $timeout(function() {
+                        angular.element('select').material_select();
+                    }, 3000);
                 },
                 function(errResponse) {
                 }
@@ -50,6 +58,37 @@ admin.controller('adminController', ['adminFactory',
                     for (var postDate in self.approvedBlogList) {   
                         self.approvedBlogList[postDate].postDate = new Date(self.approvedBlogList[postDate].postDate[0],self.approvedBlogList[postDate].postDate[1] - 1,self.approvedBlogList[postDate].postDate[2]);
                     }
+                },
+                function(errResponse) {
+                }
+            );
+    }
+
+    //Function to fetch approved job List
+    self.manageJobs = function() {
+        
+         adminFactory.manageJobs()
+            .then (
+                function(approvedJobs) {
+                    self.approvedJobList = approvedJobs; 
+                    for (var postDate in self.approvedJobList) {   
+                        self.approvedJobList[postDate].postDate = new Date(self.approvedJobList[postDate].postDate[0],self.approvedJobList[postDate].postDate[1] - 1,self.approvedJobList[postDate].postDate[2]);
+                    }
+                },
+                function(errResponse) {
+                }
+            );
+    }
+
+    //Function to change user role
+    self.changeUserRole = function(user) {
+        debugger;
+        console.log(user.role)
+         adminFactory.changeUserRole(user)
+            .then (
+                function(user) {
+                   Materialize.toast('User role changed successfully!', 2000);
+                   $route.reload();
                 },
                 function(errResponse) {
                 }

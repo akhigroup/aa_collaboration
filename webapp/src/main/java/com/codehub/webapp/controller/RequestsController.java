@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codehub.webapp.dao.BlogDAO;
+import com.codehub.webapp.dao.EventsDAO;
 import com.codehub.webapp.dao.ForumRequestDAO;
+import com.codehub.webapp.dao.JobDAO;
 import com.codehub.webapp.dao.UserDAO;
 import com.codehub.webapp.entity.Blog;
+import com.codehub.webapp.entity.Events;
 import com.codehub.webapp.entity.ForumRequest;
+import com.codehub.webapp.entity.Job;
 import com.codehub.webapp.entity.User;
+import com.codehub.webapp.service.EmailService;
 
 @RestController
 public class RequestsController {
@@ -24,10 +29,19 @@ public class RequestsController {
 	UserDAO userDAO;
 	
 	@Autowired
+	JobDAO jobDAO;
+	
+	@Autowired
+	EventsDAO eventsDAO;
+	
+	@Autowired
 	ForumRequestDAO forumRequestDAO;
 	
 	@Autowired
 	BlogDAO blogDAO;
+	
+	@Autowired
+	EmailService emailService;
 
 			//Method for fetching pending user list by status
 			@RequestMapping(value = {"/user/request/list"}, method = RequestMethod.GET)
@@ -46,6 +60,7 @@ public class RequestsController {
 					user = userDAO.getUser(id);
 					user.setStatus("APPROVED");
 					userDAO.updateUser(user);
+					emailService.approvedUserMessage(user);
 					return new ResponseEntity<User>(user, HttpStatus.OK);
 			}
 			
@@ -85,5 +100,32 @@ public class RequestsController {
 					blog.setStatus("APPROVED");
 					blogDAO.updateBlog(blog);
 					return new ResponseEntity<Blog>(blog, HttpStatus.OK);
+			}
+			
+			//Method for fetching pending job list by status
+			@RequestMapping(value = {"/job/request/list"}, method = RequestMethod.GET)
+			public ResponseEntity<List<Job>> fetchPendingJobs() {
+				System.out.println("fetching list of pending Jobs");
+				List<Job> job = jobDAO.list("PENDING");
+				return new ResponseEntity<List<Job>>(job, HttpStatus.OK);
+			}
+			
+			//Method to approve jobs
+			@RequestMapping(value = {"/job/request/approval/{id}"}, method = RequestMethod.POST)
+			public ResponseEntity<Job> approveJobs(@PathVariable("id") int id) {
+					System.out.println("approving jobs");
+					Job job = null;
+					job = jobDAO.getJob(id);
+					job.setStatus("APPROVED");
+					jobDAO.updateJob(job);
+					return new ResponseEntity<Job>(job, HttpStatus.OK);
+			}
+			
+			//Method for fetching pending event list by status
+			@RequestMapping(value = {"/event/request/list"}, method = RequestMethod.GET)
+			public ResponseEntity<List<Events>> fetchPendingEvents() {
+				System.out.println("fetching list of pending Events");
+				List<Events> events = eventsDAO.getEventsByStatus("PENDING");
+				return new ResponseEntity<List<Events>>(events, HttpStatus.OK);
 			}
 }

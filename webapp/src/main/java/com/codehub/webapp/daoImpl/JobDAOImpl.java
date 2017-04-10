@@ -28,6 +28,14 @@ public class JobDAOImpl implements JobDAO {
 	
 	@Override
 	@Transactional
+	public List<Job> list(String status) {
+		String hql = "FROM Job where status = '" + status +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
+	
+	@Override
+	@Transactional
 	public List<Job> getJobsByStatus(String status) {
 		String hql = "FROM Job where status = '" + status +"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
@@ -83,6 +91,8 @@ public class JobDAOImpl implements JobDAO {
 			return false;
 		}
 	}
+
+	
 	
 
 }

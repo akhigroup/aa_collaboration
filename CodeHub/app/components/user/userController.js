@@ -45,9 +45,6 @@ user.controller('userController',
     //array for jobs created by user
     self.myjobs = [];
 
-    // For posting date on blog
-    self.birthDate = {};
-
     //For fetching events
     self.eventlist = [];
 
@@ -102,7 +99,10 @@ user.controller('userController',
                         
                         self.myblogs = blogs;
                         //Fomatting birthdate to display in the users info - nothing to do with blog list
+                        debugger;
+                        console.log(user.birthDate);
                         user.birthDate =  new Date(user.birthDate[0],user.birthDate[1] - 1,user.birthDate[2]);
+                        $rootScope.user.birthDate = user.birthDate;
                     },
                     function(errResponse) {
                         console.log('Failure!');

@@ -13,6 +13,12 @@ request.controller('requestController', ['requestFactory',
     //For list of pending blogs
     self.pendingBlogs = [];
 
+    //For pending jobs
+    self.pendingJobs = [];
+
+    //For pending events
+    self.pendingEvents = [];
+
       // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -28,8 +34,8 @@ request.controller('requestController', ['requestFactory',
                 function(pendingUsers) {
                
                     self.pendingUsers = pendingUsers;
-                    for(var [birthDate] in self.pendingUserList) {
-                        self.pendingUserList[birthDate].birthDate = new Date(self.pendingUserList[birthDate].birthDate[0],self.pendingUserList[birthDate].birthDate[1] - 1,self.pendingUserList[birthDate].birthDate[2]);
+                    for(var birthDate in self.pendingUsers) {
+                        self.pendingUsers[birthDate].birthDate = new Date(self.pendingUsers[birthDate].birthDate[0],self.pendingUsers[birthDate].birthDate[1] - 1,self.pendingUsers[birthDate].birthDate[2]);
                     }
                 },
                 function(errResponse) {
@@ -109,6 +115,52 @@ request.controller('requestController', ['requestFactory',
             );
     }
 
+     //Function to view list of all pending jobs
+        self. pendingJobList = function() {
+        
+        requestFactory.pendingJobList()
+            .then (
+                function(pendingJobs) {
+                     self.pendingJobs = pendingJobs;
+                    for(var postDate in self.pendingJobs) {
+                        self.pendingJobs[postDate].postDate = new Date(self.pendingJobs[postDate].postDate[0],self.pendingJobs[postDate].postDate[1] - 1,self.pendingJobs[postDate].postDate[2]);
+                    }
+                },
+                function(errResponse) {
+                }
+            );
+    }
+
+    //Function to approve job
+    self.approveJob = function(id) {
+        debugger;
+         requestFactory.approveJob(id)
+            .then (
+                function(job) {
+                    $route.reload();
+                    Materialize.toast('Job Approved!', 2000);
+                     
+                },
+                function(errResponse) {
+                }
+            );
+    }
+
+     //Function to view list of all pending events
+        self.pendingEventList = function() {
+        
+        requestFactory.pendingEventList()
+            .then (
+                function(pendingEvents) {
+                     self.pendingEvents = pendingEvents;
+                    for(var postDate in self.pendingEvents) {
+                        self.pendingEvents[postDate].postDate = new Date(self.pendingEvents[postDate].postDate[0],self.pendingEvents[postDate].postDate[1] - 1,self.pendingEvents[postDate].postDate[2]);
+                    }
+                },
+                function(errResponse) {
+                }
+            );
+    }
         
     
 }])

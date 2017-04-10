@@ -10,6 +10,8 @@ admin.factory('adminFactory', ['$http', '$q',
         return {
             approvedUserList : approvedUserList,
             approvedBlogList : approvedBlogList,
+            manageJobs : manageJobs,
+            changeUserRole : changeUserRole,
         };
 
        
@@ -34,6 +36,38 @@ admin.factory('adminFactory', ['$http', '$q',
             var deferred = $q.defer();
             
             $http.get(url + '/blog/manage/list')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        //Function to fetch approved job list
+        function manageJobs() {
+            var deferred = $q.defer();
+            
+            $http.get(url + '/job/manage/list')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+         //Function tochange user role
+        function changeUserRole(user) {
+            var deferred = $q.defer();
+            
+            $http.post(url + '/user/role/manage',user)
                 .then (
                     function(response) {
                         deferred.resolve(response.data);

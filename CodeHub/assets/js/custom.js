@@ -15,10 +15,14 @@ var setting = function() {
       //For datepicker at the user registeration
       $('.datepicker').pickadate({
           selectMonths: true, // Creates a dropdown to control month
-          selectYears: 100,   // Creates a dropdown of 15 years to control year
+          selectYears: 150,   // Creates a dropdown of 15 years to control year
+          format: 'yyyy-mm-dd'
         });
 
       $(document).ready(function() {
+
+        
+          console.log('Inside custom');        
           $('select').material_select();
 
           //For character counts during input fields

@@ -25,6 +25,7 @@ public class UserController {
 			currentUser.setOnline(false);
 			currentUser.setProfile("noDp.png");
 			currentUser.setRole("User");
+//			System.out.println(currentUser.getBirthDate());
 			userDAO.addUser(currentUser);
 		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
 	}

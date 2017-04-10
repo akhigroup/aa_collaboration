@@ -1,79 +1,29 @@
-<div class="row">
+<div class="row" ng-init="requestCtrl.pendingEventList();" >
         <div style="margin-top: 25px; margin-left: 25px;">
             <h5>New Event Requests</h5>
         </div>
-        <br /> <br />
+        <br /> <hr />
 
-        <div style="margin-left: 25px; margin-bottom: 75px;">
-            <table class="highlight centered responsive-table">
-                <thead>
-                <tr>
-                    <th data-field="id">Event Name</th>
-                    <th data-field="id">Created By</th>
-                    <th data-field="name">Venue</th>
-                    <th data-field="startDate">Start Date</th>
-                    <th data-field="endDate">End Date</th>
-                    <th data-field="postDate">Created On</th>
-                    <th data-field="status">Status</th>
-                </tr>
-                </thead>
+        <div style="margin-left: 25px; margin-bottom: 250px;">
 
-                <tbody>
-                    <tr>
-                        <td>Event Name 1</td>
-                        <td>Avadhoot</td>
-                        <td>Mumbai</td>
-                        <td>March 20, 2017</td>
-                        <td>March 25, 2017</td>
-                        <td>March 13, 2017</td>
-                        <td> 
-                            <div class="switch">
-                            <label>
-                            Disable
-                            <input type="checkbox">
-                            <span class="lever"></span>
-                            Active
-                            </label>
-                            </div>
-                        </td>
-                    </tr>
-                 <tr>
-                        <td>Event Name 1</td>
-                        <td>Avadhoot</td>
-                        <td>Mumbai</td>
-                        <td>March 20, 2017</td>
-                        <td>March 25, 2017</td>
-                        <td>March 13, 2017</td>
-                        <td> 
-                            <div class="switch">
-                            <label>
-                            Disable
-                            <input type="checkbox">
-                            <span class="lever"></span>
-                            Active
-                            </label>
-                            </div>
-                        </td>
-                    </tr>
-                <tr>
-                        <td>Event Name 1</td>
-                        <td>Avadhoot</td>
-                        <td>Mumbai</td>
-                        <td>March 20, 2017</td>
-                        <td>March 25, 2017</td>
-                        <td>March 13, 2017</td>
-                        <td> 
-                            <div class="switch">
-                            <label>
-                            Disable
-                            <input type="checkbox">
-                            <span class="lever"></span>
-                            Active
-                            </label>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-        </table>
+            <div class="card hoverable" style="width: 1300px;" ng-repeat="event in requestCtrl.pendingEvents">
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4 ">{{event.name}}</span>
+                    <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: short}}</p><br>
+                    <p>{{event.description}}</p>
+                    <br>
+                    <div class="row">
+                    <div class="col m6">
+                        <p><b>Venue</b></p>
+                        <p>{{event.venue}}</p>
+                    </div>
+                    <div class="col m6">
+                        <p><b>Start Date</b> {{event.startDate | date: short}}</p>
+                        <p><b>End Date</b> {{event.endDate | date: short}}</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
     </div>
 </div>
