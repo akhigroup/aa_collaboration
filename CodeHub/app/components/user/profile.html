@@ -79,7 +79,12 @@
                 <h6>{{job.subTitle}}</h6>
                 <b>About The Company</b>
                 <p>{{job.about}}</p>
-                <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
+                <div>
+                <a ng-click="userCtrl.applyJob(job.id)" class="btn-floating halfway-fab waves-effect waves-light red tooltipped " data-position="bottom" data-delay="50" data-tooltip="APPLY" ><i class="material-icons" >add</i></a>
+                </div>
+                 <!--<div ng-if="userCtrl.hasApplied">
+                <a ng-click="userCtrl.applyJob(job.id)" class="btn-floating halfway-fab waves-effect waves-light red tooltipped disabled" data-position="bottom" data-delay="50" data-tooltip="APPLY" ><i class="material-icons" >add</i></a>
+                </div>-->
               <hr>
               <div class="row">
                 
@@ -129,7 +134,7 @@
                     <span class="card-title activator grey-text text-darken-4 ">{{event.name}}</span>
                     <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: short}}</p><br>
                     <p>{{event.description}}</p>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                    <a ng-click="userCtrl.joinEvent(event.id);" class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
                     <br>
                     <div class="row">
                     <div class="col m6">
@@ -158,6 +163,11 @@
 
   <div class="col m3">
         <div ng-include="'app/shared/rightSide.html'"></div>
+
+         <!-- Button to view all friends -->
+        <div style="margin-bottom: 50px;">
+          <a href="#!/member/list" type="submit" class="waves-effect waves-light btn-large">LOOK FOR FRIENDS</a>
+        </div>
     </div>
             
   </div>

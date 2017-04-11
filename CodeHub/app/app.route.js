@@ -199,6 +199,15 @@ window.routes = {
         roles: ['Super_Admin', 'Admin']
     },
 
+    //For viewing list of all site's members
+    "/member/list": {
+         templateUrl : 'app/components/friends/memberslist.html',
+        controller : 'friendController',
+        controllerAs : 'friendCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
     //For navigating to error page
     "/error": {
         templateUrl : 'app/components/authentication/error.html',
@@ -207,6 +216,8 @@ window.routes = {
         requireLogin: false,
         roles: ['GUEST']
     }
+
+    
 };
 
 

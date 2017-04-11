@@ -13,7 +13,7 @@
                     <span class="card-title activator grey-text text-darken-4 ">{{event.name}}</span>
                     <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: short}}</p><br>
                     <p>{{event.description}}</p>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+                    <a  ng-click="eventCtrl.joinEvent(event.id);" class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
                     <br>
                     <div class="row">
                     <div class="col m6">

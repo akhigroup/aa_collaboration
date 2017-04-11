@@ -1,6 +1,7 @@
 package com.codehub.webapp.test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,10 +68,10 @@ public class UserTestCase {
 //		Assert.assertEquals(true, userDAO.deleteUser(user));
 //	}
 //	
-//	@Test
-//	public void getAllUserTestCase() {
-//		
-//		int size = userDAO.list().size();
-//		Assert.assertEquals(1, size);
-//	}
+	@Test
+	public void getAllUserTestCase() {
+		
+		int size = userDAO.list("APPROVED").size();
+		Assert.assertEquals(9, size);
+	}
 }

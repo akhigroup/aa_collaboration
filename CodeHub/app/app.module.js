@@ -9,5 +9,6 @@ var codehub = angular.module('codehub', [
     'eventModule',
     'blogCommentModule',
     'adminModule',
-    'requestModule'
+    'requestModule',
+    'friendModule'
     ]);

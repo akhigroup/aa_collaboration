@@ -128,4 +128,15 @@ public class RequestsController {
 				List<Events> events = eventsDAO.getEventsByStatus("PENDING");
 				return new ResponseEntity<List<Events>>(events, HttpStatus.OK);
 			}
+			
+			//Method to approve events
+			@RequestMapping(value = {"/event/request/approval/{id}"}, method = RequestMethod.POST)
+			public ResponseEntity<Events> approveEvents(@PathVariable("id") int id) {
+					System.out.println("approving events");
+					Events events = null;
+					events = eventsDAO.getEvent(id);
+					events.setStatus("APPROVED");
+					eventsDAO.updateEvent(events);
+					return new ResponseEntity<Events>(events, HttpStatus.OK);
+			}
 }

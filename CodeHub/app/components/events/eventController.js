@@ -1,6 +1,6 @@
 event.controller('eventController', ['eventFactory', 
-        '$timeout', '$cookies', '$routeParams', '$location', function(eventFactory, 
-        $timeout, $cookies, $routeParams, $location) {
+        '$timeout', '$cookies', '$routeParams', '$location', '$route', function(eventFactory, 
+        $timeout, $cookies, $routeParams, $location,  $route) {
 
     var self = this;
 
@@ -79,6 +79,21 @@ event.controller('eventController', ['eventFactory',
                 },
                 function(errResponse) {
                     console.log('Failure!');
+                }
+            );
+    }
+
+     //Method to join event
+    self.joinEvent = function(id) {
+          eventFactory.joinEvent(id)
+            .then (
+                function(event) {
+                debugger;
+                 $route.reload();
+                 Materialize.toast('Event joined successfully!', 3000);
+                 self.appliedFor.push(id);  
+                },
+                function(errResponse) {
                 }
             );
     }

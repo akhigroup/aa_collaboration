@@ -16,6 +16,9 @@ admin.controller('adminController', ['adminFactory',
     //For list of approved job list
     self.approvedJobList = [];
 
+    //For list of event list
+    self.eventsList = [];
+
      // calling jQuery once controller has loaded
     $timeout(function () {
         console.log('Here in controller');
@@ -89,6 +92,28 @@ admin.controller('adminController', ['adminFactory',
                 function(user) {
                    Materialize.toast('User role changed successfully!', 2000);
                    $route.reload();
+                },
+                function(errResponse) {
+                }
+            );
+    }
+
+     //Function to fetch approved job List
+    self.fetchEventList = function() {
+        
+         adminFactory.fetchEventList()
+            .then (
+                function(approvedEvents) {
+                    self.eventsList = approvedEvents; 
+                    for (var postDate in self.eventsList) {   
+                        self.eventsList[postDate].postDate = new Date(self.eventsList[postDate].postDate[0],self.eventsList[postDate].postDate[1] - 1,self.eventsList[postDate].postDate[2]);
+                    }
+                     for(var startDate in self.eventsList) {
+                        self.eventsList[startDate].startDate = new Date(self.eventsList[startDate].startDate[0],self.eventsList[startDate].startDate[1] - 1,self.eventsList[startDate].startDate[2]);
+                    }
+                     for(var endDate in self.eventsList) {
+                        self.eventsList[endDate].endDate = new Date(self.eventsList[endDate].endDate[0],self.eventsList[endDate].endDate[1] - 1,self.eventsList[endDate].endDate[2]);
+                    }
                 },
                 function(errResponse) {
                 }

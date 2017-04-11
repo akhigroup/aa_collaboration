@@ -3,6 +3,7 @@ package com.codehub.webapp.controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codehub.webapp.dao.EventsDAO;
+import com.codehub.webapp.dao.EventsJoinedDAO;
 import com.codehub.webapp.dao.UserDAO;
+import com.codehub.webapp.entity.EventJoined;
 import com.codehub.webapp.entity.Events;
 import com.codehub.webapp.entity.Job;
+import com.codehub.webapp.entity.JobApplied;
 import com.codehub.webapp.entity.User;
 
 import antlr.debug.Event;
@@ -30,6 +34,9 @@ public class EventController {
 	
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	EventsJoinedDAO eventJoinedDAO;
 	
 	
 	//Method for creating a new event
@@ -67,5 +74,35 @@ public class EventController {
 		System.out.println("Fetching users events");
 		List<Events> events = eventsDAO.getUserEvents(id);
 		return new ResponseEntity<List<Events>>(events, HttpStatus.OK);
+		}
+	
+	//Method to join event
+	@RequestMapping(value = {"/event/join/{id}"}, method = RequestMethod.POST)
+	public ResponseEntity<EventJoined> joinEvent(@PathVariable("id") int id,  @RequestBody Integer userId) {
+			System.out.println("Applying for event");
+			Events events= eventsDAO.getEvent(id);
+			User user = userDAO.getUser(userId);
+			EventJoined eventJoined= new EventJoined();
+			eventJoined.setEvents(events);
+			eventJoined.setUserId(userId);
+			eventJoined.setUsername(user.getUsername());
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDateTime now = LocalDateTime.now(); 
+			eventJoined.setJoinedDate(LocalDate.parse(dtf.format(now)));
+			eventJoined.setStatus("APPROVED");
+			eventJoinedDAO.addEventJoined(eventJoined);
+			return new ResponseEntity<EventJoined>(eventJoined, HttpStatus.OK);	
+		}
+	
+	//calling method to fetch events user applied for
+	@RequestMapping(value = {"/user/events/joined/{id}"}, method = RequestMethod.GET)
+	public ResponseEntity<List<Events>> fetchEventJoined(@PathVariable("id") int id) {
+			System.out.println("Fetching events user has joined");
+			List<EventJoined> eventJoined = eventJoinedDAO.list(id);
+			List<Events> events = new ArrayList<>();
+			for (EventJoined ej : eventJoined) {
+				events.add(ej.getEvents());
+			}
+			return new ResponseEntity<List<Events>>(events, HttpStatus.OK);
 		}
 }

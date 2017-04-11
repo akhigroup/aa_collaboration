@@ -1,5 +1,7 @@
 package com.codehub.webapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codehub.webapp.dao.UserDAO;
+import com.codehub.webapp.entity.Blog;
 import com.codehub.webapp.entity.User;
 
 @RestController
@@ -72,6 +75,15 @@ public class UserController {
 		user.setOnline(false);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+	//Method for fetching users
+	@RequestMapping(value = {"/users/list"}, method = RequestMethod.GET)
+	public ResponseEntity<List<User>> fetchUsers() {
+			System.out.println("fetching users");
+			List<User> user = userDAO.list("APPROVED");
+			System.out.println(user);
+			return new ResponseEntity<List<User>>(user, HttpStatus.OK);
+		}
 
 
 }

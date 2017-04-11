@@ -10,6 +10,7 @@ blog.factory('eventFactory', ['$http', '$q',
         return {
             addEvent : addEvent,
             eventlist : eventlist,
+            joinEvent : joinEvent
         };
 
         //Function to add the blog 
@@ -43,4 +44,21 @@ blog.factory('eventFactory', ['$http', '$q',
                 );
                 return deferred.promise;
         }
+
+            //Function to join event
+            function joinEvent(id) {
+                
+                var deferred = $q.defer();
+                var userId = user.id;
+                $http.post(eventUrl + '/event/join/' + id, userId)
+                    .then (
+                        function(response) {
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            deferred.reject(errResponse);
+                        }
+                    );
+                    return deferred.promise;
+            }
     }]);

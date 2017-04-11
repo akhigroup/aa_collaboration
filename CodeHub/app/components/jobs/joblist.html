@@ -15,7 +15,7 @@
               <h6>{{job.subTitle}}</h6>
               <b>About The Company</b>
               <p>{{job.about}}</p>
-              <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
+              <a ng-click="jobCtrl.applyJob(job.id)" class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
             </div>
             <hr>
             <div class="row">

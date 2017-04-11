@@ -9,7 +9,8 @@ job.factory('jobFactory', ['$http', '$q',
         
         return {
             addJob : addJob,
-            joblist : joblist
+            joblist : joblist,
+            applyJob : applyJob
         }
 
         //Function to add the job 
@@ -44,6 +45,24 @@ job.factory('jobFactory', ['$http', '$q',
                 );
                 return deferred.promise;
         }
+
+         //Function to job join
+            function applyJob(id) {
+                
+                var deferred = $q.defer();
+                var userId = user.id;
+                $http.post(jobUrl + '/job/apply/' + id, userId)
+                    .then (
+                        function(response) {
+                            deferred.resolve(response.data);
+                        },
+                        function(errResponse) {
+                            deferred.reject(errResponse);
+                        }
+                    );
+                    return deferred.promise;
+            }
+
 
     }
 ]

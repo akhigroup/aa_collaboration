@@ -27,7 +27,9 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
             userBlogList : userBlogList,
             userJobList : userJobList,
             userEventList : userEventList,
-            uploadFile : uploadFile
+            uploadFile : uploadFile,
+            fetchJobsApplied : fetchJobsApplied,
+            fetchEventJoined : fetchEventJoined
         };
 
          //Function to fetch userblog list
@@ -48,7 +50,7 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
                 return deferred.promise;
         }
 
-        //Function to fetch userjob list
+        //Function to fetch jobs user has created
          
          function userJobList(id) {
             console.log('Inside factory now');
@@ -106,5 +108,40 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
             );
         return deferred.promise;
         }
+    
+        //funcion to fetch jobs applied
+        function fetchJobsApplied(id) {
+             var deferred = $q.defer();
+
+              $http.get(url + '/user/jobs/applied/'+ id)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+
+        }
+
+         //calling method to fetch events user applied for
+        function fetchEventJoined(id) {
+             var deferred = $q.defer();
+
+              $http.get(url + '/user/events/joined/'+ id)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+
+        }
+    
     }
 ])

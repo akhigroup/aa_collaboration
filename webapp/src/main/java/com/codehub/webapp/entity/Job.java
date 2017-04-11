@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Component
 @Table(name="JOB_DETAIL")
@@ -60,6 +62,7 @@ public class Job implements Serializable {
 	private String username;
 	
 	@OneToMany(mappedBy="job", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JsonManagedReference
 	private List<JobApplied> jobApplied;
 
 	public int getId() {

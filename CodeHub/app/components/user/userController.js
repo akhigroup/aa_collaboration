@@ -10,7 +10,8 @@ user.controller('userController',
     '$cookies', 
     '$routeParams', 
     '$location',
-    '$rootScope', 
+    '$rootScope',
+    '$route', 
     
     function(
         userFactory, 
@@ -23,7 +24,8 @@ user.controller('userController',
         $cookies, 
         $routeParams, 
         $location,
-        $rootScope) {
+        $rootScope,
+        $route) {
 
     var self = this;
 
@@ -53,8 +55,19 @@ user.controller('userController',
 
     self.picture = undefined;
 
-    self.user.profile = self.user.profile + '?decached=' + Math.random(); 
+    self.user.profile = self.user.profile + '?decached=' + Math.random();
 
+    self.hasApplied = false;
+
+    self.jobsApplied = [];
+
+    self.appliedJobCount = []; 
+
+    self.appliedFor = [];
+
+    self.eventsJoinedList = [];
+
+    self.joinedEventCount = [];
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -91,12 +104,12 @@ user.controller('userController',
 
      //calling method to fetch user's blogs
      function userBlogList() {
-    
+        
         var id = user.id;
         userFactory.userBlogList(id)
                 .then (
                     function(blogs) {
-                        
+                        debugger;
                         self.myblogs = blogs;
                         //Fomatting birthdate to display in the users info - nothing to do with blog list
                         debugger;
@@ -132,13 +145,13 @@ user.controller('userController',
     jobFactory.joblist()
             .then (
                 function(jobs) {   
+                    debugger;
                     self.joblist = jobs;
                     for(var [job] in self.joblist) {
                         // console.log(self.bloglist[blog].postDate);
                         self.joblist[job].postDate = new Date(self.joblist[job].postDate[0],self.joblist[job].postDate[1] - 1,self.joblist[job].postDate[2]);
-                        // console.log(self.bloglist[blog].postDate);
                     }
-                    console.log(self.joblist);
+                    // console.log(self.joblist);
                 },
                 function(errResponse) {
                     console.log('Failure!');
@@ -215,5 +228,82 @@ user.controller('userController',
             } 
         )
     
+
     }
+
+    //Method to apply for job
+    self.applyJob = function(id) {
+          jobFactory.applyJob(id)
+            .then (
+                function(job) {
+                debugger;
+                 $route.reload();
+                 Materialize.toast('Applied for job successfully!', 3000);
+                 self.appliedFor.push(id);  
+                },
+                function(errResponse) {
+                }
+            );
+    }
+
+     //calling method to fetch user's jobs
+     self.fetchJobsApplied = function() {
+        debugger;
+        var id = user.id;
+        userFactory.fetchJobsApplied(id)
+                .then (
+                    function(jobs) {
+                        
+                        self.jobsApplied = jobs;
+                        self.appliedJobCount = self.jobsApplied.length;
+                    },
+                    function(errResponse) {
+                        
+                    }
+                );
+     }
+
+    //Method to join event
+    self.joinEvent = function(id) {
+          eventFactory.joinEvent(id)
+            .then (
+                function(event) {
+                debugger;
+                 $route.reload();
+                 Materialize.toast('Event joined successfully!', 3000);
+                 self.appliedFor.push(id);  
+                },
+                function(errResponse) {
+                }
+            );
+    }
+
+     //calling method to fetch events user applied for
+     self.fetchEventJoined = function() {
+        debugger;
+        var id = user.id;
+        userFactory.fetchEventJoined(id)
+                .then (
+                    function(events) {
+                        self.eventsJoinedList = events;
+                        self.joinedEventCount =  self.eventsJoinedList.length;
+
+                        for(var [events] in  self.eventsJoinedList) {
+                         self.eventsJoinedList[events].postDate = new Date( self.eventsJoinedList[events].postDate[0], self.eventsJoinedList[events].postDate[1] - 1, self.eventsJoinedList[events].postDate[2]);
+                        console.log(  self.eventsJoinedList[events].postDate)    
+                        }
+                        for(var [startDate] in  self.eventsJoinedList) {
+                             self.eventsJoinedList[startDate].startDate = new Date( self.eventsJoinedList[startDate].startDate[0], self.eventsJoinedList[startDate].startDate[1] - 1, self.eventsJoinedList[startDate].startDate[2]);
+                        }
+                        for(var [endDate] in  self.eventsJoinedList) {
+                             self.eventsJoinedList[endDate].endDate = new Date( self.eventsJoinedList[endDate].endDate[0], self.eventsJoinedList[endDate].endDate[1] - 1, self.eventsJoinedList[endDate].endDate[2]);
+                        }
+                    },
+                    function(errResponse) {
+                        
+                    }
+                );
+     }
+
+
 }])

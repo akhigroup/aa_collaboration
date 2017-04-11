@@ -12,6 +12,7 @@ admin.factory('adminFactory', ['$http', '$q',
             approvedBlogList : approvedBlogList,
             manageJobs : manageJobs,
             changeUserRole : changeUserRole,
+            fetchEventList : fetchEventList,
         };
 
        
@@ -68,6 +69,22 @@ admin.factory('adminFactory', ['$http', '$q',
             var deferred = $q.defer();
             
             $http.post(url + '/user/role/manage',user)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        //Function to fetch approved event list
+        function fetchEventList() {
+            var deferred = $q.defer();
+            
+            $http.get(url + '/event/manage/list')
                 .then (
                     function(response) {
                         deferred.resolve(response.data);

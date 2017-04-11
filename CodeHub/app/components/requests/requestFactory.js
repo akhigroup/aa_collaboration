@@ -26,6 +26,7 @@ request.factory('requestFactory', ['$http', '$q',
 
             //for fetching pending event list and changing their status
             pendingEventList : pendingEventList,
+            approveEvent : approveEvent,
         };
     
          //Function to fetch pending user list
@@ -162,6 +163,22 @@ request.factory('requestFactory', ['$http', '$q',
             var deferred = $q.defer();
             
             $http.get(url + '/event/request/list')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        //Function to approve events
+        function approveEvent(id) {
+            var deferred = $q.defer();
+            
+            $http.post(url + '/event/request/approval/' + id)
                 .then (
                     function(response) {
                         deferred.resolve(response.data);

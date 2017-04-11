@@ -25,6 +25,14 @@ public class JobAppliedDAOImpl implements JobAppliedDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
+	
+	@Override
+	@Transactional
+	public List<JobApplied> list(int id) {
+		String hql = "FROM JobApplied where userId = '" + id +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
 
 	@Override
 	@Transactional
@@ -67,5 +75,7 @@ public class JobAppliedDAOImpl implements JobAppliedDAO {
 			return false;
 		}
 	}
+
+	
 
 }

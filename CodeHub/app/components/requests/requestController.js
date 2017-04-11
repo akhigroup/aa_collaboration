@@ -1,6 +1,6 @@
 request.controller('requestController', ['requestFactory',
-        '$timeout', '$cookies', '$routeParams', '$location', '$route', function(requestFactory,
-        $timeout, $cookies, $routeParams, $location, $route) {
+        '$timeout', '$cookies', '$routeParams', '$location', '$route', '$rootScope', function(requestFactory,
+        $timeout, $cookies, $routeParams, $location, $route, $rootScope) {
 
     var self = this;
 
@@ -37,6 +37,8 @@ request.controller('requestController', ['requestFactory',
                     for(var birthDate in self.pendingUsers) {
                         self.pendingUsers[birthDate].birthDate = new Date(self.pendingUsers[birthDate].birthDate[0],self.pendingUsers[birthDate].birthDate[1] - 1,self.pendingUsers[birthDate].birthDate[2]);
                     }
+                    self.countPendingUsers = self.pendingUser;
+                   
                 },
                 function(errResponse) {
                 }
@@ -156,6 +158,26 @@ request.controller('requestController', ['requestFactory',
                     for(var postDate in self.pendingEvents) {
                         self.pendingEvents[postDate].postDate = new Date(self.pendingEvents[postDate].postDate[0],self.pendingEvents[postDate].postDate[1] - 1,self.pendingEvents[postDate].postDate[2]);
                     }
+                     for(var startDate in self.pendingEvents) {
+                        self.pendingEvents[startDate].startDate = new Date(self.pendingEvents[startDate].startDate[0],self.pendingEvents[startDate].startDate[1] - 1,self.pendingEvents[startDate].startDate[2]);
+                    }
+                     for(var endDate in self.pendingEvents) {
+                        self.pendingEvents[endDate].endDate = new Date(self.pendingEvents[endDate].endDate[0],self.pendingEvents[endDate].endDate[1] - 1,self.pendingEvents[endDate].endDate[2]);
+                    }
+                },
+                function(errResponse) {
+                }
+            );
+    }
+
+     //Function to approve event
+    self.approveEvent = function(id) {
+        debugger;
+         requestFactory.approveEvent(id)
+            .then (
+                function(event) {
+                    $route.reload();
+                    Materialize.toast('Event Approved!', 2000);
                 },
                 function(errResponse) {
                 }

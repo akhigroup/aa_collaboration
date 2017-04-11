@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codehub.webapp.dao.BlogDAO;
+import com.codehub.webapp.dao.EventsDAO;
 import com.codehub.webapp.dao.ForumRequestDAO;
 import com.codehub.webapp.dao.JobDAO;
 import com.codehub.webapp.dao.UserDAO;
 import com.codehub.webapp.entity.Blog;
+import com.codehub.webapp.entity.Events;
 import com.codehub.webapp.entity.ForumRequest;
 import com.codehub.webapp.entity.Job;
 import com.codehub.webapp.entity.User;
@@ -32,6 +34,9 @@ public class AdminController {
 	
 	@Autowired
 	JobDAO jobDAO;
+	
+	@Autowired
+	EventsDAO eventsDAO;
 	
 	
 		//Method for fetching approved user list by status
@@ -64,6 +69,14 @@ public class AdminController {
 				System.out.println("changing user role");
 				userDAO.updateUser(user);
 				return new ResponseEntity<User>(user, HttpStatus.OK);
+				}
+		
+		//Method for fetching approved event list by status
+		@RequestMapping(value = {"/event/manage/list"}, method = RequestMethod.GET)
+		public ResponseEntity<List<Events>> fetchApprovedEvents() {
+				System.out.println("fetching list of approved events");
+				List<Events> events = eventsDAO.getEventsByStatus("APPROVED");
+						return new ResponseEntity<List<Events>>(events, HttpStatus.OK);
 				}
 		
 		

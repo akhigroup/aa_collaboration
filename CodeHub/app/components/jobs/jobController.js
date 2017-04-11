@@ -1,6 +1,6 @@
 job.controller('jobController', ['jobFactory', 
-        '$timeout', '$cookies', '$routeParams', '$location', function(jobFactory, 
-        $timeout, $cookies, $routeParams, $location) {
+        '$timeout', '$cookies', '$routeParams', '$location', '$route', function(jobFactory, 
+        $timeout, $cookies, $routeParams, $location, $route) {
 
     var self = this;
 
@@ -73,6 +73,21 @@ job.controller('jobController', ['jobFactory',
                 },
                 function(errResponse) {
                     console.log('Failure!');
+                }
+            );
+    }
+
+     //Method to apply for job
+    self.applyJob = function(id) {
+          jobFactory.applyJob(id)
+            .then (
+                function(job) {
+                debugger;
+                 $route.reload();
+                 Materialize.toast('Applied for job successfully!', 3000);
+                 self.appliedFor.push(id);  
+                },
+                function(errResponse) {
                 }
             );
     }        

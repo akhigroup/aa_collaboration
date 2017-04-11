@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Component
 @Table(name="JOB_APPLIED")
@@ -32,6 +34,7 @@ public class JobApplied implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="Job_Id")
+	@JsonBackReference
 	private Job job;
 	
 	@Column(name="User_Id")

@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Component
 @Table(name="Event_Joined")
@@ -32,6 +34,7 @@ public class EventJoined implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="Event_Id")
+	@JsonBackReference
 	private Events events;
 	
 	@Column(name="User_Id")

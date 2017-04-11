@@ -16,6 +16,8 @@ import javax.persistence.SequenceGenerator;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Component
 public class Events implements Serializable {
@@ -54,6 +56,7 @@ public class Events implements Serializable {
 	private LocalDate postDate;
 	
 	@OneToMany(mappedBy="events", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<EventJoined> eventJoined;
 
 	public int getId() {
