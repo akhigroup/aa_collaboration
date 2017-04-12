@@ -7,6 +7,7 @@ import com.codehub.webapp.entity.Friends;
 public interface FriendsDAO {
 	
 	List<Friends> list();
+	List<Friends> list(int id);
 	List<Friends> list(String status);
 	Friends getFriend(int id);
 	boolean addFriend(Friends friends);

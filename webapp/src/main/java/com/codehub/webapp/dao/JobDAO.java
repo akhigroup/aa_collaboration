@@ -7,6 +7,7 @@ import com.codehub.webapp.entity.Job;
 public interface JobDAO {
 
 	List<Job> list();
+	List<Job> mainList();
 	List<Job> list(String status);
 	List<Job> getJobsByStatus(String status);
 	List<Job> getUserJobs(int id);

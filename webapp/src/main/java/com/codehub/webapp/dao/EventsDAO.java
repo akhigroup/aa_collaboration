@@ -7,6 +7,7 @@ import com.codehub.webapp.entity.Events;
 public interface EventsDAO {
 	
 	List<Events> list();
+	List<Events> mainList();
 	List<Events> getEventsByStatus(String status);
 	List<Events> getUserEvents(int id);
 	Events getEvent(int id);

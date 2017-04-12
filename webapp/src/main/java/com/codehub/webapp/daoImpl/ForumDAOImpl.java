@@ -67,4 +67,14 @@ public class ForumDAOImpl implements ForumDAO {
 		}
 	}
 
+	@Override
+	@Transactional
+	public List<Forum> mainList() {
+		String hql = "FROM Forum order by postDate";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setFirstResult(0);
+		query.setMaxResults(3); 
+		return query.list();
+	}
+
 }

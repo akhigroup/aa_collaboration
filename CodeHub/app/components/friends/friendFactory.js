@@ -9,6 +9,8 @@ friend.factory('friendFactory', ['$http', '$q',
 
         return {
             fetchUsers : fetchUsers,
+            sendRequest : sendRequest,
+            fetchRequest : fetchRequest
         };
 
         //Function to fetch users 
@@ -16,6 +18,40 @@ friend.factory('friendFactory', ['$http', '$q',
             var deferred = $q.defer();
 
             $http.get(url + '/users/list')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        //function to send friend request
+        function sendRequest(id) {
+            var deferred = $q.defer();
+
+            var initId = user.id
+            $http.post(url + '/user/friendRequest/' + id, initId)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        //function to fetch friend requests
+        function fetchRequest() {
+            var deferred = $q.defer();
+
+            var userId = user.id
+            $http.get(url + '/user/friendRequest/list/' + userId)
                 .then (
                     function(response) {
                         deferred.resolve(response.data);

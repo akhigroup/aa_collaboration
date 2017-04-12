@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codehub.webapp.dao.BlogDAO;
 import com.codehub.webapp.dao.EventsDAO;
 import com.codehub.webapp.dao.EventsJoinedDAO;
+import com.codehub.webapp.dao.ForumDAO;
 import com.codehub.webapp.dao.JobAppliedDAO;
 import com.codehub.webapp.dao.JobDAO;
 import com.codehub.webapp.dao.UserDAO;
 import com.codehub.webapp.entity.Blog;
+import com.codehub.webapp.entity.ContainModel;
 import com.codehub.webapp.entity.EventJoined;
 import com.codehub.webapp.entity.Events;
+import com.codehub.webapp.entity.Forum;
 import com.codehub.webapp.entity.Job;
 import com.codehub.webapp.entity.JobApplied;
 import com.codehub.webapp.entity.User;
@@ -45,7 +48,10 @@ public class UserController {
 	EventsJoinedDAO eventJoinedDAO;
 	
 	@Autowired
-	JobAppliedDAO jobAppliedDAO;  
+	JobAppliedDAO jobAppliedDAO;
+	
+	@Autowired
+	ForumDAO forumDAO;
 	
 	@RequestMapping(value = {"/register"}, method = RequestMethod.POST)
 	public ResponseEntity<User> createUser(@RequestBody User currentUser) {
@@ -153,6 +159,25 @@ public class UserController {
 		
 		return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
 	}
-
+	
+	
+	  	//function to fetch main page contain
+		@RequestMapping(value = {"/main/contain"}, method =  RequestMethod.GET)
+		public ResponseEntity<ContainModel> fetchContain() {
+			System.out.println("Fetching blogs");
+			ContainModel containModel = new ContainModel();
+			List<Blog> top5Blogs = blogDAO.mainList();
+			containModel.setTop5Blogs(top5Blogs);
+			
+			List<Forum> top3Forums = forumDAO.mainList();
+			containModel.setTop3Forums(top3Forums);
+			
+			List<Job> top3Jobs = jobDAO.mainList();
+			containModel.setTop3Jobs(top3Jobs);
+			
+			List<Events> top3Events = eventsDAO.mainList();
+			containModel.setTop3Events(top3Events);
+			return new ResponseEntity<ContainModel>(containModel, HttpStatus.OK);
+		}
 
 }

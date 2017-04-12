@@ -73,16 +73,17 @@
 
     <script type="text/javascript" src="assets/js/custom.js"></script>
 
-
 </head>
 
 <body ng-cloak class="ng-cloak">
-    <main>
+    <header>
 
     <div ng-include="'app/shared/navbar.html'"></div>
     <div ng-include="'app/shared/sidebar.html'"></div>
     <div ng-include="'app/shared/quicklinks.html'"></div>
+    </header>
      <!--Main Contain and injecting views -->
+    <main>
     <div id="main">
         
          <!-- angular templating -->
@@ -94,10 +95,12 @@
 
         
         </div>
-    
+    </main>
+    <footer>
     <div ng-include="'app/shared/footer.html'"></div>
+    </footer>
     </div>
-
+    </header>
     <!--Import jQuery before materialize.js-->
     
     </main>

@@ -17,6 +17,11 @@ friend.controller('friendController', [
 
     self.countUsers = {};
 
+    self.hasSentRequest = false;
+
+    //function to store list of friend requests
+    self.friendRequests = [];
+
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -43,6 +48,33 @@ friend.controller('friendController', [
                      debugger;
                      self.countUsers = self.userslist.length;
                 }, function (errResponse) {
+                }
+            );
+    }
+
+    //function to send friend request
+    self.sendRequest = function(id) {
+        debugger;
+        friendFactory.sendRequest(id)
+            .then (
+                function(friend) {
+                    // self.hasSentRequest = true;
+                     Materialize.toast('FriendRequest sent successfully!', 2000);
+                },function(errResponse) {
+
+                }
+            );
+    }
+
+    //function to fetch the friend list
+    self.fetchRequest = function() {
+        friendFactory.fetchRequest()
+            .then (
+                function(friendRequests) {
+                    debugger;
+                     self.friendRequests = friendRequests;
+                },function(errResponse) {
+
                 }
             );
     }

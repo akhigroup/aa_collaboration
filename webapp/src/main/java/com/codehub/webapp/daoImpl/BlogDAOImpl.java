@@ -27,6 +27,16 @@ public class BlogDAOImpl implements BlogDAO {
 	
 	@Override
 	@Transactional
+	public List<Blog> mainList() {
+		String hql = "FROM Blog order by noOfViews desc";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setFirstResult(0);
+		query.setMaxResults(5); 
+		return query.list();
+	}
+	
+	@Override
+	@Transactional
 	public List<Blog> getBlogsByStatus(String status) {
 		String hql = "FROM Blog where status = '" + status +"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);

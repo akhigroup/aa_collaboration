@@ -25,7 +25,14 @@ public class FriendsDAOImpl implements FriendsDAO{
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		return query.list();
 	}
-
+	
+	@Override
+	public List<Friends> list(int id) {
+		String hql = "FROM Friends where friendId = '" + id +"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
+	}
+	
 	@Override
 	public List<Friends> list(String status) {
 		String hql = "FROM Friends where status = '" + status +"'";
@@ -70,6 +77,8 @@ public class FriendsDAOImpl implements FriendsDAO{
 			return false;
 		}
 	}
+
+	
 	
 	
 

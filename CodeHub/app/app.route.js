@@ -208,6 +208,15 @@ window.routes = {
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
+     //For viewing list of friend request user has received
+    "/user/friendRequest": {
+         templateUrl : 'app/components/friends/friendRequests.html',
+        controller : 'friendController',
+        controllerAs : 'friendCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
     //For navigating to error page
     "/error": {
         templateUrl : 'app/components/authentication/error.html',

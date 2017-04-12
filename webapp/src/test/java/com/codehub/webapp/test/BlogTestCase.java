@@ -1,6 +1,7 @@
 package com.codehub.webapp.test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,39 +42,48 @@ public class BlogTestCase {
 		blogComments = (BlogComments) context.getBean("blogComments");
 	}
 	
-	@Test
-	public void addBlogTest() {
-		
-		blog.setId(101);
-		blog.setName("This is test");
-		blog.setStatus("PENDING");
-		//blog.setDescription("Test");
-		blog.setPostDate(LocalDate.parse("2007-02-10"));
-		blog.setNoOfLikes(100);
-		blog.setNoOfComments(50);
-		blog.setUserId(101);
-		blog.setUserName("Avadhoot");
-		
-		Assert.assertEquals(true, blogDAO.addBlog(blog));
-	}
+//	@Test
+//	public void addBlogTest() {
+//		
+//		blog.setId(101);
+//		blog.setName("This is test");
+//		blog.setStatus("PENDING");
+//		//blog.setDescription("Test");
+//		blog.setPostDate(LocalDate.parse("2007-02-10"));
+//		blog.setNoOfLikes(100);
+//		blog.setNoOfComments(50);
+//		blog.setUserId(101);
+//		blog.setUserName("Avadhoot");
+//		
+//		Assert.assertEquals(true, blogDAO.addBlog(blog));
+//	}
+//	
+//	@Test
+//	public void updateBlog() {
+//		blog = blogDAO.getBlog(1);
+//		blog.setStatus("APPROVED");
+//		Assert.assertEquals(true, blogDAO.updateBlog(blog));
+//	}
+//	
+//	@Test
+//	public void getAllBlogsTestCase() {
+//		
+//		int size = blogDAO.list().size();
+//		Assert.assertEquals(1, size);
+//	}
+//	
+//	@Test
+//	public void deleteBlog() {
+//		blog = blogDAO.getBlog(1);
+//		Assert.assertEquals(true, blogDAO.deleteBlog(blog));
+//	}
 	
 	@Test
-	public void updateBlog() {
-		blog = blogDAO.getBlog(1);
-		blog.setStatus("APPROVED");
-		Assert.assertEquals(true, blogDAO.updateBlog(blog));
-	}
-	
-	@Test
-	public void getAllBlogsTestCase() {
-		
-		int size = blogDAO.list().size();
-		Assert.assertEquals(1, size);
-	}
-	
-	@Test
-	public void deleteBlog() {
-		blog = blogDAO.getBlog(1);
-		Assert.assertEquals(true, blogDAO.deleteBlog(blog));
+	public void fetchBlogList() {
+		List<Blog> bloglist = blogDAO.mainList();
+		for(Blog b1 : bloglist) {
+			System.out.println(b1.getNoOfViews());
+		}
+		Assert.assertEquals(5, blogDAO.mainList().size());
 	}
 }

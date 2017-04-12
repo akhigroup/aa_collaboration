@@ -1,5 +1,4 @@
 <div ng-if="authenticated">
-  <header>
 <nav>
     <div class="nav-wrapper teal lighten-2">
 
@@ -69,7 +68,7 @@
 
               <!-- Dropdown Structure -->
               <ul id='new' class='dropdown-content' style="width: 230px;">
-                <li><a href="#!">Friend Requests<span class="new badge red">99</span></a></li>
+                <li><a href="#!/user/friendRequest">Friend Requests<span class="new badge red">99</span></a></li>
                 <li><a href="#!">Messages</a></li>
                 <li><a href="#!">Notifications<span class="new badge red">4</span></a></li>
                 
@@ -130,5 +129,5 @@
     <li ng-if="user.role == 'Super_Admin' || user.role == 'Admin' || user.role == 'Employer'"><a href="#!/event/new"><i class="material-icons">today</i>Create new Event</a></li>
     
   </ul>
-  </header> 
+
 </div>

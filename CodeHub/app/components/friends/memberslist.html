@@ -28,7 +28,8 @@
                             <p style="margin-top: 0px; margin-bottom: 0px;">{{user.birthDate | date : 'MMMM, d y'}}</p>
                             <p ng-if="user.gender == 'M'" style="margin-top: 0px; margin-bottom: 0px;">Male</p>
                             <p ng-if="user.gender == 'F'" style="margin-top: 0px; margin-bottom: 0px;">Female</p>
-                            <button class="teal darken-1 btn" >Add Friend</button>
+                            <button class="teal darken-1 btn" ng-click="friendCtrl.sendRequest(user.id)">Add Friend</button>
+                            <!--<button ng-if="!hasSentRequest" class="teal darken-1 btn disabled" ng-click="friendCtrl.sendRequest(user.id)">Add Friend</button>-->
                         </div>
                        
                     </div>

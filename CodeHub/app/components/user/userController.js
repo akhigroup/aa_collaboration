@@ -32,17 +32,7 @@ user.controller('userController',
     //Load user from cookie
     self.user = AuthenticationFactory.loadUserFromCookie();
 
-     // calling list of forums
-    self.forums = [];
-
-    //calling list of blogs
-    self.bloglist = [];
-
-    //array for job list
-    self.joblist = [];
-
-    //For fetching events
-    self.eventlist = [];
+    self.contain = [];
 
     //Fetching list of events created by user
     self.myEvents = [];
@@ -65,92 +55,21 @@ user.controller('userController',
         setting();
     }, 100);
 
-     //calling method in formfactory to fetch forums
-     ForumFactory.fetchForums().then(
-                        function(forums) {
-                            self.forums = forums;
-                            console.log(self.forums);
-                    }, function(errResponse) {
-                            console.log('Failure!');
-                        }
-                    );
 
-    //calling method in blogfactory to fetch blogs
-     blogFactory.bloglist()
-            .then (
-                function(blogs) {
-                    self.bloglist = blogs;
-                    for(var [blog] in self.bloglist) {
-                        // console.log(self.bloglist[blog].postDate);
-                        self.bloglist[blog].postDate = new Date(self.bloglist[blog].postDate[0],self.bloglist[blog].postDate[1] - 1,self.bloglist[blog].postDate[2]);
-                        // console.log(self.bloglist[blog].postDate);
-                    }
-                    console.log(self.bloglist.postDate);
-                },
-                function(errResponse) {
-                    console.log('Failure!');
-                }
-            );
-            
-
-
-    jobFactory.joblist()
-            .then (
-                function(jobs) {   
+    //fetching blogs, forum, jobs and events on the page
+    self.fetchContain = function () {
+        debugger;
+        console.log('Method called!');
+        userFactory.fetchContain()
+            .then(
+                function(data) {
                     debugger;
-                    self.joblist = jobs;
-                    for(var [job] in self.joblist) {
-                        // console.log(self.bloglist[blog].postDate);
-                        self.joblist[job].postDate = new Date(self.joblist[job].postDate[0],self.joblist[job].postDate[1] - 1,self.joblist[job].postDate[2]);
-                    }
-                    // console.log(self.joblist);
-                },
-                function(errResponse) {
-                    console.log('Failure!');
+                    self.contain = data;
+
+                }, function(errResponse) {
+
                 }
-            );
-
-        //calling the function in the event factory
-        eventFactory.eventlist()
-            .then (
-                function(events) {
-                    debugger;
-                    self.eventlist = events;
-                    
-                    for(var [events] in self.eventlist) {
-                        self.eventlist[events].postDate = new Date(self.eventlist[events].postDate[0],self.eventlist[events].postDate[1] - 1,self.eventlist[events].postDate[2]);
-                        console.log( self.eventlist[events].postDate)    
-                    }
-                     for(var [startDate] in self.eventlist) {
-                        self.eventlist[startDate].startDate = new Date(self.eventlist[startDate].startDate[0],self.eventlist[startDate].startDate[1] - 1,self.eventlist[startDate].startDate[2]);
-                    }
-                     for(var [endDate] in self.eventlist) {
-                        self.eventlist[endDate].endDate = new Date(self.eventlist[endDate].endDate[0],self.eventlist[endDate].endDate[1] - 1,self.eventlist[endDate].endDate[2]);
-                    }
-                },
-                function(errResponse) {
-                    console.log('Failure!');
-                }
-            );
-
-    
-    userEventList();
-
-     //calling method to fetch user's events
-     function userEventList() {
-    
-        var id = user.id;
-        userFactory.userEventList(id)
-                .then (
-                    function(events) {
-                        self.myEvents = events;
-                    },
-                    function(errResponse) {
-                        console.log('Failure!');
-                    }
-                );
-        
-
+            )
     }
 
     // to upload the file    

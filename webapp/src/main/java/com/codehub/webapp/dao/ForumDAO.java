@@ -7,6 +7,7 @@ import com.codehub.webapp.entity.Forum;
 public interface ForumDAO {
 
 	List<Forum> list();
+	List<Forum> mainList();
 	Forum getForum(int id);
 	boolean addForum(Forum forum);
 	boolean updateForum(Forum forum);
