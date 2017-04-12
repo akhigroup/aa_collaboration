@@ -60,7 +60,7 @@ public class EventController {
 		return new ResponseEntity<Events>(events, HttpStatus.OK);		
 	}
 	
-	//Method for fetching job list by status
+	//Method for fetching event list by status
 	@RequestMapping(value = {"/events/list/status"}, method = RequestMethod.GET)
 	public ResponseEntity<List<Events>> fetchApprovedEvents(String status) {
 		System.out.println("fetching list of events by status");
@@ -94,15 +94,5 @@ public class EventController {
 			return new ResponseEntity<EventJoined>(eventJoined, HttpStatus.OK);	
 		}
 	
-	//calling method to fetch events user applied for
-	@RequestMapping(value = {"/user/events/joined/{id}"}, method = RequestMethod.GET)
-	public ResponseEntity<List<Events>> fetchEventJoined(@PathVariable("id") int id) {
-			System.out.println("Fetching events user has joined");
-			List<EventJoined> eventJoined = eventJoinedDAO.list(id);
-			List<Events> events = new ArrayList<>();
-			for (EventJoined ej : eventJoined) {
-				events.add(ej.getEvents());
-			}
-			return new ResponseEntity<List<Events>>(events, HttpStatus.OK);
-		}
+
 }

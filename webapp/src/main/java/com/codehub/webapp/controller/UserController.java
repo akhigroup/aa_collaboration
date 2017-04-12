@@ -1,24 +1,51 @@
 package com.codehub.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codehub.webapp.dao.BlogDAO;
+import com.codehub.webapp.dao.EventsDAO;
+import com.codehub.webapp.dao.EventsJoinedDAO;
+import com.codehub.webapp.dao.JobAppliedDAO;
+import com.codehub.webapp.dao.JobDAO;
 import com.codehub.webapp.dao.UserDAO;
 import com.codehub.webapp.entity.Blog;
+import com.codehub.webapp.entity.EventJoined;
+import com.codehub.webapp.entity.Events;
+import com.codehub.webapp.entity.Job;
+import com.codehub.webapp.entity.JobApplied;
 import com.codehub.webapp.entity.User;
+import com.codehub.webapp.entity.UserModel;
 
 @RestController
 public class UserController {
 	
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	EventsDAO eventsDAO;
+	
+	@Autowired
+	JobDAO jobDAO;
+	
+	@Autowired
+	BlogDAO blogDAO;
+	
+	@Autowired
+	EventsJoinedDAO eventJoinedDAO;
+	
+	@Autowired
+	JobAppliedDAO jobAppliedDAO;  
 	
 	@RequestMapping(value = {"/register"}, method = RequestMethod.POST)
 	public ResponseEntity<User> createUser(@RequestBody User currentUser) {
@@ -84,6 +111,48 @@ public class UserController {
 			System.out.println(user);
 			return new ResponseEntity<List<User>>(user, HttpStatus.OK);
 		}
+	
+	 //function to fetch user and user detail
+	@RequestMapping(value = {"/user/{id}"}, method =  RequestMethod.GET)
+	public ResponseEntity<UserModel> fetchUser(@PathVariable("id") int id) {
+		
+		//Setting user inside model
+		UserModel userModel = new UserModel();
+		User user = userDAO.getUser(id);
+		userModel.setUser(user);
+		
+		//Setting list of events created by user inside model
+		List<Events> events = eventsDAO.getUserEvents(id);
+		userModel.setEvents(events);
+		
+		
+		//Setting list of jobs created by user inside model
+		List<Job> job = jobDAO.getUserJobs(id);
+		userModel.setJob(job);
+		
+		
+		//Settling list of blogs created by user inside model
+		List<Blog> blog = blogDAO.getUsersBlogs(id);
+		userModel.setBlog(blog);
+		
+		//Settling list of events user has joined inside model
+		List<EventJoined> eventJoined = eventJoinedDAO.list(id);
+		List<Events> joinedEvents = new ArrayList<>();
+		for (EventJoined ej : eventJoined) {
+			joinedEvents.add(ej.getEvents());
+		}
+		userModel.setJoinedEvents(joinedEvents);
+		
+		//Settling list of jobs user has applied for inside model
+		List<JobApplied> jobApplieds = jobAppliedDAO.list(id);
+		List<Job> appliedJobList = new ArrayList<>();
+		for (JobApplied ja : jobApplieds) {
+			appliedJobList.add(ja.getJob());
+		}
+		userModel.setAppliedJobList(appliedJobList);
+		
+		return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
+	}
 
 
 }

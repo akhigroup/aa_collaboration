@@ -49,7 +49,7 @@
                 <li><a href="#!/requests/forums">Forums</a></li>
                 <li><a href="#!/requests/jobs">Jobs</a></li>
                 <li><a href="#!/requests/events">Events</a></li>
-                <li><a href="#!/requests/users" >Users <span class="new badge red">10</span></a></li>
+                <li><a href="#!/requests/users" >Users <span class="new badge red">{{notifyUserCount}}</span></a></li>
                 
               </ul>
           </div>
@@ -86,7 +86,7 @@
           <!-- Dropdown Structure -->
               <ul id='profile' class='dropdown-content'  style="width: 100px; position: absolute; left: 11500px; width: 200px;">
                 <li><a href="#!" ><big>Logged in as:<big><br><small>{{user.username}}</small></a></li>
-                <li><a href="#!/user/profile">View Profile</a></li>
+                <li><a href="#!/user/profile/{{user.id}}">View Profile</a></li>
                 <li class="divider"></li>
                 <li><a href="#!"ng-click="logout()">Log Out</a></li>
                 

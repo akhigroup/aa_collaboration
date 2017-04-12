@@ -19,6 +19,8 @@ request.controller('requestController', ['requestFactory',
     //For pending events
     self.pendingEvents = [];
 
+    
+
       // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -37,8 +39,9 @@ request.controller('requestController', ['requestFactory',
                     for(var birthDate in self.pendingUsers) {
                         self.pendingUsers[birthDate].birthDate = new Date(self.pendingUsers[birthDate].birthDate[0],self.pendingUsers[birthDate].birthDate[1] - 1,self.pendingUsers[birthDate].birthDate[2]);
                     }
-                    self.countPendingUsers = self.pendingUser;
-                   
+                    console.log(self.pendingUsers); 
+                    console.log(self.pendingUsers.length);
+                    $rootScope.notifyUserCount = self.pendingUsers.length;                   
                 },
                 function(errResponse) {
                 }

@@ -1,12 +1,14 @@
-<div class="row" >
+<div class="row" ng-init="userCtrl.fetchUser()">
     
     <!--For quick preview of user on the left side-->
     <div class="col m3" style="margin-left: 25px; margin-bottom: 100px;">
 
         <!--User profile picture-->
         <div class="display-photo" style=" margin-top: 25px;">
-            <img ng-src="assets/img/{{userCtrl.user.profile}}" alt="" class="circle" width="200px;" height="200px" >
-                <button data-target="change-photo" class="change-photo" style="opacity: .5; width: 200px;">Change Photo</button>
+            
+            <img ng-src="assets/img/{{userCtrl.user.user.profile}}" alt="" class="circle" width="200px;" height="200px" ng-if="userCtrl.user.user.id != user.id" >
+            <img ng-src="assets/img/{{user.profile}}" alt="" class="circle" width="200px;" height="200px" ng-if="userCtrl.user.user.id == user.id" >
+                <button ng-if="userCtrl.user.user.id == user.id" data-target="change-photo" class="change-photo" style="opacity: .5; width: 200px;">Change Photo</button>
         
             <!-- Modal to change display picture -->
              <div id="change-photo" class="modal" style="width: 500px;">
@@ -14,7 +16,7 @@
                 <h4 style="margin-left: 90px;">Change avatar</h4>
                
                     <div style="margin-top: 10px;">
-                         <img ng-src="assets/img/{{userCtrl.user.profile}}" alt="" class="circle" width="200px;" height="200px" style="margin-left: 100px;">
+                         <img ng-src="assets/img/{{userCtrl.user.user.profile}}" alt="" class="circle" width="200px;" height="200px" style="margin-left: 100px;">
                           
                             <div class="file-field input-field">
                             <div class="btn">
@@ -37,17 +39,17 @@
         </div>
 
         <!--user's Basic info-->
-        <h4>{{user.firstname}} {{user.lastname}}</h4>
-        <h6>@ {{user.username}}</h6>
-        <p>{{user.emailId}}</p>
-        <p>{{user.birthDate | date : 'MMMM d, y'}}</p>
-        <p ng-if="user.gender == 'M'">Male</p>
-        <p ng-if="user.gender == 'F'">Female</p>
-        <p ng-if="user.role != 'User' && user.role != 'Super_Admin'">Role: {{user.role}}</p>
-        <p ng-if="user.role == 'Super_Admin'">Role: Super Admin</p>
+        <h4>{{userCtrl.user.user.firstname}} {{userCtrl.user.user.lastname}}</h4>
+        <h6>@ {{userCtrl.user.user.username}}</h6>
+        <p>{{userCtrl.user.user.emailId}}</p>
+        <p>{{userCtrl.user.user.birthDate | date : 'MMMM d, y'}}</p>
+        <p ng-if="userCtrl.user.user.gender == 'M'">Male</p>
+        <p ng-if="userCtrl.user.user.gender == 'F'">Female</p>
+        <p ng-if="userCtrl.user.user.role != 'User' && userCtrl.user.user.role != 'Super_Admin'">Role: {{userCtrl.user.user.role}}</p>
+        <p ng-if="userCtrl.user.user.role == 'Super_Admin'">Role: Super Admin</p>
 
         <!--For sending friend request and message-->
-        <div class="row">
+        <div class="row" ng-if="userCtrl.user.user.id != user.id">
             <div class="col m6">
                 <a class="waves-effect waves-light btn">BEFRIEND</a>
             </div>
@@ -118,17 +120,17 @@
             <!--User profile, jobs and events created will come here -->
             <div id="test1" class="col s12">
                 <div style="margin-top: 25px;">   
-                    <h5><i class="material-icons">person</i>  Basic Info :&nbsp; <small><a href="#">Click here to edit</a></small></h5> 
+                    <h5><i class="material-icons">person</i>  Basic Info :&nbsp; <small><a href="#" ng-if="userCtrl.user.user.id == user.id">Click here to edit</a></small></h5> 
                     <hr>
                     <div class="row">
                         <div class="col m6">
                             <div style="margin-left: 20px; margin-top: 20px;">
-                                <h6>Name: {{user.firstname}} {{user.lastname}}</h6>
-                                <h6>Username: {{user.username}}</h6>
-                                <h6>Birthdate: {{user.birthDate | date: 'MMMM d, y'}}</h6>
-                                <h6 ng-if="user.gender == 'M'">Gender: Male</h6>
-                                <h6 ng-if="user.gender == 'F'">Gender: Female</h6>
-                                <h6>Email Id: {{user.emailId}}</h6>
+                                <h6>Name: {{userCtrl.user.user.firstname}} {{userCtrl.user.user.lastname}}</h6>
+                                <h6>Username: {{userCtrl.user.user.username}}</h6>
+                                <h6>Birthdate: {{userCtrl.user.user.birthDate | date: 'MMMM d, y'}}</h6>
+                                <h6 ng-if="userCtrl.user.user.gender == 'M'">Gender: Male</h6>
+                                <h6 ng-if="userCtrl.user.user.gender == 'F'">Gender: Female</h6>
+                                <h6>Email Id: {{userCtrl.user.user.emailId}}</h6>
                                 <h6>Contact No: </h6>
                             </div>
                         </div>
@@ -138,7 +140,7 @@
                         </div>
                     </div>
 
-                    <h5><i class="material-icons">business_center</i> Professional Info :&nbsp; <small><a href="#">Click here to edit</a></small></h5>
+                    <h5><i class="material-icons">business_center</i> Professional Info :&nbsp; <small><a href="#" ng-if="userCtrl.user.user.id == user.id">Click here to edit</a></small></h5>
                     <hr>
 
                     <div class="row" >
@@ -155,14 +157,14 @@
                             
                         </div>
                     </div>
-                    <hr ng-if="user.role != 'User'">
-                    <hr ng-if="user.role == 'User'" style="margin-bottom: 50px;">
+                    <hr ng-if="userCtrl.user.user.role != 'User'">
+                    <div ng-if="userCtrl.user.user.role == 'User'" style="margin-bottom: 50px;"></div>
                     
                     <!-- Events created by user will come here-->
-                    <div ng-if="user.role != 'User'">
+                    <div ng-if="userCtrl.user.user.role != 'User'">
                     <h5><i class="material-icons">today</i> Events created :&nbsp; <small><a href="#">View all</a></small></h5>
                         <hr>
-                        <div class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.eventlist">
+                        <div class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.user.events">
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4 ">{{event.name}}</span>
                                 <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: 'MMMM d, y'}}</p><br>
@@ -190,7 +192,7 @@
                     <p>No jobs</p>
                     </div>-->
 
-                     <div class="card hoverable" style="width: inherit" ng-repeat="job in userCtrl.myjobs">
+                     <div class="card hoverable" style="width: inherit" ng-repeat="job in userCtrl.user.job">
             
                         <div class="card-content">
                             <h5><b>{{job.companyName}}</b></h5>
@@ -228,7 +230,7 @@
 
                     <div class="row">
                         <div class="col s12 m7">
-                        <div class="card hoverable" style="width: 800px;" ng-repeat="blogs in userCtrl.myblogs| orderBy : 'id'" >
+                        <div class="card hoverable" style="width: 800px;" ng-repeat="blogs in userCtrl.user.blog| orderBy : 'id'" >
                             <span class="card-title" style="margin-left: 10px;"><a href="#!/blog/{{blogs.id}}" style=" color: rgba(0, 0, 0, 0.87);">{{blogs.name}}</a></span>
                             <div class="card-content">
                             <p class="truncate">{{blogs.description}}</p>
@@ -258,20 +260,20 @@
             </div>
             
              <!--All Events joined by user will come here -->
-            <div id="test3" class="col s12" ng-init="userCtrl.fetchEventJoined()">
+            <div id="test3" class="col s12" >
                  <div  ng-if="userCtrl.joinedEventCount == 0" class="card hoverable" style="width: inherit; height: 500px;">
                      <div class="card-content" style="margin-left: 180px; ">
-                        <h5 style="margin-top: 150px;">You have not joined any events yet!</h5> 
-                          <a href="#!/events/list" type="submit" style="margin-left: 120px;" class="waves-effect waves-light btn-large center-align">SEARCH FOR EVENTS</a>
+                          <h5 ng-if="userCtrl.user.user.id != user.id"style="margin-top: 150px;">{{userCtrl.user.user.username}} has not joined any events yet!</h5> 
+                        <h5 ng-if="userCtrl.user.user.id == user.id"style="margin-top: 150px;">You have not joined any events yet!</h5> 
+                          <a ng-if="userCtrl.user.user.id == user.id" href="#!/events/list" type="submit" style="margin-left: 120px;" class="waves-effect waves-light btn-large center-align">SEARCH FOR EVENTS</a>
                      </div>
                 </div>
 
-                 <div ng-if="userCtrl.joinedEventCount != 0" class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.eventsJoinedList">
+                 <div ng-if="userCtrl.joinedEventCount != 0" class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.user.joinedEvents">
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4 ">{{event.name}}</span>
-                        <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: short}}</p><br>
+                        <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: 'MMMM, d y'}}</p><br>
                         <p>{{event.description}}</p>
-                        <a ng-click="userCtrl.joinEvent(event.id);" class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
                         <br>
                         <div class="row">
                         <div class="col m6">
@@ -279,8 +281,8 @@
                             <p>{{event.venue}}</p>
                         </div>
                         <div class="col m6">
-                            <p><b>Start Date</b> {{event.startDate | date: short}}</p>
-                            <p><b>End Date</b> {{event.endDate | date: short}}</p>
+                            <p><b>Start Date</b> {{event.startDate | date: 'MMMM, d y'}}</p>
+                            <p><b>End Date</b> {{event.endDate | date: 'MMMM, d y'}}</p>
                         </div>
                         </div>
                     </div>
@@ -299,20 +301,20 @@
             </div>
             
              <!--All jobs applied by user will come here -->
-            <div id="test4" class="col s12" ng-init="userCtrl.fetchJobsApplied()">
+            <div id="test4" class="col s12" >
                 <div ng-if="userCtrl.appliedJobCount == 0" class="card hoverable" style="width: inherit; height: 500px;">
                      <div class="card-content" style="margin-left: 180px; ">
-                        <h5 style="margin-top: 150px;">You have not applied for any jobs yet!</h5> 
-                          <a href="#!/jobs/list" type="submit" style="margin-left: 150px;" class="waves-effect waves-light btn-large center-align">SEARCH FOR JOBS</a>
+                         <h5 style="margin-top: 150px;" ng-if="userCtrl.user.user.id != user.id">{{userCtrl.user.user.username}} has not applied for any jobs yet!</h5> 
+                        <h5 style="margin-top: 150px;" ng-if="userCtrl.user.user.id == user.id">You have not applied for any jobs yet!</h5> 
+                          <a ng-if="userCtrl.user.user.id == user.id" href="#!/jobs/list" type="submit" style="margin-left: 150px;" class="waves-effect waves-light btn-large center-align">SEARCH FOR JOBS</a>
                      </div>
                 </div>
-                 <div ng-if="userCtrl.appliedJobCount != 0" class="card hoverable" style="width: inherit" ng-repeat="job in userCtrl.jobsApplied">
+                 <div ng-if="userCtrl.appliedJobCount != 0" class="card hoverable" style="width: inherit" ng-repeat="job in userCtrl.user.appliedJobList">
                         <div class="card-content">
                             <h5><b>{{job.companyName}}</b></h5>
                             <h6>{{job.subTitle}}</h6>
                             <b>About The Company</b>
                             <p>{{job.about}}</p>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
                         </div>
                          <hr>
                             <div class="row">

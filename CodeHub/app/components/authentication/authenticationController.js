@@ -13,6 +13,7 @@ function(AuthenticationFactory, $rootScope, $location, $timeout, $scope, $route)
     self.credentials = {};
     self.error = false;
     self.authError = false;
+
     //flag to display whether the username exist or not
     self.usernameExist = false;
 

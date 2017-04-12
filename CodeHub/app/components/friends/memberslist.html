@@ -23,7 +23,7 @@
                              <img src="assets/img/{{user.profile}}" alt="" class="circle" width="120px;" height="120px;">
                         </div>
                         <div class="col s8 offset-s1" style="margin-top: 10px; margin-bottom: 10px;">
-                            <b>{{user.firstname}} {{user.lastname}}</b>
+                            <b><a href="#!/user/profile/{{user.id}}" style="color: #000;">{{user.firstname}} {{user.lastname}}</a></b>
                             <p style="margin-top: 0px; margin-bottom: 0px;">{{user.username}}</p>
                             <p style="margin-top: 0px; margin-bottom: 0px;">{{user.birthDate | date : 'MMMM, d y'}}</p>
                             <p ng-if="user.gender == 'M'" style="margin-top: 0px; margin-bottom: 0px;">Male</p>

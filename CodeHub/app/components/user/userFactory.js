@@ -24,49 +24,10 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
         var url = 'http://localhost:7070/webapp';
         
         return {
-            userBlogList : userBlogList,
-            userJobList : userJobList,
             userEventList : userEventList,
             uploadFile : uploadFile,
-            fetchJobsApplied : fetchJobsApplied,
-            fetchEventJoined : fetchEventJoined
+            fetchUser : fetchUser
         };
-
-         //Function to fetch userblog list
-         
-         function userBlogList(id) {
-            console.log('Inside factory now');
-            var deferred = $q.defer();
-
-            $http.get(url + '/user/blogs/list/'+ id)
-                .then (
-                    function(response) {
-                        deferred.resolve(response.data);
-                    },
-                    function(errResponse) {
-                        deferred.reject(errResponse);
-                    }
-                );
-                return deferred.promise;
-        }
-
-        //Function to fetch jobs user has created
-         
-         function userJobList(id) {
-            console.log('Inside factory now');
-            var deferred = $q.defer();
-
-            $http.get(url + '/user/jobs/list/'+ id)
-                .then (
-                    function(response) {
-                        deferred.resolve(response.data);
-                    },
-                    function(errResponse) {
-                        deferred.reject(errResponse);
-                    }
-                );
-                return deferred.promise;
-        }
 
          //Function to fetch user event list
          
@@ -108,12 +69,12 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
             );
         return deferred.promise;
         }
-    
-        //funcion to fetch jobs applied
-        function fetchJobsApplied(id) {
+
+        //function to fetch user and user detail
+        function fetchUser(id) {
              var deferred = $q.defer();
 
-              $http.get(url + '/user/jobs/applied/'+ id)
+              $http.get(url + '/user/'+ id)
                 .then (
                     function(response) {
                         deferred.resolve(response.data);
@@ -126,22 +87,6 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
 
         }
 
-         //calling method to fetch events user applied for
-        function fetchEventJoined(id) {
-             var deferred = $q.defer();
-
-              $http.get(url + '/user/events/joined/'+ id)
-                .then (
-                    function(response) {
-                        deferred.resolve(response.data);
-                    },
-                    function(errResponse) {
-                        deferred.reject(errResponse);
-                    }
-                );
-                return deferred.promise;
-
-        }
     
     }
 ])

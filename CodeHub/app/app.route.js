@@ -19,7 +19,7 @@ window.routes = {
     },
 
     //For user's profile
-     "/user/profile": {
+     "/user/profile/:id": {
         templateUrl : 'app/components/user/userProfile.html',
         controller : 'userController',
         controllerAs : 'userCtrl',
