@@ -10,14 +10,19 @@ friend.factory('friendFactory', ['$http', '$q',
         return {
             fetchUsers : fetchUsers,
             sendRequest : sendRequest,
-            fetchRequest : fetchRequest
+            fetchRequest : fetchRequest,
+            approveRequest : approveRequest,
+            checkUsersFriends : checkUsersFriends
         };
 
         //Function to fetch users 
         function fetchUsers() {
+            debugger;
             var deferred = $q.defer();
 
-            $http.get(url + '/users/list')
+            var userId = user.id;
+
+            $http.get(url + '/user/friends/model/' + userId)
                 .then (
                     function(response) {
                         deferred.resolve(response.data);
@@ -63,6 +68,40 @@ friend.factory('friendFactory', ['$http', '$q',
                 return deferred.promise;
         }
 
+        //function to approve friend request
+        function approveRequest(id) {
+            debugger;
+            var deferred = $q.defer();
+
+            var userId = user.id
+            $http.post(url + '/user/friendRequest/approve/' + id, userId)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        //Function to check user's friends
+        function checkUsersFriends() {
+             var deferred = $q.defer();
+
+            var userId = user.id
+            $http.get(url + '/user/friends/check/' + userId)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
     
 
 }])

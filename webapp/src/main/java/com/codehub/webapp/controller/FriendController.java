@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codehub.webapp.dao.FriendsDAO;
@@ -17,6 +18,7 @@ import com.codehub.webapp.dao.UserDAO;
 import com.codehub.webapp.entity.Blog;
 import com.codehub.webapp.entity.Forum;
 import com.codehub.webapp.entity.ForumRequest;
+import com.codehub.webapp.entity.FriendModel;
 import com.codehub.webapp.entity.Friends;
 import com.codehub.webapp.entity.User;
 
@@ -49,10 +51,46 @@ public class FriendController {
 				List<Friends> friends = friendsDAO.list(userId);
 				List<User> users = new ArrayList<>();
 				for(Friends fr : friends) {
-					User user = userDAO.getUser(fr.getInitiatorId());
-					users.add(user);
+					if(fr.getStatus().equals("PENDING")) {
+						User user = userDAO.getUser(fr.getInitiatorId());
+						users.add(user);
+					}
 				}
 				return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 			}
+		
+		//Method to fetch friend requests
+				@RequestMapping(value = {"/user/friendRequest/approve/{id}"}, method = RequestMethod.POST)
+				public ResponseEntity<Friends> approveRequest(@PathVariable("id") int id, @RequestBody Integer userId) {
+						System.out.println("Fetchng list of friend request received");
+						List<Friends> friends = friendsDAO.list(userId);
+						List<User> users = new ArrayList<>();
+						for(Friends fr : friends) {
+							if(fr.getInitiatorId() == id) {
+								fr.setStatus("APPROVED");
+								friendsDAO.updateFriend(fr);
+							}
+						}
+						return new ResponseEntity<Friends>(HttpStatus.OK);
+					}
+		
+				//Method to check user's friends
+//				@RequestMapping(value = {"/user/friends/check/{id}"}, method = RequestMethod.GET)
+//				public ResponseEntity<List<Friends>> fetchFriends(@PathVariable("id") int userId) {
+//						System.out.println("Fetchng friends");
+//						List<Friends> friends = friendsDAO.list(userId);
+//						
+//						return new ResponseEntity<List<Friends>>(friends, HttpStatus.OK);
+//					}
+				
+				//Method to fetch friendsModel
+				@RequestMapping(value = {"/user/friends/model/{id}"}, method = RequestMethod.GET)
+				public ResponseEntity<List<User>> users(@PathVariable("id") int userId) {
+						System.out.println("Fetchng friends");
+						List<User> users = friendsDAO.noFriends(userId);  
+						return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+					}
+				
+				
 	
 }

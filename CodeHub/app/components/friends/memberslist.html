@@ -1,4 +1,4 @@
-<div style="margin: 25px; margin-left: 20px; margin-bottom: 250px;" ng-init="friendCtrl.fetchusers()">
+<div style="margin: 25px; margin-left: 20px; margin-bottom: 250px;" ng-init="friendCtrl.fetchusers();">
     <h5>LOOK FOR NEW PEOPLE TO BEFRIEND</h5>Currently active users {{friendCtrl.countUsers}}
     <hr>
      <!-- Search bar comes here -->
@@ -13,11 +13,11 @@
     </div>
     <!-- List of all site's members will come here-->
     <div>
-        <div class="row">
+        <div class="row" >
             
-            <div class="col s4" ng-repeat="user in friendCtrl.userslist">
+            <div class="col s4" ng-repeat="user in friendCtrl.userslist" >
 
-                <div class="card" >
+                <div class="card">
                     <div class="row">
                         <div class="col s3" style="margin-top: 10px;">
                              <img src="assets/img/{{user.profile}}" alt="" class="circle" width="120px;" height="120px;">
@@ -28,8 +28,8 @@
                             <p style="margin-top: 0px; margin-bottom: 0px;">{{user.birthDate | date : 'MMMM, d y'}}</p>
                             <p ng-if="user.gender == 'M'" style="margin-top: 0px; margin-bottom: 0px;">Male</p>
                             <p ng-if="user.gender == 'F'" style="margin-top: 0px; margin-bottom: 0px;">Female</p>
-                            <button class="teal darken-1 btn" ng-click="friendCtrl.sendRequest(user.id)">Add Friend</button>
-                            <!--<button ng-if="!hasSentRequest" class="teal darken-1 btn disabled" ng-click="friendCtrl.sendRequest(user.id)">Add Friend</button>-->
+                            <button ng-if="!friendCtrl.hasSentRequest" class="teal darken-1 btn" ng-click="friendCtrl.sendRequest(user.id)">Add Friend</button>
+                            <button ng-if="friendCtrl.hasSentRequest" class="teal darken-1 btn disabled" ng-click="friendCtrl.sendRequest(user.id)">Add Friend</button>
                         </div>
                        
                     </div>

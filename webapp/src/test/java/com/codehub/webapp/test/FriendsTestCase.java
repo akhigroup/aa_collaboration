@@ -1,19 +1,14 @@
 package com.codehub.webapp.test;
 
-import static org.junit.Assert.*;
-
-import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.codehub.webapp.dao.BlogCommentDAO;
-import com.codehub.webapp.dao.BlogDAO;
 import com.codehub.webapp.dao.FriendsDAO;
-import com.codehub.webapp.entity.Blog;
-import com.codehub.webapp.entity.BlogComments;
 import com.codehub.webapp.entity.Friends;
+import com.codehub.webapp.entity.User;
 
 import junit.framework.Assert;
 
@@ -62,9 +57,18 @@ public class FriendsTestCase {
 //		Assert.assertEquals(1, size);
 //	}
 	
+//	@Test
+//	public void deleteFriend() {
+//		friends = friendsDAO.getFriend(1);
+//		Assert.assertEquals(true, friendsDAO.deleteFriend(friends));
+//	}
+	
+	
 	@Test
-	public void deleteFriend() {
-		friends = friendsDAO.getFriend(1);
-		Assert.assertEquals(true, friendsDAO.deleteFriend(friends));
+	public void testNoFriends() {
+		List<User> users = friendsDAO.noFriends(29);
+		Assert.assertEquals("Test failed!", 7, users.size());
 	}
+	
+	
 }

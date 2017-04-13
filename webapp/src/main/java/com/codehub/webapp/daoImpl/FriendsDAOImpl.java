@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.codehub.webapp.dao.FriendsDAO;
 import com.codehub.webapp.entity.Blog;
 import com.codehub.webapp.entity.Friends;
+import com.codehub.webapp.entity.User;
 
 @Repository("friendsDAO")
 @Transactional
@@ -28,10 +29,14 @@ public class FriendsDAOImpl implements FriendsDAO{
 	
 	@Override
 	public List<Friends> list(int id) {
-		String hql = "FROM Friends where friendId = '" + id +"'";
+		String hql = "FROM Friends where friendId = :id OR initiatorId =:id";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setParameter("id", id);
 		return query.list();
 	}
+	
+	
+	
 	
 	@Override
 	public List<Friends> list(String status) {
@@ -76,6 +81,18 @@ public class FriendsDAOImpl implements FriendsDAO{
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public List<User> noFriends(int id) {
+		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID NOT IN (SELECT INITIATOR_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id UNION SELECT FRIEND_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id)";
+		
+		return sessionFactory
+				.getCurrentSession()
+					.createNativeQuery(selectQuery,User.class)
+						.setParameter("id", id)
+							.getResultList();
+		
 	}
 
 	
