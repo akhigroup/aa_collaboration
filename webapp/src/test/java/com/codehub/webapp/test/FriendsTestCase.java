@@ -64,10 +64,16 @@ public class FriendsTestCase {
 //	}
 	
 	
+//	@Test
+//	public void testNoFriends() {
+//		List<User> users = friendsDAO.noFriends(29);
+//		Assert.assertEquals("Test failed!", 7, users.size());
+//	}
+	
 	@Test
-	public void testNoFriends() {
-		List<User> users = friendsDAO.noFriends(29);
-		Assert.assertEquals("Test failed!", 7, users.size());
+	public void testMyFriends() {
+		List<User> users = friendsDAO.myFriends(30);
+		Assert.assertEquals("Test failed!", 3, users.size());
 	}
 	
 	

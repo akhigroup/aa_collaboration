@@ -59,45 +59,23 @@
         </div>
 
         <!--User's Friendlist is shown here-->
-         <div style="margin-top: 20px;">
+         <div style="margin-top: 20px;" ng-init="userCtrl.fetchMyFriends()">
              <div class="row">
                 <div class="col m8">
-                    <span class="card-title right-align">Friends (Total 14000)<a></a></span>
+                    <span class="card-title right-align">Friends (Total {{userCtrl.friendsCount}})<a></a></span>
                 </div>
                 <div class="col m4">
                     <a href="#">View All</a>
                 </div>
              </div>
             <ul class="collection">
-            <li class="collection-item avatar">
-                <img src="assets/img/noDp.png" alt="" class="circle">
-                <span>FRIEND 1</span>
+            <li class="collection-item avatar" ng-repeat="friend in userCtrl.myFriends">
+                <img src="assets/img/{{friend.profile}}" alt="" class="circle">
+                <span>{{friend.username}}</span>
                 <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
             </li>
 
-            <li class="collection-item avatar">
-                <img src="assets/img/noDp.png" alt="" class="circle">
-                <span>FRIEND 2</span>
-                <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
-            </li>
-
-            <li class="collection-item avatar">
-                <img src="assets/img/noDp.png" alt="" class="circle">
-                <span>FRIEND 3</span>
-                <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
-            </li>
-
-            <li class="collection-item avatar">
-                <img src="assets/img/noDp.png" alt="" class="circle">
-                <span>FRIEND 4</span>
-                <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
-            </li>
-
-            <li class="collection-item avatar">
-                <img src="assets/img/noDp.png" alt="" class="circle">
-                <span>FRIEND 5</span>
-                <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
-            </li>
+           
             </ul>
          </div>
         

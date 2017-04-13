@@ -16,6 +16,7 @@ import com.codehub.webapp.dao.BlogDAO;
 import com.codehub.webapp.dao.EventsDAO;
 import com.codehub.webapp.dao.EventsJoinedDAO;
 import com.codehub.webapp.dao.ForumDAO;
+import com.codehub.webapp.dao.FriendsDAO;
 import com.codehub.webapp.dao.JobAppliedDAO;
 import com.codehub.webapp.dao.JobDAO;
 import com.codehub.webapp.dao.UserDAO;
@@ -24,6 +25,7 @@ import com.codehub.webapp.entity.ContainModel;
 import com.codehub.webapp.entity.EventJoined;
 import com.codehub.webapp.entity.Events;
 import com.codehub.webapp.entity.Forum;
+import com.codehub.webapp.entity.Friends;
 import com.codehub.webapp.entity.Job;
 import com.codehub.webapp.entity.JobApplied;
 import com.codehub.webapp.entity.User;
@@ -52,6 +54,9 @@ public class UserController {
 	
 	@Autowired
 	ForumDAO forumDAO;
+	
+	@Autowired
+	FriendsDAO friendsDAO;
 	
 	@RequestMapping(value = {"/register"}, method = RequestMethod.POST)
 	public ResponseEntity<User> createUser(@RequestBody User currentUser) {
@@ -156,6 +161,8 @@ public class UserController {
 			appliedJobList.add(ja.getJob());
 		}
 		userModel.setAppliedJobList(appliedJobList);
+		
+		//Setting list of user's friends
 		
 		return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
 	}

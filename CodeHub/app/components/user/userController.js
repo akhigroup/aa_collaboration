@@ -50,6 +50,11 @@ user.controller('userController',
     self.joinedEventCount = [];
 
     self.user = [];
+
+    self.myFriends = [];
+
+    self.friendsCount = [];
+    
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -58,7 +63,7 @@ user.controller('userController',
 
     //fetching blogs, forum, jobs and events on the page
     self.fetchContain = function () {
-        debugger;
+        
         console.log('Method called!');
         userFactory.fetchContain()
             .then(
@@ -81,7 +86,7 @@ user.controller('userController',
         userFactory.uploadFile(self.picture)
         .then(
             function(response){
-                debugger;
+               
                 $rootScope.message = 'Profile picture updated successfully!';
                 self.user.profile = response.message + '?decached=' + Math.random();
                 // update the controller user too
@@ -123,7 +128,7 @@ user.controller('userController',
           eventFactory.joinEvent(id)
             .then (
                 function(event) {
-                debugger;
+                
                  $route.reload();
                  Materialize.toast('Event joined successfully!', 3000);
                  self.appliedFor.push(id);  
@@ -135,12 +140,12 @@ user.controller('userController',
 
      //function to fetch user and user detail
      self.fetchUser = function() {
-         debugger;
+        
          var id = $routeParams.id;
           userFactory.fetchUser(id)
                 .then (
                     function(user) {
-                        debugger;
+                       
                         self.user = user;
                         self.user.user.birthDate = new Date( self.user.user.birthDate[0], self.user.user.birthDate[1] - 1, self.user.user.birthDate[2]);
 
@@ -172,6 +177,21 @@ user.controller('userController',
                         
                     }
                 );
+     }
+
+     self.fetchMyFriends = function() {
+         debugger;
+          userFactory.fetchMyFriends()
+            .then (
+                function(myFriends) {
+                debugger;
+                 self.myFriends =  myFriends;
+                 self.friendsCount =  self.myFriends.length;
+                },
+                function(errResponse) {
+                }
+            );
+
      }
 
 

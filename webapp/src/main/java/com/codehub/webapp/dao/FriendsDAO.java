@@ -15,5 +15,6 @@ public interface FriendsDAO {
 	boolean updateFriend(Friends friends);
 	boolean deleteFriend(Friends friends);
 	List<User> noFriends(int id);
+	List<User> myFriends(int id);
 
 }

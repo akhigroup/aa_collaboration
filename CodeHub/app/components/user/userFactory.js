@@ -27,7 +27,8 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
             userEventList : userEventList,
             uploadFile : uploadFile,
             fetchUser : fetchUser,
-            fetchContain : fetchContain
+            fetchContain : fetchContain,
+            fetchMyFriends : fetchMyFriends
         };
 
          //Function to fetch user event list
@@ -93,6 +94,23 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
              var deferred = $q.defer();
 
               $http.get(url + '/main/contain')
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        //function to fetch user's friends
+        function fetchMyFriends() {
+             var deferred = $q.defer();
+
+             var userId = user.id;
+              $http.get(url + '/my/friends/' + userId)
                 .then (
                     function(response) {
                         deferred.resolve(response.data);

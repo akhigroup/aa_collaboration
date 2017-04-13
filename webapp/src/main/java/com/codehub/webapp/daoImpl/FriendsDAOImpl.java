@@ -29,7 +29,7 @@ public class FriendsDAOImpl implements FriendsDAO{
 	
 	@Override
 	public List<Friends> list(int id) {
-		String hql = "FROM Friends where friendId = :id OR initiatorId =:id";
+		String hql = "FROM Friends where friendId = :id ";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setParameter("id", id);
 		return query.list();
@@ -93,6 +93,16 @@ public class FriendsDAOImpl implements FriendsDAO{
 						.setParameter("id", id)
 							.getResultList();
 		
+	}
+
+	@Override
+	public List<User> myFriends(int id) {
+		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID IN (SELECT INITIATOR_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id AND STATUS = 'APPROVED' UNION SELECT FRIEND_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id AND STATUS = 'APPROVED')";
+		return sessionFactory
+				.getCurrentSession()
+					.createNativeQuery(selectQuery,User.class)
+						.setParameter("id", id)
+							.getResultList();
 	}
 
 	

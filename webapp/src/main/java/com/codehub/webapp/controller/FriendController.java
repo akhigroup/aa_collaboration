@@ -91,6 +91,21 @@ public class FriendController {
 						return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 					}
 				
+				//function to fetch user's friends
+				@RequestMapping(value = {"/my/friends/{id}"}, method = RequestMethod.GET)
+				public ResponseEntity<List<User>> fetchMyFriends(@PathVariable("id") int userId) {
+						System.out.println("Fetchng friends");
+						List<User> users = friendsDAO.myFriends(userId);
+						List<User> myFriends = new ArrayList<>();
+						for(User user1 : users) {
+							if(user1.getId() != userId) {
+								myFriends.add(user1);
+							}
+						}
+						System.out.println("Successfully fetch friends");
+						return new ResponseEntity<List<User>>(myFriends, HttpStatus.OK);
+					}
+				
 				
 	
 }

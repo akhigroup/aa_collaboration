@@ -25,6 +25,9 @@ friend.controller('friendController', [
 
     self.myFriends = [];
 
+    //TO count number of friend request
+    self.friendRequestsCount =[]
+
      // calling jQuery once controller has loaded
     $timeout(function () {
         setting();
@@ -73,8 +76,8 @@ friend.controller('friendController', [
         friendFactory.fetchRequest()
             .then (
                 function(friendRequests) {
-        
                      self.friendRequests = friendRequests;
+                     self.friendRequestsCount = self.friendRequests.length;
                 },function(errResponse) {
 
                 }

@@ -15,6 +15,8 @@ public class UserModel {
 	private List<Events> joinedEvents;
 	
 	private List<Job> appliedJobList;
+	
+	private List<User> myFriends;
 
 	public User getUser() {
 		return user;
@@ -64,8 +66,17 @@ public class UserModel {
 		this.appliedJobList = appliedJobList;
 	}
 
-	
+	public List<User> getMyFriends() {
+		return myFriends;
+	}
 
+	public void setMyFriends(List<User> myFriends) {
+		this.myFriends = myFriends;
+	}
+
+	
+	
+	
 	
 	
 	
