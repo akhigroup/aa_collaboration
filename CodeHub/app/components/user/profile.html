@@ -7,7 +7,7 @@
     <div  style="width: 900px; margin-left: 50px">
       <form>
         <div class="input-field item-search">
-          <input id="search" type="search" required style="display: inline" placeholder="Search for blogs, forums, events and jobs">
+          <input id="search" type="search" required style="display: inline" placeholder="Search for blogs, forums, events and jobs" ng-model="containSearch">
                   <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                   <i class="material-icons" >close</i>
         </div>
@@ -31,7 +31,7 @@
     <!-- All blogs will come here -->
     <div id="blogs" class="col s12" style="margin-top: 10px;">
 
-      <div class="row" ng-repeat="blogs in userCtrl.contain.top5Blogs">
+      <div class="row" ng-repeat="blogs in userCtrl.contain.top5Blogs | filter : containSearch">
         <div class="col s12 m7">
           <div class="card hoverable" style="width: 800px;">
             <span class="card-title" style="margin-left: 10px;"><a href="#!/blog/{{blogs.id}}" style=" color: rgba(0, 0, 0, 0.87);">{{blogs.name}}</a></span>
@@ -58,7 +58,7 @@
 
        <div class="row">
                 <div class="col s12 m7">
-                    <div class="card hoverable" style="width: 800px;" ng-repeat="forums in userCtrl.contain.top3Forums">
+                    <div class="card hoverable" style="width: 800px;" ng-repeat="forums in userCtrl.contain.top3Forums | filter : containSearch">
                         <span class="card-title" style="margin-left: 10px;"><a ng-href="#!/forum/{{forums.id}}" style=" color: rgba(0, 0, 0, 0.87);">{{forums.name}}</a></span>
                         <div class="card-content">
                         <p>{{forums.description}}</p>
@@ -73,7 +73,7 @@
     <!-- All jobs will come here -->
     <div id="jobs" class="col s12">
             
-            <div class="card hoverable" style="width: inherit" ng-repeat="job in userCtrl.contain.top3Jobs">
+            <div class="card hoverable" style="width: inherit" ng-repeat="job in userCtrl.contain.top3Jobs | filter : containSearch">
             
               <div class="card-content">
                 <h5><b>{{job.companyName}}</b></h5>
@@ -116,7 +116,7 @@
       <!-- All events will come here -->
       <div id="events" class="col s12">
 
-        <div class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.contain.top3Events">
+        <div class="card hoverable" style="width: inherit;" ng-repeat="event in userCtrl.contain.top3Events | filter : containSearch">
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4 ">{{event.name}}</span>
                     <p style="font-size: 13px;">Organised by {{event.username}} | {{event.postDate | date: short}}</p><br>

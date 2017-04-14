@@ -59,9 +59,11 @@ friend.controller('friendController', [
 
     //function to send friend request
     self.sendRequest = function(id) {
+        debugger;
         friendFactory.sendRequest(id)
             .then (
                 function(friend) {
+                    debugger;
                     $route.reload();
                     // self.hasSentRequest = true;
                      Materialize.toast('FriendRequest sent successfully!', 2000);

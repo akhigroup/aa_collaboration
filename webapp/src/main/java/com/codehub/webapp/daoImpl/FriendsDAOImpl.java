@@ -85,7 +85,7 @@ public class FriendsDAOImpl implements FriendsDAO{
 
 	@Override
 	public List<User> noFriends(int id) {
-		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID NOT IN (SELECT INITIATOR_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id UNION SELECT FRIEND_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id)";
+		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID NOT IN (SELECT INITIATOR_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id UNION SELECT FRIEND_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id) AND STATUS = 'APPROVED'";
 		
 		return sessionFactory
 				.getCurrentSession()
@@ -97,7 +97,7 @@ public class FriendsDAOImpl implements FriendsDAO{
 
 	@Override
 	public List<User> myFriends(int id) {
-		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID IN (SELECT INITIATOR_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id AND STATUS = 'APPROVED' UNION SELECT FRIEND_ID FROM FRIENDS WHERE FRIEND_ID = :id OR INITIATOR_ID = :id AND STATUS = 'APPROVED')";
+		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID IN (SELECT INITIATOR_ID FROM FRIENDS WHERE (FRIEND_ID = :id OR INITIATOR_ID = :id) AND STATUS = 'APPROVED' UNION SELECT FRIEND_ID FROM FRIENDS WHERE (FRIEND_ID = :id OR INITIATOR_ID = :id) AND STATUS = 'APPROVED')";
 		return sessionFactory
 				.getCurrentSession()
 					.createNativeQuery(selectQuery,User.class)
