@@ -68,10 +68,16 @@ public class UserTestCase {
 //		Assert.assertEquals(true, userDAO.deleteUser(user));
 //	}
 //	
+//	@Test
+//	public void getAllUserTestCase() {
+//		
+//		int size = userDAO.list("APPROVED").size();
+//		Assert.assertEquals(9, size);
+//	}
+	
 	@Test
-	public void getAllUserTestCase() {
-		
-		int size = userDAO.list("APPROVED").size();
-		Assert.assertEquals(9, size);
+	public void testMyOnlineFriends() {
+		List<User> users = userDAO.fetchOnlineFriends(29);
+		Assert.assertEquals("Test failed!", 2, users.size());
 	}
 }

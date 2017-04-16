@@ -12,6 +12,7 @@ import com.codehub.webapp.config.CORSFilter;
 import com.codehub.webapp.config.EmailConfig;
 import com.codehub.webapp.config.HibernateConfig;
 import com.codehub.webapp.config.MvcConfig;
+import com.codehub.webapp.config.WebSocketConfig;
 
 public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
 	
@@ -19,7 +20,7 @@ public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispat
 
 	 @Override
      protected Class<?>[] getRootConfigClasses() {
-         return new Class[] {HibernateConfig.class, EmailConfig.class};
+         return new Class[] {HibernateConfig.class, EmailConfig.class, WebSocketConfig.class};
      }
 
      @Override

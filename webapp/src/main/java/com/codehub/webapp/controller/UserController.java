@@ -31,6 +31,8 @@ import com.codehub.webapp.entity.JobApplied;
 import com.codehub.webapp.entity.User;
 import com.codehub.webapp.entity.UserModel;
 
+import oracle.net.aso.b;
+
 @RestController
 public class UserController {
 	
@@ -82,9 +84,11 @@ public class UserController {
 				return new ResponseEntity<User>(user, HttpStatus.NO_CONTENT);
 			} else {
 				user = userDAO.getByUserName(user.getUsername());
-				user.setOnline(true);
+				Boolean status = Boolean.valueOf("true");
+				user.setOnline(status);
 				user.setErrCode("200");
 				user.setErrMessage("Login Successful!");
+				userDAO.updateUser(user);
 				return new ResponseEntity<User>(user, HttpStatus.OK);
 			}
 			
@@ -111,6 +115,7 @@ public class UserController {
 	public ResponseEntity<Void> toLogout(@RequestBody User user) {
 		
 		user.setOnline(false);
+		userDAO.updateUser(user);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
@@ -185,6 +190,22 @@ public class UserController {
 			List<Events> top3Events = eventsDAO.mainList();
 			containModel.setTop3Events(top3Events);
 			return new ResponseEntity<ContainModel>(containModel, HttpStatus.OK);
+		}
+		
+		//function to fetch my online friends
+		@RequestMapping(value = {"/my/online/friends/{id}"}, method =  RequestMethod.GET)
+		public ResponseEntity<List<User>> fetchOnlineFriends(@PathVariable ("id") int userId) {
+			System.out.println("Fetching online friends");
+			
+			List<User> users =  userDAO.fetchOnlineFriends(userId);
+			List<User> onlineFriends = new ArrayList<>();
+			for(User user1 : users) {
+				if(user1.getId() != userId) {
+					onlineFriends.add(user1);
+				}
+			}
+			
+			return new ResponseEntity<List<User>>(onlineFriends, HttpStatus.OK);
 		}
 
 }

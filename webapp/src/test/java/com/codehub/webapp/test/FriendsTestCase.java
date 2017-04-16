@@ -20,6 +20,7 @@ public class FriendsTestCase {
 	@Autowired
 	FriendsDAO friendsDAO;
 	
+	
 	@Autowired
 	AnnotationConfigApplicationContext context;
 	
@@ -70,11 +71,12 @@ public class FriendsTestCase {
 //		Assert.assertEquals("Test failed!", 7, users.size());
 //	}
 	
-	@Test
-	public void testMyFriends() {
-		List<User> users = friendsDAO.myFriends(30);
-		Assert.assertEquals("Test failed!", 3, users.size());
-	}
+//	@Test
+//	public void testMyFriends() {
+//		List<User> users = friendsDAO.myFriends(30);
+//		Assert.assertEquals("Test failed!", 3, users.size());
+//	}
 	
+
 	
 }

@@ -217,6 +217,15 @@ window.routes = {
         roles: ['User', 'Super_Admin', 'Admin', 'Employer']
     },
 
+    //For viewing list of friend request user has received
+    "/chat/:id/:username": {
+        templateUrl : 'app/components/chat/chat.html',
+        controller : 'chatController',
+        controllerAs : 'chatCtrl',
+        requireLogin: true,
+        roles: ['User', 'Super_Admin', 'Admin', 'Employer']
+    },
+
     //For navigating to error page
     "/error": {
         templateUrl : 'app/components/authentication/error.html',

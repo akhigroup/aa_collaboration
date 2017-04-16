@@ -28,7 +28,8 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
             uploadFile : uploadFile,
             fetchUser : fetchUser,
             fetchContain : fetchContain,
-            fetchMyFriends : fetchMyFriends
+            fetchMyFriends : fetchMyFriends,
+            fetchOnlineFriends : fetchOnlineFriends
         };
 
          //Function to fetch user event list
@@ -111,6 +112,23 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
 
              var userId = user.id;
               $http.get(url + '/my/friends/' + userId)
+                .then (
+                    function(response) {
+                        deferred.resolve(response.data);
+                    },
+                    function(errResponse) {
+                        deferred.reject(errResponse);
+                    }
+                );
+                return deferred.promise;
+        }
+
+        //function to fetch my online friends
+         function fetchOnlineFriends() {
+             var deferred = $q.defer();
+
+             var userId = user.id;
+              $http.get(url + '/my/online/friends/' + userId)
                 .then (
                     function(response) {
                         deferred.resolve(response.data);

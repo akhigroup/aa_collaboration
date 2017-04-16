@@ -54,6 +54,10 @@ user.controller('userController',
     self.myFriends = [];
 
     self.friendsCount = [];
+
+    self.myOnlineFriends = [];
+
+    self.countOnlineFriends =[]
     
      // calling jQuery once controller has loaded
     $timeout(function () {
@@ -192,6 +196,21 @@ user.controller('userController',
                 }
             );
 
+     }
+
+     self.fetchOnlineFriends = function(){
+         debugger;
+         console.log('Showing online friends now!');
+         userFactory.fetchOnlineFriends()
+            .then (
+                function(onlineFriends) {
+                debugger;
+                 self.myOnlineFriends =  onlineFriends;
+                 self.countOnlineFriends =  self.myOnlineFriends.length;
+                },
+                function(errResponse) {
+                }
+            );
      }
 
 
