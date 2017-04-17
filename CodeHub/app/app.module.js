@@ -12,4 +12,5 @@ var codehub = angular.module('codehub', [
     'requestModule',
     'friendModule',
     'chatModule',
+    'textAngular'
     ]);

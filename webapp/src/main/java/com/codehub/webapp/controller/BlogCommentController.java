@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codehub.webapp.dao.BlogCommentDAO;
 import com.codehub.webapp.dao.BlogDAO;
+import com.codehub.webapp.dao.UserDAO;
 import com.codehub.webapp.entity.Blog;
 import com.codehub.webapp.entity.BlogComments;
 import com.codehub.webapp.entity.User;
@@ -35,6 +36,9 @@ public class BlogCommentController {
 	@Autowired
 	User user;
 	
+	@Autowired
+	UserDAO userDAO;
+	
 	//Method for creating a new blog comment
 	
 		@RequestMapping(value = {"/blog/comment/new/{id}"}, method = RequestMethod.POST)
@@ -44,10 +48,10 @@ public class BlogCommentController {
 			LocalDateTime now = LocalDateTime.now(); 
 			blogComments.setCommentDate(LocalDate.parse(dtf.format(now)));
 			blog = blogDAO.getBlog(id);
-			int comments = blog.getNoOfComments();
-			blog.setNoOfComments(comments + 1);
+			blog.setNoOfComments(blog.getNoOfComments() + 1);
 			blogDAO.updateBlog(blog);
 			blogComments.setBlog(blog);
+			blogComments.setUserProfileId(userDAO.getUser(blogComments.getUserId()).getProfile());
 			blogCommentsDAO.addBlogComments(blogComments);
 			
 			return new ResponseEntity<BlogComments>(blogComments, HttpStatus.OK);	

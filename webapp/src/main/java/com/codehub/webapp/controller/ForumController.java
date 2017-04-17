@@ -18,9 +18,8 @@ import com.codehub.webapp.dao.ForumDAO;
 import com.codehub.webapp.dao.ForumPostDAO;
 import com.codehub.webapp.dao.ForumRequestDAO;
 import com.codehub.webapp.dao.UserDAO;
-import com.codehub.webapp.entity.Blog;
-import com.codehub.webapp.entity.BlogComments;
 import com.codehub.webapp.entity.Forum;
+import com.codehub.webapp.entity.ForumModel;
 import com.codehub.webapp.entity.ForumPosts;
 import com.codehub.webapp.entity.ForumRequest;
 import com.codehub.webapp.entity.User;
@@ -75,14 +74,17 @@ public class ForumController {
 	}
 	
 	
-	//Method for viewing single blog using blog id as a parameter
+	//Method for viewing single forum using forum id as a parameter
 	
 	@RequestMapping(value = {"/forum/{id}"}, method = RequestMethod.GET)
-	public ResponseEntity<Forum> viewForum(@PathVariable("id") int id) {
+	public ResponseEntity<ForumModel> viewForum(@PathVariable("id") int id) {
 		System.out.println("Calling method");
-		Forum forum = new Forum();
-		forum = forumDAO.getForum(id);
-		return new ResponseEntity<Forum>(forum, HttpStatus.OK);
+		ForumModel forumModel = new ForumModel();
+		Forum forum = forumDAO.getForum(id);
+		User user = userDAO.getUser(forum.getUserId());
+		forumModel.setForum(forum);
+		forumModel.setUser(user);
+		return new ResponseEntity<ForumModel>(forumModel, HttpStatus.OK);
 			
 		}
 	
@@ -96,6 +98,7 @@ public class ForumController {
 		forum.setNoOfPosts(forum.getNoOfPosts() + 1);
 		forumDAO.updateForum(forum);
 		forumPosts.setForum(forum);
+		forumPosts.setUserProfileId(userDAO.getUser(forumPosts.getUserId()).getProfile());
 		forumPostDAO.addForumPosts(forumPosts);
 		
 		return new ResponseEntity<ForumPosts>(forumPosts, HttpStatus.OK);	

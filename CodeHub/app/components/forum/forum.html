@@ -11,7 +11,7 @@
          <div style=" padding-top: 40px; padding-bottom: 40px;">
              <div class="row">
                  <div class="col m3" style="margin-top: 20px">
-                    <img src="assets/img/noDp.png" alt="" class="circle" width="150px;">
+                    <img ng-src="assets/img/{{forCtrl.singleForumUser.profile}}" alt="" class="circle" width="150px;">
                     <p>Started by: {{forCtrl.singleForum.userName}}</p>
                  </div>
                 <div class="col m9">
@@ -82,11 +82,11 @@
         <!-- If posts are available -->
         <div ng-if="(forCtrl.isApproved) && forCtrl.singleForum.noOfPosts != 0">
 
-            <div class="card hoverable" ng-repeat="post in forCtrl.forumPostsList">
-            <div style=" padding-top: 40px; padding-bottom: 40px;">
+            <div class="card hoverable" ng-repeat="post in forCtrl.forumPostsList | orderBy : 'id'">
+            <div style=" padding-top: 40px; padding-bottom: 40px;" >
                 <div class="row">
-                    <div class="col m3" style="margin-top: 20px">
-                        <img src="assets/img/noDp.png" alt="" class="circle" width="150px;">
+                    <div class="col m3" style="margin-top: 20px" >
+                        <img src="assets/img/{{post.userProfileId}}" alt="" class="circle" width="150px;">
                         <p>Posted by: {{post.username}}</p>
                     </div>
                     <div class="col m9">

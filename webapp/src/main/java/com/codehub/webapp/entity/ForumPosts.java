@@ -44,6 +44,9 @@ public class ForumPosts implements Serializable {
 	@Column(name="User_Name")
 	private String username;
 	
+	@Column(name="User_ProfileId")
+	private String userProfileId;
+	
 	@Column(name="Post_Containt")
 	private String description;
 	
@@ -80,6 +83,14 @@ public class ForumPosts implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getUserProfileId() {
+		return userProfileId;
+	}
+
+	public void setUserProfileId(String userProfileId) {
+		this.userProfileId = userProfileId;
 	}
 
 	public String getTitle() {

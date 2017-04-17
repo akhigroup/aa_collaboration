@@ -95,7 +95,7 @@ public class JobDAOImpl implements JobDAO {
 	@Override
 	@Transactional
 	public List<Job> mainList() {
-		String hql = "FROM Job order by postDate";
+		String hql = "FROM Job where status = 'APPROVED' order by postDate desc";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setFirstResult(0);
 		query.setMaxResults(3); 

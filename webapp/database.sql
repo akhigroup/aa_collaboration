@@ -46,6 +46,7 @@ BLOG_ID NUMBER(5) NOT NULL,
 COMMENT_DATE Date default sysDate,
 user_id NUMBER(5) not null,
 user_name varchar2(10) not null,
+User_ProfileId varchar2(50) not null,
 title varchar2(50) not null,
 BLOG_COMMENT CLOB NOT NULL
 )
@@ -78,6 +79,7 @@ POST_ID NUMBER(5) PRIMARY KEY,
 FORUM_ID NUMBER(5) NOT NULL,
 user_id NUMBER(5) not null,
 user_name varchar2(10) not null,
+User_ProfileId varchar2(50) not null,
 title  varchar2(50) not null,
 POST_CONTAINT CLOB NOT NULL,
 POST_DATE DATE DEFAULT SYSDATE

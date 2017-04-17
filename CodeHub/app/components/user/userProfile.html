@@ -71,7 +71,7 @@
             <ul class="collection">
             <li class="collection-item avatar" ng-repeat="friend in userCtrl.myFriends">
                 <img src="assets/img/{{friend.profile}}" alt="" class="circle">
-                <span>{{friend.username}}</span>
+                <span><a href="#!/user/profile/{{friend.id}}" style="color:black">{{friend.username}}</a></span>
                 <a href="#!" class="secondary-content tooltipped" data-position="bottom" data-delay="50" data-tooltip="message"><i class="material-icons">message</i></a>
             </li>
 
@@ -205,8 +205,15 @@
             
             <!--Blogs created by user will come here -->
             <div id="test2" class="col s12">
+                     <div ng-if="userCtrl.myBlogCount == 0" class="card hoverable" style="width: inherit; height: 500px;">
+                        <div class="card-content" style="margin-left: 180px; ">
+                            <h5 ng-if="userCtrl.user.user.id != user.id"style="margin-top: 150px;">{{userCtrl.user.user.username}} has created any blogs yet!</h5> 
+                            <h5 ng-if="userCtrl.user.user.id == user.id"style="margin-top: 150px;">You have not created any blogs yet!</h5> 
+                            <a ng-if="userCtrl.user.user.id == user.id" href="#!/blog/new" type="submit" style="margin-left: 120px;" class="waves-effect waves-light btn-large center-align">CREATE NEW BLOG</a>
+                        </div>
+                    </div>
 
-                    <div class="row">
+                    <div ng-if="userCtrl.myBlogCount != 0" class="row">
                         <div class="col s12 m7">
                         <div class="card hoverable" style="width: 800px;" ng-repeat="blogs in userCtrl.user.blog| orderBy : 'id'" >
                             <span class="card-title" style="margin-left: 10px;"><a href="#!/blog/{{blogs.id}}" style=" color: rgba(0, 0, 0, 0.87);">{{blogs.name}}</a></span>

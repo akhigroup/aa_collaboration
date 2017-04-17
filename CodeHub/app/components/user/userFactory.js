@@ -16,9 +16,9 @@ user.directive('fileModel', ['$parse',
         };
     }]);
 
-user.factory('userFactory', ['$http', '$q', '$rootScope',
+user.factory('userFactory', ['$http', '$q', '$rootScope', '$routeParams',
 
-    function($http, $q, $rootScope) {
+    function($http, $q, $rootScope, $routeParams) {
 
         //For linking backend project with the frontend
         var url = 'http://localhost:7070/webapp';
@@ -106,11 +106,11 @@ user.factory('userFactory', ['$http', '$q', '$rootScope',
                 return deferred.promise;
         }
 
-        //function to fetch user's friends
+        // function to fetch user's friends
         function fetchMyFriends() {
              var deferred = $q.defer();
 
-             var userId = user.id;
+             var userId = $routeParams.id;
               $http.get(url + '/my/friends/' + userId)
                 .then (
                     function(response) {

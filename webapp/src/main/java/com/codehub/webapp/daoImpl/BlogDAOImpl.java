@@ -28,7 +28,7 @@ public class BlogDAOImpl implements BlogDAO {
 	@Override
 	@Transactional
 	public List<Blog> mainList() {
-		String hql = "FROM Blog order by noOfViews desc";
+		String hql = "FROM Blog where status = 'APPROVED' order by noOfViews desc ";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setFirstResult(0);
 		query.setMaxResults(5); 

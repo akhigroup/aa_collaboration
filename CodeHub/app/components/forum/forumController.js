@@ -32,6 +32,9 @@ function(ForumFactory,
              // For viewing single forum
              self.singleForum = {};
 
+             //Setting up creator of the forum
+             self.singleForumUser = {};
+
              //For list of participated users
              self.participatedUsers = []; 
 
@@ -46,6 +49,8 @@ function(ForumFactory,
 
             //For list of forum posts
             self.forumPostsList = [];
+
+            self.forumPostUser = [];
 
             // calling jQuery once controller has loaded
             $timeout(function () {
@@ -105,8 +110,9 @@ function(ForumFactory,
                             var forumId = $routeParams.id;
                             ForumFactory.viewForum(forumId)
                                 .then (
-                                    function(forum) {
-                                        self.singleForum = forum;
+                                    function(forumModel) {
+                                        self.singleForum = forumModel.forum;
+                                        self.singleForumUser = forumModel.user;
                                         self.singleForum.postDate = new Date(self.singleForum.postDate[0],self.singleForum.postDate[1] - 1,self.singleForum.postDate[2]);
                                         fetchBlogPosts();
                                     },
@@ -178,6 +184,7 @@ function(ForumFactory,
                 ForumFactory.fetchBlogPosts(forumId)
                     .then (
                         function(forumPosts) {
+                            debugger;
                             self.forumPostsList = forumPosts;
                             for(var postDate in self.forumPostsList) {
                                 self.forumPostsList[postDate].postDate = new Date(self.forumPostsList[postDate].postDate[0],self.forumPostsList[postDate].postDate[1] - 1,self.forumPostsList[postDate].postDate[2]);

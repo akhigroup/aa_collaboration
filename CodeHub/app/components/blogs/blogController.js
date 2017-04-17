@@ -142,7 +142,7 @@ blog.controller('blogController', ['blogFactory', 'BlogCommentFactory',
         blogFactory.blogCommentlist(blogId)
             .then (
                 function(blogComments) {
-                       
+                    debugger;
                     self.blogCommentList = blogComments;
                     for(var [blogComment] in self.blogCommentList) {
                         self.blogCommentList[blogComment].commentDate = new Date(self.blogCommentList[blogComment].commentDate[0],self.blogCommentList[blogComment].commentDate[1] - 1,self.blogCommentList[blogComment].commentDate[2]);

@@ -57,7 +57,9 @@ user.controller('userController',
 
     self.myOnlineFriends = [];
 
-    self.countOnlineFriends =[]
+    self.countOnlineFriends = [];
+
+    self.myBlogCount = [];
     
      // calling jQuery once controller has loaded
     $timeout(function () {
@@ -74,6 +76,15 @@ user.controller('userController',
                 function(data) {
                     debugger;
                     self.contain = data;
+                     for(var [postDate] in  self.contain.top3Events) {
+                        self.contain.top3Events[postDate].postDate = new Date(self.contain.top3Events[postDate].postDate[0],self.contain.top3Events[postDate].postDate[1] - 1,self.contain.top3Events[postDate].postDate[2]);   
+                    }
+                    for(var [startDate] in self.contain.top3Events) {
+                        self.contain.top3Events[startDate].startDate = new Date(self.contain.top3Events[startDate].startDate[0],self.contain.top3Events[startDate].startDate[1] - 1,self.contain.top3Events[startDate].startDate[2]);
+                    }
+                    for(var [endDate] in self.contain.top3Events) {
+                        self.contain.top3Events[endDate].endDate = new Date(self.contain.top3Events[endDate].endDate[0],self.contain.top3Events[endDate].endDate[1] - 1,self.contain.top3Events[endDate].endDate[2]);
+                    }
 
                 }, function(errResponse) {
 
@@ -149,10 +160,11 @@ user.controller('userController',
           userFactory.fetchUser(id)
                 .then (
                     function(user) {
-                       
+                        debugger;
                         self.user = user;
                         self.user.user.birthDate = new Date( self.user.user.birthDate[0], self.user.user.birthDate[1] - 1, self.user.user.birthDate[2]);
 
+                        self.myBlogCount = self.user.blog.length;
                         self.joinedEventCount = self.user.joinedEvents.length;
                         self.appliedJobCount = self.user.appliedJobList.length;
 

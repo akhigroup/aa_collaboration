@@ -86,7 +86,7 @@ public class EventDAOImpl implements EventsDAO {
 	@Override
 	@Transactional
 	public List<Events> mainList() {
-		String hql = "FROM Events order by postDate";
+		String hql = "FROM Events where status = 'APPROVED' order by postDate desc";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		query.setFirstResult(0);
 		query.setMaxResults(3);

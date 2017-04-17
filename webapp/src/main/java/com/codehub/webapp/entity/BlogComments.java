@@ -40,6 +40,9 @@ public class BlogComments implements Serializable{
 	@Column(name="User_Name")
 	private String username;
 	
+	@Column(name="User_ProfileId")
+	private String userProfileId;
+	
 	private String title;
 	
 	@Column(name="Blog_Comment")	
@@ -91,6 +94,14 @@ public class BlogComments implements Serializable{
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getUserProfileId() {
+		return userProfileId;
+	}
+
+	public void setUserProfileId(String userProfileId) {
+		this.userProfileId = userProfileId;
 	}
 
 	public String getBlogComment() {
